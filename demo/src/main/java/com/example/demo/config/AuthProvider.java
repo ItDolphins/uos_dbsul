@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-/*import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.demo.model.Account;
 
-@Component
+/*@Component
 public class AuthProvider implements AuthenticationProvider {
 
 	@Override
@@ -22,7 +22,7 @@ public class AuthProvider implements AuthenticationProvider {
 		System.out.println(authentication.getCredentials());
 		
 		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
-		result.add(new SimpleGrantedAuthority("ROLE_MAIN_ADMIN"));
+		result.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		return new UsernamePasswordAuthenticationToken(new Account(), authentication.getCredentials(), result);
 	}
 

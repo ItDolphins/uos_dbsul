@@ -32,14 +32,15 @@ public class TestController2 {
 		return "hello2";
 	}*/
 	@GetMapping("/index")
-	public String get3() {
+	public String main_page() {
 		return "index";
 	}
 	
-	@GetMapping("/index2")
-	public String get4() {
-		return "index2";
+	@GetMapping("/")
+	public String login() {
+		return "login";
 	}
+	
 	/*
 	@GetMapping("/")
 	public String f() {
