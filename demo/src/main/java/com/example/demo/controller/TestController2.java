@@ -36,10 +36,10 @@ public class TestController2 {
 		return "index";
 	}
 	
-	@GetMapping("/")
-	public String login() {
-		return "login";
-	}
+	//@GetMapping("/")
+	//public String login() {
+	//	return "login";
+	//}
 	
 	/*
 	@GetMapping("/")
