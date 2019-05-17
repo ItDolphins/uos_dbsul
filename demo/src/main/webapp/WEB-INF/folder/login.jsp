@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="utf-8" class="no-js"> <![endif]-->
@@ -14,6 +15,7 @@
 	<link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css">
 	<link href="resources/css/ionicons.css" rel="stylesheet" type="text/css">
 	<link href="resources/css/main.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<!-- Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
@@ -33,13 +35,14 @@
 			<div class="col-sm-5 col-sm-offset-1 col-lg-4 col-lg-offset-2">
 				<div class="content-box-bordered login-box box-with-help">
 					<h1>Log in to your account</h1>
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" method="post" action="/authenticate">
+						${fn:replace(SPRING_SECURITY_LAST_EXCEPTION.message, 'Bad credentials', 'Username/Password are incorrect')}
 						<div class="form-group">
 							<label for="inputId" class="control-label sr-only">Id</label>
 							<div class="col-sm-12">
 								<div class="input-group">
-									<span class="input-group-addon"><i class="icon ion-navigate"></i></span>
-									<input type="text" class="form-control" id="inputId" placeholder="Id">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+									<input type="text" class="form-control" id="inputId" placeholder="Id" name="id">
 								</div>
 							</div>
 						</div>
@@ -47,8 +50,8 @@
 							<label for="inputPassword3b" class="control-label sr-only">Password</label>
 							<div class="col-sm-12">
 								<div class="input-group">
-									<span class="input-group-addon"><i class="icon ion-locked"></i></span>
-									<input type="password" class="form-control" id="inputPassword3b" placeholder="Password">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-cloud"></i></span>
+									<input type="password" class="form-control" id="inputPassword3b" placeholder="Password" name="pw">
 								</div>
 							</div>
 						</div>
@@ -69,7 +72,6 @@
 							</div>
 						</div>
 					</form>
-					<button type="button" class="btn btn-link btn-login-help"><i class="icon ion-help-circled"></i></button>
 				</div>
 			</div>
 			<div class="col-sm-5 col-lg-4">

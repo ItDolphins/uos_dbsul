@@ -13,13 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.service.SellService;
-
 @Controller
 public class TestController2 {
 	
-	@Autowired
-	private SellService sellService;
 
 	/*@GetMapping("/test2")
 	public String get() {
@@ -31,15 +27,15 @@ public class TestController2 {
 		model.addAttribute("name", "mye");
 		return "hello2";
 	}*/
-	@GetMapping("/index")
+	@GetMapping("/")
 	public String main_page() {
 		return "index";
 	}
 	
-	//@GetMapping("/")
-	//public String login() {
-	//	return "login";
-	//}
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 	
 	/*
 	@GetMapping("/")

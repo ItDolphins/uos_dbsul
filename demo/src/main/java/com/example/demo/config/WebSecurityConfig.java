@@ -11,23 +11,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
- /*
+ 
     @Autowired
     private AuthProvider authenticationProvider;
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-			.withUser("chiwon").password("1234").roles("ROLE_ADMIN").and()
-			.withUser("chelhoon").password("1234").roles("ROLE_USER").and()
-			.withUser("gangmo").password("1234").roles("ROLE_USER");
+		auth.authenticationProvider(authenticationProvider);
 	}
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	http.csrf().disable().headers().disable();
         http.authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .antMatchers("/").hasRole("ROLE_ADMIN")
+                .antMatchers("/resources/css/**", "/resources/js/**", "/resources/img/**").permitAll()
+                .antMatchers("/").hasRole("ADMIN")
 //                .antMatchers("/auth/admin/**").hasRole("ROLE_ADMIN")
 //                .antMatchers("/auth/**").hasAnyRole("ROLE_ADMIN", "ROLE_USER")
                 .anyRequest().authenticated();
@@ -36,15 +34,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        .loginPage("/login") // default
 	        .loginProcessingUrl("/authenticate")
 	        .failureUrl("/login?error") // default
-	        .defaultSuccessUrl("/index")
-	        .usernameParameter("inputId")
-	        .passwordParameter("inputPassword3b")
+	        .defaultSuccessUrl("/")
+	        .usernameParameter("id")
+	        .passwordParameter("pw")
 	        .permitAll();
  
         http.logout()
                 .logoutUrl("/logout") // default
                 .logoutSuccessUrl("/login")
                 .permitAll();
+        
+       // http.authenticationProvider(authenticationProvider);
     }
- */
+    
+    
+ 
 }

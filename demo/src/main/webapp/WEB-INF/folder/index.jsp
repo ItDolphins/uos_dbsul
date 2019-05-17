@@ -255,11 +255,7 @@
 					<h3>MAIN</h3>
 					<ul class="main-menu">
 						<li class="has-submenu active">
-							<a href="#" class="submenu-toggle"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Dashboards</span></a>
-							<ul class="list-unstyled sub-menu collapse in">
-								<li class="active"><a href="index.html"><span class="text">Dashboard v1</span></a></li>
-								<li><a href="index2.html"><span class="text">Dashboard v2</span></a></li>
-							</ul>
+							<a href="/"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Main</span></a>
 						</li>
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Forms</span></a>
