@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
-<!--
-						<sec:authentication property="principal.username"/>
-					<sec:authentication property="principal.password"/>
-					이 구문을 통해 로그인한 id와 password를 불러올 수 있음
--->
-
 <%
 String pagefile = request.getParameter("page");
 if(pagefile == null) {pagefile = "home";}
@@ -48,7 +41,7 @@ if(pagefile == null) {pagefile = "home";}
 				<a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i class="icon ion-arrow-swap"></i></a>
 				<a class="btn btn-link btn-off-canvas pull-left"><i class="icon ion-navicon"></i></a>
 				<div class="logo pull-left">
-					<a href="./template">
+					<a href="/home">
 						<img src="resources/img/uos25.png" alt="UOS25 Logo" />
 					</a>
 				</div>
@@ -267,11 +260,11 @@ if(pagefile == null) {pagefile = "home";}
 				<nav id="main-nav" class="main-nav">
 					<h3>MAIN</h3>
 					<ul class="main-menu">
-						<li class="has-submenu active">
+						<li>
 							<a href="/template"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Main</span></a>
 						</li>
-						<li class="has-submenu">
-							<a href="./template?page=test"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Test</span></a>
+						<li>
+							<a href="./template?page=manage_employee"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Manage Employee</span></a>
 						</li>
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">UI Elements</span></a>
@@ -346,30 +339,3 @@ if(pagefile == null) {pagefile = "home";}
 				</nav>
 			</div>
 		</div>
-		<jsp:include page='<%=pagefile+".jsp" %>' />
-	</div>
-	<!-- END WRAPPER -->
-	<!-- Javascript -->
-	<script src="resources/js/jquery/jquery-2.1.0.min.js"></script>
-	<script src="resources/js/bootstrap/bootstrap.js"></script>
-	<script src="resources/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	<script src="resources/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="resources/js/queen-common.js"></script>
-	<script src="resources/js/plugins/stat/flot/jquery.flot.min.js"></script>
-	<script src="resources/js/plugins/stat/flot/jquery.flot.resize.min.js"></script>
-	<script src="resources/js/plugins/stat/flot/jquery.flot.time.min.js"></script>
-	<script src="resources/js/plugins/stat/flot/jquery.flot.orderBars.js"></script>
-	<script src="resources/js/plugins/stat/flot/jquery.flot.tooltip.min.js"></script>
-	<script src="resources/js/plugins/mapael/raphael/raphael-min.js"></script>
-	<script src="resources/js/plugins/mapael/jquery.mapael.js"></script>
-	<script src="resources/js/plugins/mapael/maps/world_countries.js"></script>
-	<script src="resources/js/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-	<script src="resources/js/plugins/moment/moment.min.js"></script>
-	<script src="resources/js/plugins/bootstrap-editable/bootstrap-editable.min.js"></script>
-	<script src="resources/js/plugins/jquery-maskedinput/jquery.masked-input.min.js"></script>
-	<script src="resources/js/queen-charts.js"></script>
-	<script src="resources/js/queen-maps.js"></script>
-	<script src="resources/js/queen-elements.js"></script>
-</body>
-
-</html>

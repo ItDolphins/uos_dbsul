@@ -31,7 +31,7 @@ public class TestController2 {
 		return "login";
 	}
 	
-	@GetMapping("/template")
+	@GetMapping("/home")
 	public ModelAndView template(ModelAndView mav) {
 		//접속 id 불러오는 방법
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -52,7 +52,7 @@ public class TestController2 {
 		mav.addObject("store_addr",store_addr);
 		mav.addObject("store_pnum",store_pnum);
 		mav.addObject("store_postno",store_postno);
-		mav.setViewName("template");
+		mav.setViewName("home");
 		return mav;
 	}
 	

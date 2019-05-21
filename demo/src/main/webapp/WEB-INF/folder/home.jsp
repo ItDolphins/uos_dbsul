@@ -1,13 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page import = "com.example.demo.service.StoreInfoService" %>
-<%@ page import = "org.springframework.security.core.Authentication" %>
-<%@ page import = "org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import = "com.example.demo.model.StoreInfo" %>
-<%@ page import = "org.springframework.beans.factory.annotation.Autowired" %>
-<%@ page import = "com.example.demo.service.StoreInfoServiceImpl" %>
-
-<!-- COLUMN RIGHT -->
+		<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+		<jsp:include page="header.jsp" />
+		<!-- COLUMN RIGHT -->
 		<div id="col-right" class="col-right ">
 			<div class="container-fluid primary-content">
 				<!-- PRIMARY CONTENT HEADING -->
@@ -473,3 +466,4 @@
 			</div>
 		</div>
 		<!-- END COLUMN RIGHT -->
+		<jsp:include page="footer.jsp" />
