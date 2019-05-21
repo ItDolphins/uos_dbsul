@@ -34,17 +34,17 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 	
 	
 	@Override
-	public List<Staff> getStaffById(String id) {
-		String sql = "select store_no from acnt where acnt_id = ?";
+	public List<Staff> findByStoreNo(String storeNo) {
+		String sql = "select store_no from tstore where store_no = ?";
 		String store_no = null;
-		try {
-			store_no = (String)getJdbcTemplate().queryForObject(sql,new Object[] {id},String.class);
-		}catch (EmptyResultDataAccessException e) {
-			System.out.println("첫번째 쿼리 에러");
+			try {
+				store_no = (String)getJdbcTemplate().queryForObject(sql,new Object[] {storeNo},String.class);
+			}catch (EmptyResultDataAccessException e) {
+				System.out.println("첫번째 쿼리 에러");
 		}
 		
 		sql = "select * from staff where store_no = ?";
-		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {id},new StaffMapper());
+		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {storeNo},new StaffMapper());
 		
 		return staff;
 	}

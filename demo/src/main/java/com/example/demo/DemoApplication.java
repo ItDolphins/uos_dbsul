@@ -56,7 +56,7 @@ public class DemoApplication implements CommandLineRunner{
 		//StoreInfo s = new StoreInfo();
 		//s = storeInfoService.getStoreInfo("chiwon");
 		//System.out.println(s.getADMIN_NAME());
-		List<Staff> staffs = staffService.getStaff("1");
+		List<Staff> staffs = staffService.findByStoreNo("1");
 		
 		Staff s = staffs.get(0);
 		System.out.println(s.getStaff_name());

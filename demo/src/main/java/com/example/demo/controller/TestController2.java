@@ -44,14 +44,16 @@ public class TestController2 {
 		String id = auth.getName();
 		
 		StoreInfo storeInfo = storeInfoService.getStoreInfo(id);
-		String admin_name = storeInfo.getADMIN_NAME();
-		String store_no = storeInfo.getSTORE_NO();
-		String store_name = storeInfo.getSTORE_NAME();
-		String store_addr = storeInfo.getSTORE_ADDR();
-		String store_pnum = storeInfo.getSTORE_PNUM();
-		String store_postno = storeInfo.getSTORE_POSTNO();
-		
-		mav.addObject("id", id);
+        String admin_name = storeInfo.getADMIN_NAME();
+        String store_no = storeInfo.getSTORE_NO();
+        String store_name = storeInfo.getSTORE_NAME();
+        String store_addr = storeInfo.getSTORE_ADDR();
+        String store_pnum = storeInfo.getSTORE_PNUM();
+        String store_postno = storeInfo.getSTORE_POSTNO();
+
+
+
+        mav.addObject("id", id);
 		mav.addObject("admin_name",admin_name);
 		mav.addObject("store_no",store_no);
 		mav.addObject("store_name",store_name);
@@ -67,8 +69,8 @@ public class TestController2 {
 		//접속 id 불러오는 방법
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String id = auth.getName();
-		
-		List<Staff> staff = staffService.getStaff("1");
+		StoreInfo storeInfo = storeInfoService.getStoreInfo(id);
+		List<Staff> staff = staffService.findByStoreNo(storeInfo.getSTORE_NO());
 		for(int i=0; i<4; i++)
 		{
 			Staff s = staff.get(0);
@@ -82,11 +84,11 @@ public class TestController2 {
 	}
 	
 	
-	/*
+
 	@GetMapping("/")
 	public String f() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(auth.getAuthorities());
-		return "";
-	}*/
+		return "redirect:/home";
+	}
 }

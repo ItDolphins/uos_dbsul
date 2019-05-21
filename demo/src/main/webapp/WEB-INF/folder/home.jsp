@@ -141,7 +141,7 @@
 									</tr>
 									<tr>
 										<td>우편번호</td>
-										<td>${admin_postno}</td>
+										<td>${store_postno}</td>
 									</tr>
 									<tr>
 										<td>본사 담당 관리자</td>
