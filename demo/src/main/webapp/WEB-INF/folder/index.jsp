@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<!--
+						<sec:authentication property="principal.username"/>
+					<sec:authentication property="principal.password"/>
+					이 구문을 통해 로그인한 id와 password를 불러올 수 있음
+-->
 
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->

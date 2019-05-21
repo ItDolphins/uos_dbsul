@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,8 +20,14 @@ public class TestController2 {
 	
 	@GetMapping("/")
 	public String main_page() {
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//System.out.println(auth.isAuthenticated());
+		//System.out.println("테스트 중");
+		//System.out.println(auth.getPrincipal());
+		//System.out.println(auth.getName());
 		return "index";
 	}
+	
 	
 	@GetMapping("/login")
 	public String login() {
