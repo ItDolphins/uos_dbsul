@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import = "com.example.demo.service.StoreInfoService" %>
+<%@ page import = "org.springframework.security.core.Authentication" %>
+<%@ page import = "org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import = "com.example.demo.model.StoreInfo" %>
+<%@ page import = "org.springframework.beans.factory.annotation.Autowired" %>
+<%@ page import = "com.example.demo.service.StoreInfoServiceImpl" %>
 
 <!-- COLUMN RIGHT -->
 		<div id="col-right" class="col-right ">
@@ -116,6 +122,52 @@
 						<!-- ORDER STATUS -->
 						<div class="widget">
 							<div class="widget-header clearfix">
+								<h3><i class="icon ion-bag"></i> <span>Store Info</span></h3>
+								<div class="btn-group widget-header-toolbar">
+									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+								</div>
+							</div>
+							<div class="widget-content">
+							${id}
+							매장이름 : 히히 매장주소 : 히히 전화번호 : 히히
+							<br><br><br><br><br><br><br><br><br><br><br><br>
+							</div>
+						</div>
+						<!-- END ORDER STATUS -->
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8">
+						<!-- MAP -->
+						<div class="widget">
+							<div class="widget-header clearfix">
+								<h3><i class="icon ion-location"></i> <span>SALES ORIGINS</span></h3>
+								<div class="btn-group widget-header-toolbar">
+									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+								</div>
+							</div>
+							<div class="widget-content">
+								<div class="data-visualization-map">
+									<div class="row">
+										<div class="col-md-9">
+											<div class="map"></div>
+											<p class="text-muted"><i class="icon ion-android-information"></i> Click the text legend to see interactivity in action.</p>
+										</div>
+										<div class="col-md-3">
+											<div class="areaLegend legend-right"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END MAP -->
+					</div>
+					<div class="col-md-4">
+						<!-- COMPLETENESS METER -->
+						<div class="widget">
+							<div class="widget-header clearfix">
 								<h3><i class="icon ion-bag"></i> <span>ORDER STATUS</span></h3>
 								<div class="btn-group widget-header-toolbar">
 									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
@@ -169,64 +221,6 @@
 										</tr>
 									</tbody>
 								</table>
-							</div>
-						</div>
-						<!-- END ORDER STATUS -->
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-8">
-						<!-- MAP -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-location"></i> <span>SALES ORIGINS</span></h3>
-								<div class="btn-group widget-header-toolbar">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="data-visualization-map">
-									<div class="row">
-										<div class="col-md-9">
-											<div class="map"></div>
-											<p class="text-muted"><i class="icon ion-android-information"></i> Click the text legend to see interactivity in action.</p>
-										</div>
-										<div class="col-md-3">
-											<div class="areaLegend legend-right"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- END MAP -->
-					</div>
-					<div class="col-md-4">
-						<!-- COMPLETENESS METER -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-person"></i> <span>COMPLETE YOUR PROFILE</span></h3>
-								<div class="btn-group widget-header-toolbar">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="completeness-meter">
-									<div class="progress progress-xs">
-										<div class="progress-bar progress-bar-info completeness-progress" data-transitiongoal="60"></div>
-									</div>
-									<p class="complete-info">Your profile is <strong class="completeness-percentage">60%</strong> complete, please provide information below:</p>
-									<p><a href="#" id="complete-phone-number" data-type="text" data-pk="1" data-title="Phone number">Add your phone number</a></p>
-									<p>
-										<a href="#" id="complete-sex" data-type="select" data-pk="1" data-value="" data-prepend="Select sex" data-title="Select sex"></a>
-									</p>
-									<p><a href="#" id="complete-birthdate" data-type="combodate" data-value="1984-05-23" data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1" data-title="Select date of birth">Select date of birth</a></p>
-									<p><a href="#" id="complete-nickname" data-type="text" data-pk="1" data-title="Nickname" data-placeholder="your nickname">Add your nickname</a></p>
-								</div>
-							</div>
-							<div class="widget-footer">
-								<a href="#">View my profile</a>
 							</div>
 						</div>
 						<!-- END COMPLETENESS METER -->

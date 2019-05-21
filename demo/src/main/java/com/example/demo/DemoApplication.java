@@ -16,37 +16,27 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.context.ApplicationContext;
 
-import com.example.demo.model.Employee;
+import com.example.demo.model.StoreInfo;
 import com.example.demo.service.AccountService;
-import com.example.demo.service.EmployeeService;
+import com.example.demo.service.StoreInfoService;
 //import org.springframework.security.core.userdetails.UserDetails;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner{
 	
 
-	@Autowired
-	EmployeeService employeeService;
+
 	
 	@Autowired
 	AccountService accountService;
+	
+	@Autowired
+	StoreInfoService storeInfoService;
 	
 	public static void main(String[] args) {
 		
 		
 		SpringApplication.run(DemoApplication.class, args);
-		
-		Employee emp= new Employee();
-		emp.setEmpId("emp");
-		emp.setEmpName("emp");
-		
-		Employee emp1= new Employee();
-		emp1.setEmpId("emp1");
-		emp1.setEmpName("emp1");
-		
-		Employee emp2= new Employee();
-		emp2.setEmpId("emp2");
-		emp2.setEmpName("emp2");
 
 	}
 	
@@ -55,15 +45,13 @@ public class DemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*Employee emp= new Employee();
-		emp.setEmpId("emp");
-		emp.setEmpName("emp");
-		
-		employeeService.insertEmployee(emp);
-		employeeService.getEmployeeById("emp");*/
 		
 		//String id = "chiwon";
 		//System.out.println(accountService.getPw(id));
+		StoreInfo s = new StoreInfo();
+		s = storeInfoService.getStoreInfo("chiwon");
+		System.out.println("이것이 어드민넘버!!");
+		System.out.println(s.getADMIN_NAME());
 	}
 
 }
