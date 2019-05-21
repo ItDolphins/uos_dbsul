@@ -5,21 +5,21 @@ import lombok.Setter;
 
 public class StoreInfo {
 	@Getter @Setter
-	private String STORE_NO;
+	private String store_no;
 	@Getter @Setter
-	private String STORE_NAME;
+	private String store_name;
 	@Getter @Setter
-	private String STORE_CODE;
+	private String store_code;
 	@Getter @Setter
-	private String STORE_PNUM;
+	private String store_pnum;
 	@Getter @Setter
-	private String ADMIN_NO;
+	private String admin_no;
 	@Getter @Setter
-	private String STORE_POSTNO;
+	private String store_postno;
 	
 	@Getter @Setter
-	private String ADMIN_NAME;
+	private String admin_name;
 	
 	@Getter @Setter
-	private String STORE_ADDR;
+	private String store_addr;
 }

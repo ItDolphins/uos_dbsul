@@ -125,27 +125,27 @@
 								<table class = "table table-condensed">
 									<tr>
 										<td>매장번호</td>
-										<td>${store_no}</td>
+										<td>${storeInfo.store_no}</td>
 									</tr>
 									<tr>
 										<td>매장명 </td>
-										<td>${store_name}</td>
+										<td>${storeInfo.store_name}</td>
 									</tr>
 									<tr>
 										<td>매장주소 </td>
-										<td>${store_addr}</td>
+										<td>${storeInfo.store_addr}</td>
 									</tr>
 									<tr>
 										<td>매장번호</td>
-										<td>${store_pnum}</td>
+										<td>${storeInfo.store_pnum}</td>
 									</tr>
 									<tr>
 										<td>우편번호</td>
-										<td>${store_postno}</td>
+										<td>${storeInfo.store_postno}</td>
 									</tr>
 									<tr>
 										<td>본사 담당 관리자</td>
-										<td>${admin_name}</td>
+										<td>${storeInfo.admin_name}</td>
 									</tr>
 								</table>
 							</div>

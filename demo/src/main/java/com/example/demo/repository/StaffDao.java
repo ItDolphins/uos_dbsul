@@ -5,5 +5,5 @@ import java.util.List;
 import com.example.demo.model.Staff;
 
 public interface StaffDao {
-	List<Staff> findByStoreNo(String storeNo);
+	List<Staff> findByStoreNoa(String storeNo);
 }
