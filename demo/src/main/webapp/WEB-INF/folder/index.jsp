@@ -352,8 +352,7 @@
 					<h2>DASHBOARD</h2>
 					<ul class="breadcrumb pull-left">
 						<li><i class="icon ion-home"></i><a href="#">Home</a></li>
-						<li><a href="#">Dashboard</a></li>
-						<li class="active">Dashboard v1</li>
+						<li><a href="#">Main</a></li>
 					</ul>
 					<div class="sticky-content pull-right">
 						<div class="btn-group btn-dropdown">

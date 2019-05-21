@@ -16,17 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TestController2 {
 	
-
-	/*@GetMapping("/test2")
-	public String get() {
-		return "hello";
-	}
-	
-	@GetMapping("/test3")
-	public String get2(Model model) {
-		model.addAttribute("name", "mye");
-		return "hello2";
-	}*/
 	@GetMapping("/")
 	public String main_page() {
 		return "index";
@@ -36,6 +25,7 @@ public class TestController2 {
 	public String login() {
 		return "login";
 	}
+	
 	
 	/*
 	@GetMapping("/")

@@ -36,7 +36,7 @@ public class AccountDaoImpl extends JdbcDaoSupport implements AccountDao{
 	
 	@Override
 	public String getPw(String id) {
-		String sql = "SELECT password FROM account WHERE username = ?";
+		String sql = "SELECT password FROM acnt WHERE acnt_id = ?";
 		try {
 		String result = (String)getJdbcTemplate().queryForObject(sql,new Object[] {id},String.class);
 		return result;
