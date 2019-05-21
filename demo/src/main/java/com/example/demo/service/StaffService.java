@@ -5,5 +5,5 @@ import java.util.List;
 import com.example.demo.model.Staff;
 
 public interface StaffService {
-	List<Staff> getStaff(String store_no);
+	List<Staff> getStaff(String id);
 }

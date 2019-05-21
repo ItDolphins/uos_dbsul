@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <jsp:include page="header.jsp" />
 <!-- COLUMN RIGHT -->
 		<div id="col-right" class="col-right ">
@@ -73,99 +77,18 @@
 										<th>Bounce Rate</th>
 									</tr>
 								</thead>
+									<c:choose>
+										<c:when test="${fn:length(staff) > 0}">
+											<c:forEach items="${staff }" var="row">
+												<tr>
+													<td>${row.staff_no}</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+									</c:choose>
 								<tbody>
-									<tr>
-										<td>Chrome</td>
-										<td>Macintosh</td>
-										<td>360</td>
-										<td>82.78%</td>
-										<td>87.77%</td>
-									</tr>
-									<tr>
-										<td>Chrome</td>
-										<td>Windows</td>
-										<td>582</td>
-										<td>87.24%</td>
-										<td>90.12%</td>
-									</tr>
-									<tr>
-										<td>Chrome</td>
-										<td>Linux</td>
-										<td>172</td>
-										<td>45.21%</td>
-										<td>48.81%</td>
-									</tr>
-									<tr>
-										<td>Chrome</td>
-										<td>iOS</td>
-										<td>86</td>
-										<td>35.23%</td>
-										<td>44.21%</td>
-									</tr>
-									<tr>
-										<td>Firefox</td>
-										<td>Windows</td>
-										<td>280</td>
-										<td>63.12%</td>
-										<td>89.34%</td>
-									</tr>
-									<tr>
-										<td>Firefox</td>
-										<td>Android</td>
-										<td>236</td>
-										<td>58.02%</td>
-										<td>76.19%</td>
-									</tr>
-									<tr>
-										<td>Internet Explorer</td>
-										<td>Windows</td>
-										<td>145</td>
-										<td>45.23%</td>
-										<td>94.65%</td>
-									</tr>
-									<tr>
-										<td>Opera</td>
-										<td>Windows</td>
-										<td>328</td>
-										<td>67.12%</td>
-										<td>78.34%</td>
-									</tr>
-									<tr>
-										<td>Opera</td>
-										<td>Macintosh</td>
-										<td>22</td>
-										<td>87.21%</td>
-										<td>79.81%</td>
-									</tr>
-									<tr>
-										<td>Chrome</td>
-										<td>iOS</td>
-										<td>45</td>
-										<td>23.21%</td>
-										<td>34.67%</td>
-									</tr>
-									<tr>
-										<td>Chrome</td>
-										<td>Linux</td>
-										<td>142</td>
-										<td>46.61%</td>
-										<td>49.72%</td>
-									</tr>
-									<tr>
-										<td>Chrome</td>
-										<td>iOS</td>
-										<td>96</td>
-										<td>45.43%</td>
-										<td>46.11%</td>
-									</tr>
-									<tr>
-										<td>Firefox</td>
-										<td>Windows</td>
-										<td>235</td>
-										<td>23.42%</td>
-										<td>77.44%</td>
-									</tr>
-								</tbody>
+					
+								</tbody> 
 							</table>
 						</div>
 					</div>

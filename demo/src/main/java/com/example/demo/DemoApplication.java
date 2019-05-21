@@ -59,7 +59,7 @@ public class DemoApplication implements CommandLineRunner{
 		List<Staff> staffs = staffService.getStaff("1");
 		
 		Staff s = staffs.get(0);
-		System.out.println(s.getStaff_acntno());
+		System.out.println(s.getStaff_name());
 		
 	}
 

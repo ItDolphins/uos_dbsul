@@ -261,10 +261,10 @@ if(pagefile == null) {pagefile = "home";}
 					<h3>MAIN</h3>
 					<ul class="main-menu">
 						<li>
-							<a href="/template"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Main</span></a>
+							<a href="/home"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Main</span></a>
 						</li>
 						<li>
-							<a href="./template?page=manage_employee"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Manage Employee</span></a>
+							<a href="./manage_employee"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Manage Employee</span></a>
 						</li>
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">UI Elements</span></a>

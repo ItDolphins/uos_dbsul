@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -33,9 +34,17 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 	
 	
 	@Override
-	public List<Staff> getStaff(String store_no) {
-		String sql = "select * from staff where store_no = ?";
-		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {store_no},new StaffMapper());
+	public List<Staff> getStaffById(String id) {
+		String sql = "select store_no from acnt where acnt_id = ?";
+		String store_no = null;
+		try {
+			store_no = (String)getJdbcTemplate().queryForObject(sql,new Object[] {id},String.class);
+		}catch (EmptyResultDataAccessException e) {
+			System.out.println("첫번째 쿼리 에러");
+		}
+		
+		sql = "select * from staff where store_no = ?";
+		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {id},new StaffMapper());
 		
 		return staff;
 	}
