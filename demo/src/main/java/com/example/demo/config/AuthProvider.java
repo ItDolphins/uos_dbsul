@@ -36,8 +36,6 @@ public class AuthProvider implements AuthenticationProvider {
 		String id = authentication.getName();
 		String pw = (String) authentication.getCredentials();
 		
-		System.out.println(authentication.isAuthenticated());
-		
 		String pw_answer = accountService.getPw(id);
 		System.out.println(pw_answer);
 		if(pw_answer.equals(pw)) {

@@ -18,20 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TestController2 {
 	
-	@GetMapping("/")
-	public String main_page() {
-		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println(auth.isAuthenticated());
-		//System.out.println("테스트 중");
-		//System.out.println(auth.getPrincipal());
-		//System.out.println(auth.getName());
-		return "index";
-	}
-	
-	
+		
 	@GetMapping("/login")
 	public String login() {
 		return "login";
+	}
+	
+	@GetMapping("/template")
+	public String template() {
+		return "template";
 	}
 	
 	
