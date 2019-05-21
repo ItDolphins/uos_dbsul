@@ -129,9 +129,32 @@
 								</div>
 							</div>
 							<div class="widget-content">
-							${id}
-							매장이름 : 히히 매장주소 : 히히 전화번호 : 히히
-							<br><br><br><br><br><br><br><br><br><br><br><br>
+								<table class = "table table-condensed">
+									<tr>
+										<td>매장번호</td>
+										<td>${store_no}</td>
+									</tr>
+									<tr>
+										<td>매장명 </td>
+										<td>${store_name}</td>
+									</tr>
+									<tr>
+										<td>매장주소 </td>
+										<td>${store_addr}</td>
+									</tr>
+									<tr>
+										<td>매장번호</td>
+										<td>${store_pnum}</td>
+									</tr>
+									<tr>
+										<td>우편번호</td>
+										<td>${admin_postno}</td>
+									</tr>
+									<tr>
+										<td>본사 담당 관리자</td>
+										<td>${admin_name}</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 						<!-- END ORDER STATUS -->
