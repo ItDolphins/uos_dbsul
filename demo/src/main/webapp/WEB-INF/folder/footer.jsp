@@ -2,6 +2,7 @@
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="resources/js/jquery/jquery-2.1.0.min.js"></script>
+	<script src="resources/js/jquery/jquery-2.1.0.js"></script>
 	<script src="resources/js/bootstrap/bootstrap.js"></script>
 	<script src="resources/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
 	<script src="resources/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>

@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -84,7 +86,36 @@ public class MainController {
 		return mav;
 	}
 	
-
+	@GetMapping("/alter_employee_form")
+	public ModelAndView alter_employee_form(ModelAndView mav,HttpServletRequest request) {
+		//접속 id 불러오는 방법
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+				
+		String staff_no = request.getParameter("radio_button");
+		
+		Staff staff = staffService.getStaffInfo(staff_no);
+		
+		mav.addObject("staff",staff);
+		mav.setViewName("alter_employee_form");
+		return mav;
+	}
+	
+	@RequestMapping("/process_alter_employee")
+	public String process_alter_employee(HttpServletRequest request) {
+		String staff_name = request.getParameter("staff_name");
+		String staff_pos = request.getParameter("staff_pos");
+		String staff_acntno = request.getParameter("staff_acntno");
+		String staff_acntbank = request.getParameter("staff_acntbank");
+		String staff_pnum = request.getParameter("staff_pnum");
+		String resign_flag = request.getParameter("resign_flag");
+		String staff_no = request.getParameter("staff_no");
+		
+		staffService.updateStaffInfo(staff_no, staff_name, staff_pos, resign_flag, staff_acntno, staff_pnum, staff_acntbank);
+		
+		return "redirect:/alter_employee";
+	}
+	
 	@GetMapping("/")
 	public String f() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

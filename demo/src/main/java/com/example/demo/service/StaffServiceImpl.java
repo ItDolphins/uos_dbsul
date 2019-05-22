@@ -19,5 +19,16 @@ public class StaffServiceImpl implements StaffService{
 		List<Staff> staff = staffDao.findbyAcnt_id(id);
 		return staff;
 	}
+	
+	@Override
+	public Staff getStaffInfo(String staff_no) {
+		Staff staff = staffDao.findbyStaff_no(staff_no);
+		return staff;
+	}
+	
+	@Override
+	public void updateStaffInfo(String staff_no, String staff_name, String staff_pos, String resign_flag, String staff_acntno,String staff_pnum, String staff_acntbank) {
+		staffDao.updateStaffInfo(staff_no, staff_name, staff_pos, resign_flag, staff_acntno, staff_pnum, staff_acntbank);
+	}
 
 }
