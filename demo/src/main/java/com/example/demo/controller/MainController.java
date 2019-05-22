@@ -116,6 +116,36 @@ public class MainController {
 		return "redirect:/alter_employee";
 	}
 	
+	@GetMapping("/add_employee_form")
+	public ModelAndView add_employee_form(ModelAndView mav) {
+		//접속 id 불러오는 방법
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+				
+		//mav.addObject("staff",staff);
+		mav.setViewName("add_employee_form");
+		return mav;
+	}
+	@RequestMapping("/process_add_employee")
+	public String process_add_employee(HttpServletRequest request) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+		
+		String store_no = storeInfoService.getStoreNumByAcntId(id);
+		
+		String staff_name = request.getParameter("staff_name");
+		String staff_pos = request.getParameter("staff_pos");
+		String staff_acntno = request.getParameter("staff_acntno");
+		String staff_acntbank = request.getParameter("staff_acntbank");
+		String staff_pnum = request.getParameter("staff_pnum");
+		String resign_flag = "N";
+		
+		staffService.insertStaffInfo(staff_name, staff_pos, store_no, resign_flag, staff_acntno, staff_pnum, staff_acntbank);
+		
+		return "redirect:/manage_employee";
+	}
+	
 	@GetMapping("/")
 	public String f() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

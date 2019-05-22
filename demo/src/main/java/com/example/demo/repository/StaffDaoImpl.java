@@ -100,4 +100,13 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 		getJdbcTemplate().update(sql, new Object[] {staff_name,staff_pos,resign_flag,staff_acntno,staff_pnum,staff_acntbank,staff_no});
 		
 	}
+
+
+	@Override
+	public void insertStaffInfo(String staff_name, String staff_pos, String store_no, String resign_flag,
+			String staff_acntno, String staff_pnum, String staff_acntbank) {
+		String sql = "INSERT INTO STAFF (staff_name,staff_pos,store_no,resign_flag,staff_acntno,staff_pnum,staff_acntbank) values(?,?,?,?,?,?,?)";
+		getJdbcTemplate().update(sql,new Object[] {staff_name,staff_pos,store_no,resign_flag,staff_acntno,staff_pnum,staff_acntbank});
+		
+	}
 }

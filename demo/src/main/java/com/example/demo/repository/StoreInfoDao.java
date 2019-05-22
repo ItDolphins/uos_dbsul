@@ -4,4 +4,5 @@ import com.example.demo.model.StoreInfo;
 
 public interface StoreInfoDao {
 	StoreInfo getStoreInfoById(String id);
+	String getStoreNumByAcntId(String id);
 }

@@ -261,13 +261,14 @@ if(pagefile == null) {pagefile = "home";}
 					<h3>MAIN</h3>
 					<ul class="main-menu">
 						<li>
-							<a href="/home"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Main</span></a>
+							<a href="/home"><i class="icon ion-ios-speedometer-outline"></i><span class="text">메인</span></a>
 						</li>
 						<li class="has-submenu">
-							<a href="#" class="submenu-toggle"><i class="icon ion-ios-contact"></i><span class="text">Manage Employee</span></a>
+							<a href="#" class="submenu-toggle"><i class="icon ion-ios-contact"></i><span class="text">직원 관리</span></a>
 							<ul class="list-unstyled sub-menu collapse">
 								<li><a href="/manage_employee"><span class="text">직원 정보</span></a></li>
 								<li><a href="/alter_employee"><span class="text">정보 수정</span></a></li>
+								<li><a href="/add_employee_form"><span class="text">직원 신규 등록</span></a></li>
 							</ul>
 						</li>
 						<li class="has-submenu">

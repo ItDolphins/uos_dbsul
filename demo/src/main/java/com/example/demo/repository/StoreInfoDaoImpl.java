@@ -64,4 +64,17 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao{
 			return storeInfo;
 		}
 	}
+	
+	@Override
+	public String getStoreNumByAcntId(String id) {
+		String sql = "select store_no from acnt where acnt_id = ?";
+		String store_no = null;
+		try {
+			store_no = (String)getJdbcTemplate().queryForObject(sql,new Object[] {id},String.class);
+		}catch (EmptyResultDataAccessException e) {
+			System.out.println("첫번째 쿼리 에러");
+		}
+		
+		return store_no;
+	}
 }

@@ -19,4 +19,10 @@ public class StoreInfoServiceImpl implements StoreInfoService{
 		return storeInfo;
 	}
 
+	@Override
+	public String getStoreNumByAcntId(String id) {
+		String result = storeInfoDao.getStoreNumByAcntId(id);
+		return result;
+	}
+
 }

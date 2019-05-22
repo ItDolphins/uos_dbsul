@@ -31,4 +31,10 @@ public class StaffServiceImpl implements StaffService{
 		staffDao.updateStaffInfo(staff_no, staff_name, staff_pos, resign_flag, staff_acntno, staff_pnum, staff_acntbank);
 	}
 
+	@Override
+	public void insertStaffInfo(String staff_name, String staff_pos, String store_no, String resign_flag,
+			String staff_acntno, String staff_pnum, String staff_acntbank) {
+		staffDao.insertStaffInfo(staff_name, staff_pos, store_no, resign_flag, staff_acntno, staff_pnum, staff_acntbank);		
+	}
+
 }
