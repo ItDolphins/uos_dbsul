@@ -63,7 +63,7 @@ public class TestController2 {
 		
         
 		mav.addObject("id", id);
-		mav.addObject("staff",staffList);
+		mav.addObject("staffList",staffList);
 		mav.setViewName("manage_employee");
 		
 		return mav;

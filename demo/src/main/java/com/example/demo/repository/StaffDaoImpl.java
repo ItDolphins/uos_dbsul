@@ -42,7 +42,7 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 			}catch (EmptyResultDataAccessException e) {
 				System.out.println("첫번째 쿼리 에러");
 		}
-		
+
 		sql = "select * from staff where store_no = ?";
 
 		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {store_no},new StaffMapper());
