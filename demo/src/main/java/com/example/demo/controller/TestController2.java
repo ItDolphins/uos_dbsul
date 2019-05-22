@@ -69,7 +69,7 @@ public class TestController2 {
 		return mav;
 	}
 	
-	
+
 
 	@GetMapping("/")
 	public String f() {
