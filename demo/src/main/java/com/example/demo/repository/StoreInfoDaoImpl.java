@@ -40,8 +40,8 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao{
 		sql = "select admin_name from admin where admin_no = ?";
 		String admin_name = null;
 		try {
-			admin_name = (String)getJdbcTemplate().queryForObject(sql,new Object[] {storeInfo.getADMIN_NO()},String.class);
-			storeInfo.setADMIN_NAME(admin_name);
+			admin_name = (String)getJdbcTemplate().queryForObject(sql,new Object[] {storeInfo.getAdmin_no()},String.class);
+			storeInfo.setAdmin_name(admin_name);
 		}catch (EmptyResultDataAccessException e) {
 			System.out.println("세번째 쿼리 에러");
 		}
@@ -52,14 +52,14 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao{
 		
 		public StoreInfo mapRow(ResultSet rs, int rowNum) throws SQLException{
 			StoreInfo storeInfo = new StoreInfo();
-			
-			storeInfo.setADMIN_NO(rs.getString("admin_no"));
-			storeInfo.setSTORE_CODE(rs.getString("store_code"));
-			storeInfo.setSTORE_NAME(rs.getString("store_name"));
-			storeInfo.setSTORE_NO(rs.getString("STORE_NO"));
-			storeInfo.setSTORE_PNUM(rs.getString("STORE_PNUM"));
-			storeInfo.setSTORE_POSTNO(rs.getString("STORE_POSTNO"));
-			storeInfo.setSTORE_ADDR(rs.getString("STORE_ADDR"));
+
+			storeInfo.setAdmin_no(rs.getString("admin_no"));
+			storeInfo.setStore_code(rs.getString("store_code"));
+			storeInfo.setStore_name(rs.getString("store_name"));
+			storeInfo.setStore_no(rs.getString("store_no"));
+			storeInfo.setStore_pnum(rs.getString("store_pnum"));
+			storeInfo.setStore_postno(rs.getString("store_postno"));
+			storeInfo.setStore_addr(rs.getString("store_addr"));
 			
 			return storeInfo;
 		}

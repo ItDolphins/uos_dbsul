@@ -31,7 +31,8 @@ public class TestController2 {
 	
 	@Autowired
 	StaffService staffService;
-	
+
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";
@@ -44,45 +45,36 @@ public class TestController2 {
 		String id = auth.getName();
 		
 		StoreInfo storeInfo = storeInfoService.getStoreInfo(id);
-		String admin_name = storeInfo.getADMIN_NAME();
-		String store_no = storeInfo.getSTORE_NO();
-		String store_name = storeInfo.getSTORE_NAME();
-		String store_addr = storeInfo.getSTORE_ADDR();
-		String store_pnum = storeInfo.getSTORE_PNUM();
-		String store_postno = storeInfo.getSTORE_POSTNO();
-		
-		mav.addObject("id", id);
-		mav.addObject("admin_name",admin_name);
-		mav.addObject("store_no",store_no);
-		mav.addObject("store_name",store_name);
-		mav.addObject("store_addr",store_addr);
-		mav.addObject("store_pnum",store_pnum);
-		mav.addObject("store_postno",store_postno);
+
+
+        mav.addObject("storeInfo",storeInfo);
+        mav.addObject("id", id);
 		mav.setViewName("home");
 		return mav;
 	}
-	
+
 	@GetMapping("/manage_employee")
 	public ModelAndView manage_employee(ModelAndView mav) {
 		//접속 id 불러오는 방법
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String id = auth.getName();
 		
-		List<Staff> staff = staffService.getStaff(id);
+		List<Staff> staffList = staffService.getStaffList(id);
 		
+        
 		mav.addObject("id", id);
-		mav.addObject("staff",staff);
+		mav.addObject("staff",staffList);
 		mav.setViewName("manage_employee");
 		
 		return mav;
 	}
 	
 	
-	/*
+
 	@GetMapping("/")
 	public String f() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(auth.getAuthorities());
-		return "";
-	}*/
+		return "redirect:/home";
+	}
 }

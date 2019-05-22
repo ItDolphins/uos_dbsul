@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <!-- COLUMN RIGHT -->
+<<<<<<< HEAD
 		<div id="col-right" class="col-right ">
 			<div class="container-fluid primary-content">
 				<!-- PRIMARY CONTENT HEADING -->
@@ -103,3 +104,4 @@
 				</div>
 				<!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="footer.jsp" />
+
