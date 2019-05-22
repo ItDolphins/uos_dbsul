@@ -35,17 +35,13 @@ public class AuthProvider implements AuthenticationProvider {
 		//System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
 		String id = authentication.getName();
 		String pw = (String) authentication.getCredentials();
-		
-		String pw_answer = accountService.getPw(id);
-		System.out.println(pw_answer);
-		if(pw_answer.equals(pw)) {
+
+		Account account = accountService.getAccount(id);
+		System.out.println(account.getPassword());
+		if(account.getPassword().equals(pw)) {
 			//Authentication request = new UsernamePasswordAuthenticationToken(id,pw);
 			List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
 			result.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-			Account account = new Account();
-			account.setUsername(id);
-			account.setPassword(pw);
-
 			Authentication result2 =  new UsernamePasswordAuthenticationToken(account, authentication.getCredentials(), result);
 			SecurityContextHolder.getContext().setAuthentication(result2);
 			return result2;

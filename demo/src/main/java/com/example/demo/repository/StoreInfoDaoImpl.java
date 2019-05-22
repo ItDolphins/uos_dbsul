@@ -24,57 +24,31 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao{
 	private void initialize(){
 		setDataSource(dataSource);
 	}
-	
-	@Override
-	public StoreInfo getStoreInfoById(String id) {
-		String sql = "select store_no from acnt where acnt_id = ?";
-		String store_no = null;
-		try {
-			store_no = (String)getJdbcTemplate().queryForObject(sql,new Object[] {id},String.class);
-		}catch (EmptyResultDataAccessException e) {
-			System.out.println("첫번째 쿼리 에러");
-		}
-		sql = "select * from tstore where store_no = ?";
-		StoreInfo storeInfo = (StoreInfo)getJdbcTemplate().queryForObject(sql,new Object[] {store_no}, new StoreInfoMapper());
-		
-		sql = "select admin_name from admin where admin_no = ?";
-		String admin_name = null;
-		try {
-			admin_name = (String)getJdbcTemplate().queryForObject(sql,new Object[] {storeInfo.getAdmin_no()},String.class);
-			storeInfo.setAdmin_name(admin_name);
-		}catch (EmptyResultDataAccessException e) {
-			System.out.println("세번째 쿼리 에러");
-		}
-		return storeInfo;
-	}
-	
+
 	public class StoreInfoMapper implements RowMapper<StoreInfo> {
-		
+
 		public StoreInfo mapRow(ResultSet rs, int rowNum) throws SQLException{
 			StoreInfo storeInfo = new StoreInfo();
 
 			storeInfo.setAdmin_no(rs.getString("admin_no"));
+			storeInfo.setAdmin_name(rs.getString("admin_name"));
 			storeInfo.setStore_code(rs.getString("store_code"));
 			storeInfo.setStore_name(rs.getString("store_name"));
 			storeInfo.setStore_no(rs.getString("store_no"));
 			storeInfo.setStore_pnum(rs.getString("store_pnum"));
 			storeInfo.setStore_postno(rs.getString("store_postno"));
 			storeInfo.setStore_addr(rs.getString("store_addr"));
-			
+
 			return storeInfo;
 		}
 	}
-	
+
 	@Override
-	public String getStoreNumByAcntId(String id) {
-		String sql = "select store_no from acnt where acnt_id = ?";
-		String store_no = null;
-		try {
-			store_no = (String)getJdbcTemplate().queryForObject(sql,new Object[] {id},String.class);
-		}catch (EmptyResultDataAccessException e) {
-			System.out.println("첫번째 쿼리 에러");
-		}
-		
-		return store_no;
+	public StoreInfo getByAcnt_store_no(String acnt_store_no) {
+		String sql = "select t.store_code, t.store_name, t.store_no, t.store_pnum,t.store_addr, t.store_postno,a.admin_no, a.admin_name " +
+				"from tstore  t, tadmin  a where t.store_no = ? and t.admin_no = a.admin_no";
+		StoreInfo storeInfo = (StoreInfo)getJdbcTemplate().queryForObject(sql,new Object[] {acnt_store_no}, new StoreInfoMapper());
+
+		return storeInfo;
 	}
 }

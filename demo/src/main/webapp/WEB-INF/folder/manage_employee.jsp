@@ -78,7 +78,7 @@
                 </div-->
                 <div class="widget-content">
                     <div class="table-responsive">
-                        <table id="datatable-column-interactive"
+                        <table id="datatable-column-interactive"    style="border-right: #ccc 1px solid"
                                class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
                             <tr>
@@ -91,7 +91,7 @@
                             </thead>
                             <c:choose>
                                 <c:when test="${fn:length(staffList) > 0}">
-                                    <tbody style="border-right:1px solid">
+                                    <tbody>
                                     <tr>
                                         <th>현직원</th>
                                     </tr>
@@ -109,7 +109,7 @@
                                         </c:if>
                                     </c:forEach>
                                     </tbody>
-                                    <tbody style="border-right: 1px solid">
+                                    <tbody>
                                     <tr>
                                         <th>퇴직원</th>
                                     </tr>
@@ -132,6 +132,7 @@
                         </table>
                     </div>
                </div>
+            </h3>
         </div>
     </div>
 </div>

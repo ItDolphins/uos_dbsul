@@ -13,16 +13,10 @@ public class StoreInfoServiceImpl implements StoreInfoService{
 	StoreInfoDao storeInfoDao;
 
 	@Override
-	public StoreInfo getStoreInfo(String id) {
-		StoreInfo storeInfo = storeInfoDao.getStoreInfoById(id);
+	public StoreInfo getStoreInfo(String acnt_store_no) {
+		StoreInfo storeInfo = storeInfoDao.getByAcnt_store_no(acnt_store_no);
 		
 		return storeInfo;
-	}
-
-	@Override
-	public String getStoreNumByAcntId(String id) {
-		String result = storeInfoDao.getStoreNumByAcntId(id);
-		return result;
 	}
 
 }

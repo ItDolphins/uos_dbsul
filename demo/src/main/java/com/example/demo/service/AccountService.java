@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Account;
+
 public interface AccountService {
-	String getPw(String Id);
+	Account getAccount(String username);
 }

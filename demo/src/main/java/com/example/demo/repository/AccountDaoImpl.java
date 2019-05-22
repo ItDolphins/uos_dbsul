@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+import com.example.demo.model.Account;
 
 import com.example.demo.model.Account;
 
@@ -33,16 +34,34 @@ public class AccountDaoImpl extends JdbcDaoSupport implements AccountDao{
 	private void initialize(){
 		setDataSource(dataSource);
 	}
+
+	public class AccountMapper implements RowMapper<Account> {
+
+		public Account mapRow(ResultSet rs, int rowNum) throws SQLException{
+			Account account = new Account();
+
+			account.setUsername(rs.getString("acnt_id"));
+			account.setPassword(rs.getString("password"));
+			account.setAcnt_store_no(rs.getString("store_no"));
+			account.setAcnt_admin_no(rs.getString("admin_no"));
+
+			return account;
+		}
+	}
 	
 	@Override
-	public String getPw(String id) {
-		String sql = "SELECT password FROM acnt WHERE acnt_id = ?";
+	public Account getAccountByUsername(String username) {
+		String sql = "SELECT * FROM acnt WHERE acnt_id = ?";
 		try {
-		String result = (String)getJdbcTemplate().queryForObject(sql,new Object[] {id},String.class);
-		return result;
+
+		Account account = (Account)getJdbcTemplate().queryForObject(sql,new Object[] {username},new AccountMapper());
+		return account;
 		}catch (EmptyResultDataAccessException e) {
-			return "oh no";
+			System.out.println("authentication 쿼리 에러");
+			return null;
 		}
 		//System.out.println(result);
 	}
+
+
 }

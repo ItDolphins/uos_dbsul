@@ -79,7 +79,7 @@
                 </div-->
                 <div class="widget-content">
                     <div class="table-responsive">
-                    <form action = "/alter_employee_form" accept-charset="utf-8" name='staff_form' method = "get" onsubmit='return radio_check()'>
+                    <form action = "/alter_employee_form" accept-charset="utf-8" name='staff_form' method = "get">
                         <table id="datatable-column-interactive"
                                class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
@@ -87,6 +87,7 @@
                             	<th style="width:10px"></th>
                                 <th>이름</th>
                                 <th>직책</th>
+                                <th>은행</th>
                                 <th>계좌번호</th>
                                 <th>전화번호</th>
                                 <th>직원번호</th>
@@ -94,9 +95,8 @@
                             </thead>
                             <c:choose>
                                 <c:when test="${fn:length(staffList) > 0}">
-                                    <tbody style="border-right:1px solid">
+                                    <tbody>
                                     <tr>
-                                    	<th></th>
                                         <th>현직원</th>
                                     </tr>
                                     </tbody>
@@ -104,9 +104,10 @@
                                     <c:forEach items="${staffList}" var="row">
                                         <c:if test="${row.resign_flag eq 'N'}">
                                             <tr>
-                                            	<td><input type="radio" name="radio_button" value="${row.staff_no}" class="checkSelect"></td>
+                                            	<td><input type="radio" name="radio_button" value="${row.staff_no}" class="checkSelect"required="required"></td>
                                                 <td>${row.staff_name}</td>
                                                 <td>${row.staff_pos}</td>
+                                                <td>${row.staff_acntbank}</td>
                                                 <td>${row.staff_acntno}</td>
                                                 <td>${row.staff_pnum}</td>
                                                 <td>${row.staff_no}</td>
@@ -114,9 +115,8 @@
                                         </c:if>
                                     </c:forEach>
                                     </tbody>
-                                    <tbody style="border-right: 1px solid">
+                                    <tbody>
                                     <tr>
-                                    	<th></th>
                                         <th>퇴직원</th>
                                     </tr>
                                     </tbody>
@@ -124,9 +124,10 @@
                                     <c:forEach items="${staffList}" var="row">
                                         <c:if test="${row.resign_flag eq 'Y'}">
                                             <tr>
-                                            	<td><input type="radio" name="radio_button" value="${row.staff_no}" class="checkSelect"></td>
+                                            	<td><input type="radio" name="radio_button" value="${row.staff_no}" class="checkSelect" required="required"></td>
                                                 <td>${row.staff_name}</td>
                                                 <td>${row.staff_pos}</td>
+                                                <td>${row.staff_acntbank}</td>
                                                 <td>${row.staff_acntno}</td>
                                                 <td>${row.staff_pnum}</td>
                                                 <td>${row.staff_no}</td>
@@ -143,17 +144,11 @@
                     </form>
                     </div>
                </div>
+            </h3>
         </div>
     </div>
 </div>
-<script>
-function radio_check(){
-	if($('input:radio[name=radio_button]').is(':checked') == true) return true;
-	else {
-	alert('수정할 직원의 이름을 클릭하시오');
-	return false;
-	}
-}
-</script>
+<script type="text/javascript" src="/js/Submitting"></script>
+
     <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="footer.jsp"/>

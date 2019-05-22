@@ -15,6 +15,9 @@ public class Account implements UserDetails {
 
 	private String username;
     private String password;
+    private String acnt_store_no;
+    private String acnt_admin_no;
+
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;

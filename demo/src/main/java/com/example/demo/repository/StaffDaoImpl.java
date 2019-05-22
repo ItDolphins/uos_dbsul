@@ -33,29 +33,12 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 	private void initialize(){
 		setDataSource(dataSource);
 	}
-	
-	
-	@Override
-	public List<Staff> findbyAcnt_id(String id) {
-		String sql = "select store_no from acnt where acnt_id = ?";
-		String store_no = null;
-			try {
-				store_no = (String)getJdbcTemplate().queryForObject(sql,new Object[] {id},String.class);
-			}catch (EmptyResultDataAccessException e) {
-				System.out.println("첫번째 쿼리 에러");
-		}
 
-		sql = "select * from staff where store_no = ?";
-
-		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {store_no},new StaffMapper());
-
-		return staff;
-	}
 
 	public class StaffMapper implements RowMapper<Staff>{
 		public Staff mapRow(ResultSet rs,int rowNum) throws SQLException{
 			Staff staff = new Staff();
-			
+
 			staff.setResign_flag(rs.getString("resign_flag"));
 			staff.setStaff_acntno(rs.getString("staff_acntno"));
 			staff.setStaff_name(rs.getString("staff_name"));
@@ -63,50 +46,43 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 			staff.setStaff_pnum(rs.getString("staff_pnum"));
 			staff.setStaff_pos(rs.getString("staff_pos"));
 			staff.setStaff_acntbank(rs.getString("staff_acntbank"));
-			
+			staff.setStore_no(rs.getString("store_no"));
+
 			return staff;
 		}
 	}
-	
+
+
 	@Override
-	public Staff findbyStaff_no(String staff_no) {
+	public List<Staff> findByAcnt_store_no(String acnt_store_no) {
+		String sql = "select * from staff where store_no = ?";
+		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {acnt_store_no},new StaffMapper());
+		return staff;
+	}
+
+
+	@Override
+	public Staff getByStaff_no(String staff_no) {
 		String sql = "select * from staff where staff_no = ?";
-		Staff staffInfo = (Staff)getJdbcTemplate().queryForObject(sql,new Object[] {staff_no}, new StaffInfoMapper());
+		Staff staff = (Staff)getJdbcTemplate().queryForObject(sql,new Object[] {staff_no}, new StaffMapper());
 		
-		return staffInfo;
+		return staff;
 	}
-	
-	
-	public class StaffInfoMapper implements RowMapper<Staff> {
-		
-		public Staff mapRow(ResultSet rs, int rowNum) throws SQLException{
-			Staff staff = new Staff();
-			staff.setResign_flag(rs.getString("resign_flag"));
-			staff.setStaff_acntno(rs.getString("staff_acntno"));
-			staff.setStaff_name(rs.getString("staff_name"));
-			staff.setStaff_no(rs.getString("staff_no"));
-			staff.setStaff_pnum(rs.getString("staff_pnum"));
-			staff.setStaff_pos(rs.getString("staff_pos"));
-			staff.setStaff_acntbank(rs.getString("staff_acntbank"));
-			
-			
-			return staff;
-		}
-	}
-	
+
 	@Override
-	public void updateStaffInfo(String staff_no,String staff_name,String staff_pos,String resign_flag,String staff_acntno,String staff_pnum,String staff_acntbank) {
+	public void updateStaff(Staff staff) {
 		String sql = "update staff set staff_name=?,staff_pos=?,resign_flag=?,staff_acntno=?,staff_pnum=?,staff_acntbank=? where staff_no=?";
-		getJdbcTemplate().update(sql, new Object[] {staff_name,staff_pos,resign_flag,staff_acntno,staff_pnum,staff_acntbank,staff_no});
+		getJdbcTemplate().update(sql, new Object[] {staff.getStaff_name(),staff.getStaff_pos(),staff.getResign_flag(),staff.getStaff_acntno(),
+				staff.getStaff_pnum(),staff.getStaff_acntbank(),staff.getStaff_no()});
 		
 	}
 
 
 	@Override
-	public void insertStaffInfo(String staff_name, String staff_pos, String store_no, String resign_flag,
-			String staff_acntno, String staff_pnum, String staff_acntbank) {
+	public void insertStaff(Staff staff){
 		String sql = "INSERT INTO STAFF (staff_name,staff_pos,store_no,resign_flag,staff_acntno,staff_pnum,staff_acntbank) values(?,?,?,?,?,?,?)";
-		getJdbcTemplate().update(sql,new Object[] {staff_name,staff_pos,store_no,resign_flag,staff_acntno,staff_pnum,staff_acntbank});
+		getJdbcTemplate().update(sql,new Object[] {staff.getStaff_name(),staff.getStaff_pos(),staff.getStore_no(),
+				staff.getResign_flag(),staff.getStaff_acntno(),staff.getStaff_pnum(),staff.getStaff_acntbank()});
 		
 	}
 }

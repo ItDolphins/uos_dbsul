@@ -13,8 +13,8 @@ public class AccountServiceImpl implements AccountService{
 	AccountDao accountDao;
 
 	@Override
-	public String getPw(String Id) {
-		String account = accountDao.getPw(Id);
+	public Account getAccount(String username) {
+		Account account = accountDao.getAccountByUsername(username);
 		return account;
 	}
 
