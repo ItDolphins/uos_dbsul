@@ -23,7 +23,7 @@ import com.example.demo.service.StaffService;
 import com.example.demo.service.StoreInfoService;
 
 @Controller
-public class TestController2 {
+public class MainController {
 	
 		
 	@Autowired
