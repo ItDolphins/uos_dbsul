@@ -271,13 +271,12 @@ if(pagefile == null) {pagefile = "home";}
 							</ul>
 						</li>
 						<li class="has-submenu">
-							<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">UI Elements</span></a>
+							<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">품목 관리</span></a>
 							<ul class="list-unstyled sub-menu collapse">
-								<li><a href="ui-elements-general.html"><span class="text">General</span></a></li>
-								<li><a href="ui-elements-buttons.html"><span class="text">Buttons</span></a></li>
-								<li><a href="ui-elements-tabs.html"><span class="text">Tabs</span></a></li>
-								<li><a href="ui-elements-tour.html"><span class="text">Tour</span></a></li>
-								<li><a href="ui-elements-icons.html"><span class="text">Icons</span></a></li>
+								<li><a href="/prod_Info"><span class="text">품목 조회</span></a></li>
+								<li><a href="ui-elements-buttons.html"><span class="text">신제품 등록</span></a></li>
+								<li><a href="ui-elements-tabs.html"><span class="text">물품 삭제</span></a></li>
+								<li><a href="ui-elements-tour.html"><span class="text">물품 수정</span></a></li>
 							</ul>
 						</li>
 						<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>
