@@ -79,7 +79,7 @@
                 </div-->
                 <div class="widget-content">
                     <div class="table-responsive">
-                    <form action = "/alter_employee_form" accept-charset="utf-8" name='staff_form' method = "get">
+                    <form action = "/alter_employee_form" accept-charset="utf-8" name='staff_form' method = "get" onsubmit='return radio_check()'>
                         <table id="datatable-column-interactive"
                                class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
@@ -138,7 +138,7 @@
                             </c:choose>
                         </table>
                         <div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-                    	<button type = "input" class = "btn btn-default btn-lg" id="selectBtn">정보수정</button>
+                    	<button type = "submit" class = "btn btn-default btn-lg" id="selectBtn">정보수정</button>
                		</div>
                     </form>
                     </div>
@@ -146,5 +146,14 @@
         </div>
     </div>
 </div>
+<script>
+function radio_check(){
+	if($('input:radio[name=radio_button]').is(':checked') == true) return true;
+	else {
+	alert('수정할 직원의 이름을 클릭하시오');
+	return false;
+	}
+}
+</script>
     <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="footer.jsp"/>

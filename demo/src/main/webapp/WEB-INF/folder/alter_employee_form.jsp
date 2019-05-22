@@ -58,7 +58,7 @@
 								</div>
 							</div>
 							<div class="widget-content">
-								<form class="form-horizontal form-ticket" role="form" action="/process_alter_employee" method="post">
+								<form class="form-horizontal form-ticket" role="form" action="/process_alter_employee" method="post" onsubmit='return data_check()' name='f'>
 									<fieldset>
 										<legend>직원 정보</legend>
 										<div class="form-group">
@@ -114,4 +114,41 @@
 							</div>
 						</div>
 						<!-- END TICKET FORM -->
+<script>
+function data_check(){
+	var staff = document.f;
+	var staff_name = staff.staff_name.value;
+	var staff_pos = staff.staff_pos.value;
+	var staff_acntno = staff.staff_acntno.value;
+	var staff_acntbank = staff.staff_acntbank.value;
+	var staff_pnum = staff.staff_pnum.value;
+	var resign_flag = staff.resign_flag.value;
+	
+	if(staff_name==""){
+	alert("이름을 입력하시오");
+	return false;
+	}
+	if(staff_pos == ""){
+	alert("직책을 입력하시오");
+	return false;
+	}
+	if(staff_acntno == ""){
+	alert("계좌번호를 입력하시오");
+	return false;
+	}
+	if(staff_acntbank == ""){
+	alert("은행이름을 입력하시오");
+	return false;
+	}
+	if(staff_pnum == ""){
+	alert("전화번호를 입력하시오");
+	return false;
+	}
+	if(resign_flag == 'Y' || resign_flag == 'N') return true;
+	else{
+	alert("퇴사여부를 'N' 또는 'Y'로 넣으시오");
+	return false;
+	}
+}
+</script>
 <jsp:include page="footer.jsp"/>
