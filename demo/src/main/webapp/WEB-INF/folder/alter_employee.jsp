@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <jsp:include page="header.jsp"/>
 <!-- COLUMN RIGHT -->
 <div id="col-right" class="col-right ">
@@ -78,7 +79,7 @@
                 </div-->
                 <div class="widget-content">
                     <div class="table-responsive">
-                    <form name='staff_form'>
+                    <form action = "/alter_employee_form" accept-charset="utf-8" name='staff_form' method = "get" onsubmit='return radio_check()'>
                         <table id="datatable-column-interactive"
                                class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
@@ -103,7 +104,7 @@
                                     <c:forEach items="${staffList}" var="row">
                                         <c:if test="${row.resign_flag eq 'N'}">
                                             <tr>
-                                            	<td><input type="checkbox" name="box[]" class="checkSelect"></td>
+                                            	<td><input type="radio" name="radio_button" value="${row.staff_no}" class="checkSelect"></td>
                                                 <td>${row.staff_name}</td>
                                                 <td>${row.staff_pos}</td>
                                                 <td>${row.staff_acntno}</td>
@@ -123,7 +124,7 @@
                                     <c:forEach items="${staffList}" var="row">
                                         <c:if test="${row.resign_flag eq 'Y'}">
                                             <tr>
-                                            	<td><input type="checkbox" name="box[]" class="checkSelect"></td>
+                                            	<td><input type="radio" name="radio_button" value="${row.staff_no}" class="checkSelect"></td>
                                                 <td>${row.staff_name}</td>
                                                 <td>${row.staff_pos}</td>
                                                 <td>${row.staff_acntno}</td>
@@ -136,17 +137,23 @@
                                 </c:when>
                             </c:choose>
                         </table>
+                        <div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
+                    	<button type = "submit" class = "btn btn-default btn-lg" id="selectBtn">정보수정</button>
+               		</div>
                     </form>
                     </div>
-               </div>
-               <div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-                    	<button type = "button" class = "btn btn-default btn-lg" onclick = "location.href = '/home'">정보수정</button>
                </div>
         </div>
     </div>
 </div>
 <script>
-function count_check(){
-	for(i=0;
+function radio_check(){
+	if($('input:radio[name=radio_button]').is(':checked') == true) return true;
+	else {
+	alert('수정할 직원의 이름을 클릭하시오');
+	return false;
+	}
+}
+</script>
     <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="footer.jsp"/>
