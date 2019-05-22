@@ -16,4 +16,6 @@ public class Staff {
 	private String staff_acntno;
 	@Getter @Setter
 	private String staff_pnum;
+	@Getter @Setter
+	private String staff_acntbank;
 }

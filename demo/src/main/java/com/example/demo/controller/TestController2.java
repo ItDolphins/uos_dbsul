@@ -68,12 +68,8 @@ public class TestController2 {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String id = auth.getName();
 		
-		List<Staff> staff = staffService.getStaff("1");
-		for(int i=0; i<4; i++)
-		{
-			Staff s = staff.get(0);
-			System.out.println(s.getStaff_no());
-		}
+		List<Staff> staff = staffService.getStaff(id);
+		
 		mav.addObject("id", id);
 		mav.addObject("staff",staff);
 		mav.setViewName("manage_employee");

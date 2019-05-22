@@ -59,7 +59,7 @@
 				<!-- SHOW HIDE COLUMNS -->
 				<div class="widget">
 					<div class="widget-header clearfix">
-						<h3><i class="icon ion-ios-grid-view-outline"></i> <span>직원관리</span></h3>
+						<h3><i class="icon ion-ios-grid-view-outline"></i> <span>직원정보</span></h3>
 						<div class="btn-group widget-header-toolbar visible-lg">
 							<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
 							<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
@@ -70,11 +70,13 @@
 							<table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered colored-header datatable">
 								<thead>
 									<tr>
-										<th>Browser</th>
-										<th>Operating System</th>
-										<th>Visits</th>
-										<th>New Visits</th>
-										<th>Bounce Rate</th>
+										<th>직원번호</th>
+										<th>이름</th>
+										<th>직급</th>
+										<th>퇴사여부</th>
+										<th>계좌번호</th>
+										<th>은행</th>
+										<th>전화번호</th>
 									</tr>
 								</thead>
 									<c:choose>
@@ -82,6 +84,12 @@
 											<c:forEach items="${staff }" var="row">
 												<tr>
 													<td>${row.staff_no}</td>
+													<td>${row.staff_name}</td>
+													<td>${row.staff_pos}</td>
+													<td>${row.resign_flag}</td>
+													<td>${row.staff_acntno}</td>
+													<td>${row.staff_acntbank}</td>
+													<td>${row.staff_pnum}</td>
 												</tr>
 											</c:forEach>
 										</c:when>

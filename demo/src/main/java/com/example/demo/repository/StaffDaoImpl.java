@@ -12,12 +12,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.Staff;
 
 
-@Service
+@Repository
 public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 
 	
@@ -44,7 +44,7 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 		}
 		
 		sql = "select * from staff where store_no = ?";
-		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {id},new StaffMapper());
+		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {store_no},new StaffMapper());
 		
 		return staff;
 	}
@@ -59,6 +59,7 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 			staff.setStaff_no(rs.getString("staff_no"));
 			staff.setStaff_pnum(rs.getString("staff_pnum"));
 			staff.setStaff_pos(rs.getString("staff_pos"));
+			staff.setStaff_acntbank(rs.getString("staff_acntbank"));
 			
 			return staff;
 		}
