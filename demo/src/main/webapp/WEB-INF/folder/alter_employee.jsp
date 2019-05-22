@@ -9,7 +9,7 @@
     <div class="container-fluid primary-content">
         <!-- PRIMARY CONTENT HEADING -->
         <div class="primary-content-heading clearfix">
-            <h2>Manage Employee</h2>
+            <h2>Alter Employee</h2>
             <div class="sticky-content pull-right">
                 <div class="btn-group btn-dropdown">
                     <button type="button" class="btn btn-default btn-sm btn-favorites" data-toggle="dropdown"><i
@@ -66,7 +66,7 @@
             <h3 class="widget-header clearfix">
                 <h3>
                     <i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-                    <span>직원 정보</span>
+                    <span>정보 수정</span>
                 </h3>
                 <!--div class="btn-group widget-header-toolbar visible-lg">
                     <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand">
@@ -78,10 +78,12 @@
                 </div-->
                 <div class="widget-content">
                     <div class="table-responsive">
+                    <form name='staff_form'>
                         <table id="datatable-column-interactive"
                                class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
                             <tr>
+                            	<th style="width:10px"></th>
                                 <th>이름</th>
                                 <th>직책</th>
                                 <th>계좌번호</th>
@@ -93,6 +95,7 @@
                                 <c:when test="${fn:length(staffList) > 0}">
                                     <tbody style="border-right:1px solid">
                                     <tr>
+                                    	<th></th>
                                         <th>현직원</th>
                                     </tr>
                                     </tbody>
@@ -100,6 +103,7 @@
                                     <c:forEach items="${staffList}" var="row">
                                         <c:if test="${row.resign_flag eq 'N'}">
                                             <tr>
+                                            	<td><input type="checkbox" name="box[]" class="checkSelect"></td>
                                                 <td>${row.staff_name}</td>
                                                 <td>${row.staff_pos}</td>
                                                 <td>${row.staff_acntno}</td>
@@ -111,6 +115,7 @@
                                     </tbody>
                                     <tbody style="border-right: 1px solid">
                                     <tr>
+                                    	<th></th>
                                         <th>퇴직원</th>
                                     </tr>
                                     </tbody>
@@ -118,6 +123,7 @@
                                     <c:forEach items="${staffList}" var="row">
                                         <c:if test="${row.resign_flag eq 'Y'}">
                                             <tr>
+                                            	<td><input type="checkbox" name="box[]" class="checkSelect"></td>
                                                 <td>${row.staff_name}</td>
                                                 <td>${row.staff_pos}</td>
                                                 <td>${row.staff_acntno}</td>
@@ -130,10 +136,17 @@
                                 </c:when>
                             </c:choose>
                         </table>
+                    </form>
                     </div>
+               </div>
+               <div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
+                    	<button type = "button" class = "btn btn-default btn-lg" onclick = "location.href = '/home'">정보수정</button>
                </div>
         </div>
     </div>
 </div>
+<script>
+function count_check(){
+	for(i=0;
     <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="footer.jsp"/>

@@ -34,7 +34,7 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao{
 	
 	
 	@Override
-	public List<Staff> findById(String id) {
+	public List<Staff> findbyAcnt_id(String id) {
 		String sql = "select store_no from acnt where acnt_id = ?";
 		String store_no = null;
 			try {
