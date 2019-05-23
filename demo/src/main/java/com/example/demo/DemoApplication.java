@@ -6,9 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.example.demo.service.account.AccountService;
+import com.example.demo.service.AccountService;
 import com.example.demo.service.staff.StaffService;
-import com.example.demo.service.storeInfo.StoreInfoService;
+import com.example.demo.service.StoreInfoService;
 //import org.springframework.security.core.userdetails.UserDetails;
 
 @SpringBootApplication

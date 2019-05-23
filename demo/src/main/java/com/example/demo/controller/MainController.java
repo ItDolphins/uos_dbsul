@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.StoreInfo;
 
-import com.example.demo.service.storeInfo.StoreInfoService;
+import com.example.demo.service.StoreInfoService;
 
 @Controller
 public class MainController {

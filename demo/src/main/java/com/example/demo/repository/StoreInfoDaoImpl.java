@@ -1,4 +1,4 @@
-package com.example.demo.repository.storeInfo;
+package com.example.demo.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-import com.example.demo.repository.storeInfo.StoreInfoDao;
+import com.example.demo.repository.StoreInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;

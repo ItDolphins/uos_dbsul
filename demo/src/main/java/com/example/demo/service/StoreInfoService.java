@@ -1,4 +1,4 @@
-package com.example.demo.service.storeInfo;
+package com.example.demo.service;
 
 import com.example.demo.model.StoreInfo;
 

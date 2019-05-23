@@ -1,11 +1,11 @@
-package com.example.demo.service.storeInfo;
+package com.example.demo.service;
 
-import com.example.demo.service.storeInfo.StoreInfoService;
+import com.example.demo.service.StoreInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.StoreInfo;
-import com.example.demo.repository.storeInfo.StoreInfoDao;
+import com.example.demo.repository.StoreInfoDao;
 
 @Service
 public class StoreInfoServiceImpl implements StoreInfoService {

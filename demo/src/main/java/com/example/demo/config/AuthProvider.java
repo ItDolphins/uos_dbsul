@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.model.Account;
-import com.example.demo.service.account.AccountService;
+import com.example.demo.service.AccountService;
 
 @Component
 public class AuthProvider implements AuthenticationProvider {
