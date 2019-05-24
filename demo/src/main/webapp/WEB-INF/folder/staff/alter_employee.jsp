@@ -63,23 +63,29 @@
 		</div>
 		<!-- END PRIMARY CONTENT HEADING -->
 		<!-- SHOW HIDE COLUMNS -->
-		<div class="widget">
-			<h3 class="widget-header clearfix">
-				<h3>
-					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>정보 수정</span>
-				</h3>
-				<!--div class="btn-group widget-header-toolbar visible-lg">
-					<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand">
-						<i class="icon ion-ios-arrow-up"></i>
-					</a>
-					<a href="#" title="Remove" class="btn btn-link btn-remove">
-						<i class="icon ion-ios-close-empty"></i>
-					</a>
-				</div-->
-				<div class="widget-content">
-					<div class="table-responsive">
-						<form action="/alter_employee_form" accept-charset="utf-8" name='staff_form' method="get">
+		<form action="/alter_employee_form" accept-charset="utf-8" name='staff_form' method="get">
+			<div class="widget">
+				<h3 class="widget-header clearfix">
+					<h3>
+						<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
+						<span>정보 수정</span>
+						<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
+							<button type="submit" class="btn btn-default btn-lg" id="selectBtn">정보수정</button>
+							<button type="button" onclick="location.href= '/manage_employee' "
+							        class="btn btn-default btn-lg" id="selectBtn2">취소
+							</button>
+						</div>
+					</h3>
+					<!--div class="btn-group widget-header-toolbar visible-lg">
+						<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand">
+							<i class="icon ion-ios-arrow-up"></i>
+						</a>
+						<a href="#" title="Remove" class="btn btn-link btn-remove">
+							<i class="icon ion-ios-close-empty"></i>
+						</a>
+					</div-->
+					<div class="widget-content">
+						<div class="table-responsive">
 							<table id="datatable-column-interactive"
 							       class="table table-sorting table-hover table-bordered colored-header datatable">
 								<thead>
@@ -95,12 +101,6 @@
 								</thead>
 								<c:choose>
 									<c:when test="${fn:length(staffList) > 0}">
-										<tbody>
-										<tr>
-											<th>현직원</th>
-										</tr>
-										</tbody>
-										<tbody>
 										<c:forEach items="${staffList}" var="row">
 											<c:if test="${row.resign_flag eq 'N'}">
 												<tr>
@@ -115,13 +115,45 @@
 												</tr>
 											</c:if>
 										</c:forEach>
-										</tbody>
-										<tbody>
-										<tr>
-											<th>퇴직원</th>
-										</tr>
-										</tbody>
-										<tbody>
+									</c:when>
+								</c:choose>
+							</table>
+						</div>
+					</div>
+				</h3>
+			</div>
+			<div class="widget">
+				<h3 class="widget-header clearfix">
+					<div class="btn-group widget-header-toolbar visible-lg" align="right">
+						<a title="Expand/Collapse" class="btn-group widget-header-toolbar visible-lg">
+							<i class="icon ion-ios-arrow-down" data-toggle="collapse" data-target="#wg"></i>
+						</a>
+						<a title="Remove" class="btn btn-link btn-remove">
+							<i class="icon ion-ios-close-empty"></i>
+						</a>
+					</div>
+					<h3>
+						<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
+						<span>퇴직원</span>
+						<div class="widget-content"></div>
+					</h3>
+					<div id="wg" class="collapse">
+						<div class="table-responsive">
+							<table id="datatable-column-interactive2" style="border-right: #ccc 1px solid"
+							       class="table table-sorting table-hover table-bordered colored-header datatable">
+								<thead>
+								<tr>
+									<th style="width:10px"></th>
+									<th>이름</th>
+									<th>직책</th>
+									<th>은행</th>
+									<th>계좌번호</th>
+									<th>전화번호</th>
+									<th>직원번호</th>
+								</tr>
+								</thead>
+								<c:choose>
+									<c:when test="${fn:length(staffList) > 0}">
 										<c:forEach items="${staffList}" var="row">
 											<c:if test="${row.resign_flag eq 'Y'}">
 												<tr>
@@ -136,19 +168,15 @@
 												</tr>
 											</c:if>
 										</c:forEach>
-										</tbody>
 									</c:when>
 								</c:choose>
+								</tbody>
 							</table>
-							<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-								<button type="submit" class="btn btn-default btn-lg" id="selectBtn">정보수정</button>
-								<button type="button" onclick="location.href= '/manage_employee' " class="btn btn-default btn-lg" id="selectBtn2">취소</button>
-							</div>
-						</form>
+						</div>
 					</div>
-				</div>
-			</h3>
-		</div>
+				</h3>
+			</div>
+		</form>
 	</div>
 </div>
 <script type="text/javascript" src="/js/Submitting.js"></script>

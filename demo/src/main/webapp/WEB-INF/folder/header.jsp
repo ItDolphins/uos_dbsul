@@ -267,17 +267,17 @@
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-contact"></i><span class="text">직원 정보 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/manage_employee"><span class="text">직원 관리</span></a></li>
-							<li><a href="/add_employee_form"><span class="text">근무 관리</span></a></li>
+							<!--li><a href="/add_employee_form"><span class="text">근무 관리</span></a></li-->
 						</ul>
 					</li>
 					<li class="has-submenu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">물품 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/prod_Info"><span class="text">품목 조회</span></a></li>
-							<li><a href="ui-elements-buttons.html"><span class="text">발주 관리</span></a></li>
-							<li><a href="ui-elements-tabs.html"><span class="text">재고 조회</span></a></li>
-							<li><a href="ui-elements-tour.html"><span class="text">입고 조회</span></a></li>
-							<li><a href="ui-elements-tour.html"><span class="text">출고 조회</span></a></li>
+							<li><a href="ui-elements-buttons.html"><span class="text"> 관리</span></a></li>
+							<li><a href="ui-elements-tabs.html"><span class="text">조회</span></a></li>
+							<li><a href="ui-elements-tour.html"><span class="text"> 조회</span></a></li>
+							<li><a href="ui-elements-tour.html"><span class="text"> 조회</span></a></li>
 						</ul>
 					</li>
 					<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>

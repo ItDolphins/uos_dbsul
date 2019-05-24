@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${now}" pattern="yyyyMM" var="thisMon" />
+<jsp:useBean id="now" class="java.util.Date"/>
+<fmt:formatDate value="${now}" pattern="yyyyMM" var="thisMon"/>
 <jsp:include page="../header.jsp"/>
 <!-- COLUMN RIGHT -->
 <div id="col-right" class="col-right ">
@@ -68,7 +68,7 @@
 			<h3 class="widget-header clearfix">
 				<h3>
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>직원 정보</span>
+					<span>이번 달 근무</span>
 					<button type="button" onclick="location.href= '/alter_employee'" class="btn btn-default btn-lg"
 					        id="selectBtn">근무 수정
 					</button>
@@ -95,6 +95,7 @@
 								<th>계좌번호</th>
 								<th>전화번호</th>
 								<th>직원번호</th>
+								<th>퇴사여부</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -103,6 +104,7 @@
 							<td>${staff.staff_acntno}</td>
 							<td>${staff.staff_pnum}</td>
 							<td>${staff.staff_no}</td>
+							<td>${staff.resign_flag}</td>
 							</tbody>
 						</table>
 					</div>
@@ -110,7 +112,7 @@
 			</h3>
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
+					<table id="datatable-column-interactive2" style="border-right: #ccc 1px solid"
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 						<tr>
@@ -119,18 +121,14 @@
 							<th>퇴근시간</th>
 						</tr>
 						</thead>
+						<tbody>
 						<c:choose>
 							<c:when test="${fn:length(workList) > 0}">
-								<tbody>
-								<tr>
-									<th>이번 달</th>
-								</tr>
-								</tbody>
-								<tbody>
 								<c:forEach items="${workList}" var="row">
-									<fmt:formatDate value="${row.work_start_time}" pattern="yyyMM" var="mon" />
-									<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd hh:mm" var="start" />
-									<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd hh:mm" var="end" />
+									<fmt:formatDate value="${row.work_start_time}" pattern="yyyMM" var="mon"/>
+									<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd hh:mm"
+									                var="start"/>
+									<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd hh:mm" var="end"/>
 									<c:if test="${mon - thisMon eq 0 }">
 										<tr>
 											<td>${row.work_no}</td>
@@ -139,28 +137,63 @@
 										</tr>
 									</c:if>
 								</c:forEach>
-								</tbody>
-								<tbody>
-								<tr>
-									<th>이전 달</th>
-								</tr>
-								</tbody>
-								<tbody>
-								<c:forEach items="${workfList}" var="row">
-									<c:if test="${mon - thisMon ne 0 }">
-									<tr>
-											<td>${row.work_no}</td>
-											<td>${start}</td>
-											<td>${end}</td>
-										</tr>
-									</c:if>
-								</c:forEach>
-								</tbody>
 							</c:when>
 						</c:choose>
+						</tbody>
 					</table>
 				</div>
 			</div>
+		</div>
+		
+		<div class="widget">
+			<h3 class="widget-header clearfix">
+				<div class="btn-group widget-header-toolbar visible-lg" align="right">
+					<a title="Expand/Collapse" class="btn-group widget-header-toolbar visible-lg">
+						<i class="icon ion-ios-arrow-down" data-toggle="collapse" data-target="#wg"></i>
+					</a>
+					<a title="Remove" class="btn btn-link btn-remove">
+						<i class="icon ion-ios-close-empty"></i>
+					</a>
+				</div>
+				<h3>
+					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
+					<span>이전 근무</span>
+					<div class="widget-content"></div>
+				</h3>
+				<div id="wg" class="collapse">
+					<div class="table-responsive">
+						<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
+						       class="table table-sorting table-hover table-bordered colored-header datatable">
+							<thead>
+							<tr>
+								<th>근무번호</th>
+								<th>출근시간</th>
+								<th>퇴근시간</th>
+							</tr>
+							</thead>
+							<tbody>
+							<c:choose>
+								<c:when test="${fn:length(workList) > 0}">
+									<c:forEach items="${workList}" var="row">
+										<fmt:formatDate value="${row.work_start_time}" pattern="yyyMM" var="mon"/>
+										<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd hh:mm"
+										                var="start"/>
+										<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd hh:mm"
+										                var="end"/>
+										<c:if test="${mon-thisMon ne 0}">
+											<tr>
+												<td>${row.work_no}</td>
+												<td>${start}</td>
+												<td>${end}</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</c:when>
+							</c:choose>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</h3>
 		</div>
 	</div>

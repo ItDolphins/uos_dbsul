@@ -36,8 +36,8 @@ public class WorkDaoImpl extends JdbcDaoSupport implements WorkDao {
 			Work work = new Work();
 
 			work.setWork_no(rs.getString("work_no"));
-			work.setWork_start_time(rs.getDate("work_start_time"));
-			work.setWork_end_time(rs.getDate("work_end_time"));
+			work.setWork_start_time(rs.getTimestamp("work_start_time"));
+			work.setWork_end_time(rs.getTimestamp("work_end_time"));
 
 			return work;
 		}
