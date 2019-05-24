@@ -3,6 +3,8 @@ package com.example.demo.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter@Setter
 public class Staff {
 
@@ -22,4 +24,5 @@ public class Staff {
 
 	private  String store_no;
 
+	private List<Work> workList;
 }

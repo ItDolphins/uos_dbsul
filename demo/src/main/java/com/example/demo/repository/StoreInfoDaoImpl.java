@@ -5,8 +5,6 @@ import java.sql.SQLException;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-
-import com.example.demo.repository.StoreInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -44,7 +42,7 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 	}
 
 	@Override
-	public StoreInfo getByAcnt_store_no(String acnt_store_no) {
+	public StoreInfo getByStore_no(String acnt_store_no) {
 		String sql = "select t.store_code, t.store_name, t.store_no, t.store_pnum,t.store_addr, t.store_postno,a.admin_no, a.admin_name " +
 				"from tstore  t, tadmin  a where t.store_no = ? and t.admin_no = a.admin_no";
 		StoreInfo storeInfo = (StoreInfo)getJdbcTemplate().queryForObject(sql,new Object[] {acnt_store_no}, new StoreInfoMapper());

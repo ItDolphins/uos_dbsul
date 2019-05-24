@@ -36,8 +36,8 @@ public class AccountDaoImpl extends JdbcDaoSupport implements AccountDao {
 
 			account.setUsername(rs.getString("acnt_id"));
 			account.setPassword(rs.getString("password"));
-			account.setAcnt_store_no(rs.getString("store_no"));
-			account.setAcnt_admin_no(rs.getString("admin_no"));
+			account.setStore_no(rs.getString("store_no"));
+			account.setAdmin_no(rs.getString("admin_no"));
 
 			return account;
 		}

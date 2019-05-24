@@ -12,5 +12,5 @@ public class Work {
 
 	private String work_no;
 	private Date work_start_time;
-
+	private Date work_end_time;
 }

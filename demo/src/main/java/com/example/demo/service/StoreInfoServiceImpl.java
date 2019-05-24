@@ -15,7 +15,7 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 
 	@Override
 	public StoreInfo getStoreInfo(String acnt_store_no) {
-		StoreInfo storeInfo = storeInfoDao.getByAcnt_store_no(acnt_store_no);
+		StoreInfo storeInfo = storeInfoDao.getByStore_no(acnt_store_no);
 		
 		return storeInfo;
 	}

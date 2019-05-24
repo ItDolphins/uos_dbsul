@@ -34,7 +34,7 @@ public class MainController {
 	public ModelAndView template(ModelAndView mav) {
 		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		StoreInfo storeInfo = storeInfoService.getStoreInfo(account.getAcnt_store_no());
+		StoreInfo storeInfo = storeInfoService.getStoreInfo(account.getStore_no());
 
 
 		mav.addObject("storeInfo", storeInfo);
