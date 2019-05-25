@@ -94,19 +94,18 @@ public class StaffController {
 		return "redirect:/manage_employee";
 	}
 
-	@RequestMapping("/manage_work")
-	public ModelAndView manage_work(ModelAndView mav, HttpServletRequest request) {
+	@PostMapping("/manage_employee")
+	public String manage_work(@ModelAttribute("staff") Staff staff) {
 
-		String staff_no = request.getParameter("staff");
 
-		Staff staff = staffService.getStaff(staff_no);
-		List<Work> workList = workService.getWorkList(staff_no);
 
-		mav.addObject("staff", staff);
-		mav.addObject("workList", workList);
-		mav.setViewName("staff/manage_work");
-		return mav;
+		List<Work> workList = workService.getWorkList(staff.getStaff_no());
+
+
+		return "/manage_work";
 	}
+
+
 }
 
 
