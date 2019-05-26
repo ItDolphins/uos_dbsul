@@ -112,20 +112,4 @@
 <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="../footer.jsp" />
 
-<script src="/resources/js/jquery/jquery-2.1.0.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap.js"></script>
-<script
-	src="/resources/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-<script
-	src="/resources/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<script src="/resources/js/queen-common.js"></script>
-<script src="/resources/js/plugins/datatable/jquery.dataTables.min.js"></script>
-<script
-	src="/resources/js/plugins/datatable/exts/dataTables.colVis.bootstrap.js"></script>
-<script
-	src="/resources/js/plugins/datatable/exts/dataTables.colReorder.min.js"></script>
-<script
-	src="/resources/js/plugins/datatable/exts/dataTables.tableTools.min.js"></script>
-<script src="/resources/js/plugins/datatable/dataTables.bootstrap.js"></script>
-<script src="/resources/js/queen-table.js"></script>
 

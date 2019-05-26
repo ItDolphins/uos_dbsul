@@ -79,7 +79,7 @@
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
-						<table id="datatable-column-interactive"
+						<table id="datatable-column-interactive2"
 						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
@@ -116,11 +116,11 @@
 			</div>
 			<div class="widget">
 				<h3 class="widget-header clearfix" style="background-color: white">
-					<div class="btn-group widget-header-toolbar visible-lg" align="right">
-						<a title="Expand/Collapse" class="btn-group widget-header-toolbar visible-lg">
-							<i class="icon ion-ios-arrow-down" data-toggle="collapse" data-target="#wg"></i>
+					<div class="btn-group widget-header-toolbar visible-lg">
+						<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-collapse" >
+							<i class="icon ion-ios-arrow-down" data-target="#wg"></i>
 						</a>
-						<a title="Remove" class="btn btn-link btn-remove">
+						<a href="#" title="Remove" class="btn btn-link btn-remove">
 							<i class="icon ion-ios-close-empty"></i>
 						</a>
 					</div>
@@ -137,7 +137,7 @@
 					</h3>
 					<div id="wg" class="collapse">
 						<div class="table-responsive">
-							<table id="datatable-column-interactive2" style="border-right: #ccc 1px solid"
+							<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
 							       class="table table-sorting table-hover table-bordered colored-header datatable">
 								<thead>
 								<tr>

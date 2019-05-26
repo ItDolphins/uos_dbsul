@@ -50,30 +50,13 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 
 		return storeInfo;
 	}
-	
-public class StoreMapper implements RowMapper<StoreInfo> {
-		
-		public StoreInfo mapRow(ResultSet rs,int rowNum) throws SQLException{
-			StoreInfo storeInfo = new StoreInfo();
-			
-			storeInfo.setAdmin_no(rs.getString("admin_no"));
-			storeInfo.setStore_addr(rs.getString("store_addr"));
-			storeInfo.setStore_code(rs.getString("store_code"));
-			storeInfo.setStore_name(rs.getString("store_name"));
-			storeInfo.setStore_no(rs.getString("store_no"));
-			storeInfo.setStore_pnum(rs.getString("store_pnum"));
-			storeInfo.setStore_postno(rs.getString("store_postno"));
-			storeInfo.setAdmin_name(rs.getString("admin_name"));
-			
-			return storeInfo;
-		}
-	}
+
 
 	@Override
 	public List<StoreInfo> StoreList() {
 		String sql = "select t.store_code, t.store_name, t.store_no, t.store_pnum,t.store_addr, t.store_postno,a.admin_no, a.admin_name " +
 				"from tstore  t, tadmin  a where t.admin_no = a.admin_no";
-		List<StoreInfo> store = (List<StoreInfo>)getJdbcTemplate().query(sql, new Object[] {},new StoreMapper());
+		List<StoreInfo> store = (List<StoreInfo>)getJdbcTemplate().query(sql, new Object[] {},new StoreInfoMapper());
 		return store;
 	}
 }

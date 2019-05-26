@@ -9,5 +9,6 @@ import lombok.Setter;
 public class Orderprod {
 	private  String order_no;
 	private  String prod_no;
-	private  String prod_qnt;
+	private  int prod_qnt;
+	private  String prod_name;
 }

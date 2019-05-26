@@ -194,6 +194,20 @@ $(document).ready(function(){
 		}
 	);
 
+	$('.widget .btn-toggle-collapse').clickToggle(
+		function(e) {
+			e.preventDefault();
+			$(this).parents('.widget').find('.slimScrollDiv').css('height', 'auto');
+			$(this).parents('.widget').find('.collapse').slideDown(300);
+			$(this).find('i').removeClass('ion-ios-arrow-down').addClass('ion-ios-arrow-up');
+		},
+		function(e) {
+			e.preventDefault();
+			$(this).parents('.widget').find('.collapse').slideUp(300);
+			$(this).find('i').removeClass('ion-ios-arrow-up').addClass('ion-ios-arrow-down');
+		}
+	);
+
 
 	/************************
 	/*	BOOTSTRAP TOOLTIP
