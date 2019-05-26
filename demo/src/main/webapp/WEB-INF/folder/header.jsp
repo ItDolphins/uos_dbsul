@@ -220,7 +220,7 @@
 			<div class="logged-user">
 				<div class="btn-group">
 					<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-						<img src="resources/img/user-loggedin.png" alt="Sebastian" /><span class="name">Sebastian <i class="icon ion-ios-arrow-down"></i></span>
+						<img src="resources/img/user-loggedin.png" alt="Sebastian" /><span class="name"><sec:authentication property="principal.username"/> <i class="icon ion-ios-arrow-down"></i></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
 						<li>
@@ -263,11 +263,17 @@
 					<li>
 						<a href="/home"><i class="icon ion-ios-speedometer-outline"></i><span class="text">메인</span></a>
 					</li>
-					<li class="has-submenu">
+					<li class="has-submenu" id="branch_menu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-contact"></i><span class="text">직원 정보 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/manage_employee"><span class="text">직원 관리</span></a></li>
 							<!--li><a href="/add_employee_form"><span class="text">근무 관리</span></a></li-->
+						</ul>
+					</li>
+					<li class="has-submenu" id="headquarter_menu">
+						<a href="#" class="submenu-toggle"><i class="icon ion-ios-contact"></i><span class="text">지점 정보 관리</span></a>
+						<ul class="list-unstyled sub-menu collapse">
+							<li><a href="/manage_branch"><span class="text">지점 관리</span></a></li>
 						</ul>
 					</li>
 					<li class="has-submenu">
@@ -340,3 +346,12 @@
 			</nav>
 		</div>
 	</div>
+	<script>
+	var number = <sec:authentication property="principal.store_no"/>;
+	if(number == 1)
+		document.getElementById("branch_menu").style.display="none";
+	else
+		document.getElementById("headquarter_menu").style.display="none";
+	</script>
+	
+	

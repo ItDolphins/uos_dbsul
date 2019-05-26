@@ -22,6 +22,7 @@
 	<script src="resources/js/queen-charts.js"></script>
 	<script src="resources/js/queen-maps.js"></script>
 	<script src="resources/js/queen-elements.js"></script>
+	<script src="resources/js/manage_menu.js"></script>
 </body>
 
 </html>
