@@ -20,5 +20,13 @@ public class ProdServiceImpl implements ProdService {
 		return prod;
 	}
 
+	@Override
+	public void insertProd(Prod prod) {
+		// TODO Auto-generated method stub
+		String busi_no=prod.getBusi_no();
+		prodDao.matchBusiName(busi_no);
+		prodDao.insertProdToDB(prod);
+	}
+
 	
 }

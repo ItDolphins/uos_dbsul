@@ -15,6 +15,8 @@ public class Prod {
 	
 	private String prod_name;
 	
+	private String busi_name;
+	
 	private String busi_no;
 	
 	private String prod_code;

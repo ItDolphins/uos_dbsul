@@ -273,8 +273,8 @@
 					<li class="has-submenu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">물품 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
-							<li><a href="/prod_Info"><span class="text">품목 조회</span></a></li>
-							<li><a href="ui-elements-buttons.html"><span class="text"> 관리</span></a></li>
+							<li><a href="/prod_Info"><span class="text">물품 조회</span></a></li>
+							<li><a href="/prod_manage"><span class="text">물품 관리</span></a></li>
 						</ul>
 					</li>
 					<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>

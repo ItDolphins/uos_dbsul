@@ -78,8 +78,7 @@
 			<div class="widget-content">
 				<div class="table-responsive">
 					<table id="datatable-column-interactive"
-						class="table table-sorting table-hover table-bordered colored-header datatable"
-						role="grid" aria-describedby="datatable-column-interactive_info">
+						class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 							<tr>
 								<th>번호</th>
@@ -97,7 +96,7 @@
 											<td>${row.prod_no}</td>
 											<td>${row.prod_name}</td>
 											<td>${row.prod_price}</td>
-											<td>${row.busi_no}</td>
+											<td>${row.busi_name}</td>
 											<td>${row.dmg_risk}</td>
 										</tr>
 									</c:forEach>

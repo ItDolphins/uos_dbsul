@@ -34,7 +34,7 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 	
 	@Override
 	public ArrayList<Prod> findAllProd() {
-		String sql = "SELECT prod_no, prod_price, dmg_risk, prod_name, busi_no  FROM PROD";
+		String sql = "SELECT prod_no, prod_price, dmg_risk, prod_name, b.busi_name  FROM PROD  p, BUSI  b where p.busi_no=b.busi_no";
 		try {
 			ArrayList<Prod> result = (ArrayList<Prod>)getJdbcTemplate().query(sql,new Object[] {},new ProdMapper());
 		return result;
@@ -53,10 +53,26 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 			prod.setProd_price(rs.getInt("prod_price"));
 			prod.setDmg_risk(rs.getString("dmg_risk"));
 			prod.setProd_name(rs.getString("prod_name"));
-			prod.setBusi_no(rs.getString("busi_no"));
+			prod.setBusi_name(rs.getString("busi_name"));
 			
 			
 			return prod;
 		}
+	}
+
+	@Override
+	public void insertProdToDB(Prod pord) {
+		// TODO Auto-generated method stub
+		String sql = "insert PROD (prod_name,prod_no,prod_price,dmg_risk,busi_no) values(?,?,?,?)";
+		//getJdbcTemplate().update(sql,new Object[] {prod.getStaff_name(),staff.getStaff_pos(),staff.getStore_no(),
+			//	staff.getResign_flag(),staff.getStaff_acntno(),staff.getStaff_pnum(),staff.getStaff_acntbank()});
+	}
+
+	@Override
+	public Prod matchBusiName(String busi_no) {
+		// TODO Auto-generated method stub
+		String sql ="Select busi_name from BUSI where busi_no=?";
+		Prod busi=(Prod)getJdbcTemplate().queryForObject(sql, new Object[] {busi_no}, new ProdMapper());
+		return busi;
 	}
 }
