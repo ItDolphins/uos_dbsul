@@ -102,7 +102,7 @@
 												<td>${row.staff_pnum}</td>
 												<td>${row.staff_no}</td>
 												<form action="/manage_work">
-													<td><input type="hidden" name="staff" value="${row.staff_no}">
+													<td><input type="hidden" name="staff_no" value="${row.staff_no}">
 														<input type="submit" class="btn btn-primary btn-block"
 														       value="근무표">
 													</td>
@@ -118,7 +118,7 @@
 			</h3>
 		</div>
 		<div class="widget">
-			<h3 class="widget-header clearfix">
+			<h3 class="widget-header clearfix" style="background-color: white">
 				<div class="btn-group widget-header-toolbar visible-lg" align="right">
 					<a title="Expand/Collapse" class="btn-group widget-header-toolbar visible-lg">
 						<i class="icon ion-ios-arrow-down" data-toggle="collapse" data-target="#wg"></i>
@@ -157,7 +157,7 @@
 												<td>${row.staff_pnum}</td>
 												<td>${row.staff_no}</td>
 												<form action="/manage_work">
-													<td><input type="hidden" name="staff" value="${row.staff_no}">
+													<td><input type="hidden" name="staff_no" value="${row.staff_no}">
 														<input type="submit" class="btn btn-primary btn-block"
 														       value="근무표">
 													</td>

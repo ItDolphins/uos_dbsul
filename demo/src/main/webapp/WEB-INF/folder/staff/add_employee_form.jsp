@@ -63,11 +63,11 @@
                     </div>
                     <div class="widget-content">
                         <form class="form-horizontal form-ticket" role="form" action="/process_add_employee"
-                              method="post" onsubmit='return data_check()' name='f'>
+                              method="post" name='f'>
                             <fieldset>
                                 <legend>직원 정보</legend>
                                 <div class="form-group">
-                                    <label for="이름" class="col-sm-3 control-label">이름</label>
+                                    <label for="staff_name" class="col-sm-3 control-label">이름</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="staff_name" name="staff_name"
                                                required="required"
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="직책" class="col-sm-3 control-label">직책</label>
+                                    <label for="staff_pos" class="col-sm-3 control-label">직책</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="staff_pos" name="staff_pos"
                                                required="required"
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="계좌번호" class="col-sm-3 control-label">계좌번호</label>
+                                    <label for="staff_acntno" class="col-sm-3 control-label">계좌번호</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="staff_acntno" name="staff_acntno"
                                                required="required"
@@ -91,24 +91,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="은행" class="col-sm-3 control-label">은행</label>
+                                    <label for="staff_acntbank" class="col-sm-3 control-label">은행</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="staff_acntbank" required="required"
                                                name="staff_acntbank" placeholder="은행이름">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="전화번호" class="col-sm-3 control-label">전화번호</label>
+                                    <label for="staff_pnum" class="col-sm-3 control-label">전화번호</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="staff_pnum" name="staff_pnum"
                                                required="required"
                                                placeholder="전화번호">
                                     </div>
-                                    <input type="hidden" id="staff" name="staff" object=${staff}>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-9">
-                                        <input type="submit" onclick="return staffSubmitting()"
+                                        <input type="submit"
                                                class="btn btn-primary btn-block" value="신규 등록">
                                         <input type="button" class="btn btn-primary btn-block"
                                                onclick="location.href = '/manage_employee'" value="취소">
@@ -122,7 +121,5 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/js/Submitting.js"></script>
 <!-- END TICKET FORM -->
-
 <jsp:include page="../footer.jsp"/>

@@ -1,11 +1,12 @@
-package com.example.demo.service;
+package com.example.demo.service.store;
 
-import com.example.demo.service.StoreInfoService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.StoreInfo;
-import com.example.demo.repository.StoreInfoDao;
+import com.example.demo.repository.store.StoreInfoDao;
 
 @Service
 public class StoreInfoServiceImpl implements StoreInfoService {
@@ -20,4 +21,9 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 		return storeInfo;
 	}
 
+	@Override
+	public List<StoreInfo> getStoreList() {
+		List<StoreInfo> store = storeInfoDao.StoreList();
+		return store;
+	}
 }

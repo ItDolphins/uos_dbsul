@@ -23,6 +23,4 @@ public class Staff {
 	private String staff_acntbank;
 
 	private  String store_no;
-
-	private List<Work> workList;
 }

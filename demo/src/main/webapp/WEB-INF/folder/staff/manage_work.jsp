@@ -69,12 +69,21 @@
 				<h3>
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
 					<span>이번 달 근무</span>
-					<button type="button" onclick="location.href= '/alter_employee'" class="btn btn-default btn-lg"
-					        id="selectBtn">근무 수정
-					</button>
-					<button type="button" onclick="location.href= '/add_employee_form'" class="btn btn-default btn-lg"
-					        id="selectBtn2">새 근무 등록
-					</button>
+					<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
+						<form action="/alter_work" accept-charset="utf-8" name='staff_form' method="get">
+							<button type="button" onclick="location.href= '/manage_employee'"
+							        class="btn btn-default btn-lg"
+							        id="selectBtn3">뒤로
+							</button>
+							<button type="submit" onclick="location.href= '/alter_work'" class="btn btn-default btn-lg"
+							        id="selectBtn">근무 수정<input type="hidden" name="staff_no" value="${staff.staff_no}">
+							</button>
+							<button type="button" onclick="location.href= '/add_work_form?staff_no='+${staff.staff_no}"
+							        class="btn btn-default btn-lg"
+							        id="selectBtn2">새 근무 등록
+							</button>
+						</form>
+					</div>
 				</h3>
 				<!--div class="btn-group widget-header-toolbar visible-lg">
 					<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand">
@@ -126,9 +135,8 @@
 							<c:when test="${fn:length(workList) > 0}">
 								<c:forEach items="${workList}" var="row">
 									<fmt:formatDate value="${row.work_start_time}" pattern="yyyMM" var="mon"/>
-									<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd hh:mm"
-									                var="start"/>
-									<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd hh:mm" var="end"/>
+									<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd HH:mm" var="start"/>
+									<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd HH:mm" var="end"/>
 									<c:if test="${mon - thisMon eq 0 }">
 										<tr>
 											<td>${row.work_no}</td>
@@ -146,7 +154,7 @@
 		</div>
 		
 		<div class="widget">
-			<h3 class="widget-header clearfix">
+			<h3 class="widget-header clearfix" style="background-color: white">
 				<div class="btn-group widget-header-toolbar visible-lg" align="right">
 					<a title="Expand/Collapse" class="btn-group widget-header-toolbar visible-lg">
 						<i class="icon ion-ios-arrow-down" data-toggle="collapse" data-target="#wg"></i>
@@ -176,9 +184,9 @@
 								<c:when test="${fn:length(workList) > 0}">
 									<c:forEach items="${workList}" var="row">
 										<fmt:formatDate value="${row.work_start_time}" pattern="yyyMM" var="mon"/>
-										<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd hh:mm"
+										<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd HH:mm"
 										                var="start"/>
-										<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd hh:mm"
+										<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd HH:mm"
 										                var="end"/>
 										<c:if test="${mon-thisMon ne 0}">
 											<tr>

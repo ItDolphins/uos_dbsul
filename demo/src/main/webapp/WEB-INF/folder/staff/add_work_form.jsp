@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <jsp:include page="../header.jsp"/>
 <!-- COLUMN RIGHT -->
@@ -11,7 +11,7 @@
 		<!-- PRIMARY CONTENT HEADING -->
 		<div class="primary-content-heading clearfix">
 			<br>
-			<h2>직원 정보 수정</h2>
+			<h2>근무 신규 등록</h2>
 			<ul class="breadcrumb pull-left">
 				<!-- quick task modal -->
 				<div class="modal fade" id="quick-task-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -53,7 +53,7 @@
 				<!-- TICKET FORM -->
 				<div class="widget">
 					<div class="widget-header clearfix">
-						<h3><i class="icon ion-compose"></i> <span>수정 양식</span></h3>
+						<h3><i class="icon ion-compose"></i> <span>등록 양식</span></h3>
 						<div class="btn-group widget-header-toolbar visible-lg">
 							<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i
 									class="icon ion-ios-arrow-up"></i></a>
@@ -61,65 +61,34 @@
 						</div>
 					</div>
 					<div class="widget-content">
-						<form class="form-horizontal form-ticket" role="form" action="/process_alter_employee"
-						      method="post" name='f'>
+						<form class="form-horizontal form-ticket" role="form" action="/process_add_work" method="post"
+						      name='f'>
 							<fieldset>
-								<legend>직원 정보</legend>
+								<legend>근무 정보</legend>
 								<div class="form-group">
-									<label for="staff_name" class="col-sm-3 control-label">이름</label>
+									<label class="col-sm-3 control-label">출근 시간</label>
+									<input type="hidden" id="work_no" name="work_no" value="${work.work_no}">
+									<input type="hidden" id="staff_no" name="staff_no" value="${work.staff_no}">
+									<input type="hidden" id="work_start_time" name="work_start_time" value="${work.work_start_time}">
+									<input type="hidden" id="work_end_time" name="work_end_time" value="${work.work_end_time}">
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="staff_name"
-										       name="staff_name" required="required" value=${staff.staff_name}>
+										<input type="date" id="startDate" value="" required="required"/>
+										<input type="time" id="startTime" value="" required="required"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="staff_pos" class="col-sm-3 control-label">직책</label>
+									<label class="col-sm-3 control-label">퇴근 시간</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="staff_pos"
-										       name="staff_pos" required="required" value=${staff.staff_pos}>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="staff_acntno" class="col-sm-3 control-label">계좌번호</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="staff_acntno"
-										       name="staff_acntno" required="required" value=${staff.staff_acntno}>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="staff_acntbank" class="col-sm-3 control-label">은행</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="staff_acntbank"
-										       name="staff_acntbank" required="required" value=${staff.staff_acntbank}>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="staff_pnum" class="col-sm-3 control-label">전화번호</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="staff_pnum"
-										       name="staff_pnum" required="required" value=${staff.staff_pnum}>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="resign_flag" class="col-sm-3 control-label">퇴사여부</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="resign_flag"
-										       name="resign_flag" required="required" value=${staff.resign_flag}>
-									</div>
-								</div>
-								<div class="form-group" style="display:none">
-									<label for="staff_no" class="col-sm-3 control-label">직원번호</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="staff_no"
-										       name="staff_no" required="required" value=${staff.staff_no}>
+										<input type="date" id="endDate" value="" required="required"/>
+										<input type="time" id="endTime" value="" required="required"/>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-3 col-sm-9">
-										<input type="submit"
-										       class="btn btn-primary btn-block" value="정보 수정">
+										<input type="submit" onclick="return submitting()"
+										       class="btn btn-primary btn-block" value="신규 등록">
 										<input type="button" class="btn btn-primary btn-block"
-										       onclick="location.href = '/alter_employee'" value="취소">
+										       onclick="location.href = '/manage_work?staff_no='+${work.staff_no}" value="취소">
 									</div>
 								</div>
 							</fieldset>
@@ -130,4 +99,43 @@
 		</div>
 	</div>
 </div>
+<script>
+    window.onload = function () {
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var date = today.getDate();
+        var mm = today.getMonth() + 1;
+        var hh = today.getHours();
+        if (hh < 10) {
+            hh = "0" + hh;
+        }
+        if (mm < 10) {
+            mm = "0" + mm;
+        }
+        if (date < 10) {
+            date = "0" + date;
+        }
+        today = yyyy + "-" + mm + "-" + date;
+        document.getElementById("startDate").value = today;
+        document.getElementById("startDate").setAttribute("max", today);
+        document.getElementById("endDate").value = today;
+        document.getElementById("endDate").setAttribute("max", today);
+        document.getElementById("startTime").value = hh + ":00";
+        document.getElementById("endTime").value = hh + ":00";
+        today = "2018-12-31";
+        document.getElementById("StartDate").setAttribute("min", today);
+	    document.getElementById("endDate").setAttribute("min", today);
+    }
+    function submitting() {
+        var date = document.getElementById("startDate").value;
+        var time = document.getElementById("startTime").value;
+        var dl = date + " " + time+":00";
+        document.getElementById("work_start_time").value = dl;
+        date = document.getElementById("endDate").value;
+        time = document.getElementById("endTime").value;
+        var dl = date + " " + time+":00";
+        document.getElementById("work_end_time").value = dl;
+        return true;
+    }
+</script>
 <jsp:include page="../footer.jsp"/>
