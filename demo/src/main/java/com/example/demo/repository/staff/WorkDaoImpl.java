@@ -1,6 +1,6 @@
 package com.example.demo.repository.staff;
 
-import com.example.demo.model.Staff;
+
 import com.example.demo.model.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,7 +34,7 @@ public class WorkDaoImpl extends JdbcDaoSupport implements WorkDao {
 	public class WorkMapper implements RowMapper<Work> {
 		public Work mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Work work = new Work();
-
+			work.setStaff_no(rs.getString("staff_no"));
 			work.setWork_no(rs.getString("work_no"));
 			work.setWork_start_time(rs.getTimestamp("work_start_time"));
 			work.setWork_end_time(rs.getTimestamp("work_end_time"));
@@ -46,11 +46,33 @@ public class WorkDaoImpl extends JdbcDaoSupport implements WorkDao {
 	@Override
 	public List<Work> findWorkByStaff_no(String staff_no){
 
-		String sql = "select * from twork where staff_no = ?";
+		String sql = "select * from twork where staff_no = ? order by work_start_time desc";
 		List<Work> workList = (List<Work>) getJdbcTemplate().query(sql,new Object[] {staff_no},new WorkMapper());
 		return workList;
 
 	}
 
+	@Override
+	public Work getWorkByWork_no(String work_no){
+		String sql = "select * from twork where work_no = ?";
+		Work work =  (Work) getJdbcTemplate().queryForObject(sql, new Object[] {work_no},new WorkMapper());
+		return work;
+	}
+
+	@Override
+	public void updateWork(Work work){
+		String sql = "update twork set  staff_no = ? , work_start_time =? , work_end_time = ? " +
+				"where work_no = ? ";
+		getJdbcTemplate().update(sql,new Object[] {work.getStaff_no(), work.getWork_start_time(),
+				work.getWork_end_time(),work.getWork_no()});
+	}
+
+	@Override
+	public void insertWork(Work work){
+		String sql = "insert into twork(staff_no ,work_start_time,work_end_time)" +
+				" values(?,?,?)";
+		getJdbcTemplate().update(sql, new Object[] {work.getStaff_no(),
+				work.getWork_start_time(),work.getWork_end_time()});
+	}
 
 }

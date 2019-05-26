@@ -21,4 +21,21 @@ public class WorkServiceImpl implements WorkService {
 		return workList;
 	}
 
+	@Override
+	public Work getWork(String work_no){
+
+		Work work =  workDao.getWorkByWork_no(work_no);
+		return work;
+	}
+	@Override
+	public void updateWork(Work work){
+		workDao.updateWork(work);
+	}
+
+	@Override
+	public void insertWork(Work work){
+		workDao.insertWork(work);
+	}
+
+
 }
