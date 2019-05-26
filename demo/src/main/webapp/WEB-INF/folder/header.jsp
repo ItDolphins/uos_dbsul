@@ -236,7 +236,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="/logout">
 								<i class="icon ion-power"></i>
 								<span class="text">Logout</span>
 							</a>
