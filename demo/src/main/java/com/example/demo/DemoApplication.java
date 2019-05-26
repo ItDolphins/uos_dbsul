@@ -8,8 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.example.demo.service.AccountService;
 import com.example.demo.service.staff.StaffService;
-import com.example.demo.service.StoreInfoService;
-//import org.springframework.security.core.userdetails.UserDetails;
+import com.example.demo.service.store.StoreInfoService;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner{
