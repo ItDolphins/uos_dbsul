@@ -8,4 +8,5 @@ public interface StoreInfoDao {
 	StoreInfo getByStore_no(String id);
 	List<StoreInfo> StoreList();
 	void insertStoreInfo(StoreInfo store);
+	void updateStoreInfo(StoreInfo store);
 }

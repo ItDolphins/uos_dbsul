@@ -74,4 +74,14 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 		
 		
 	}
+
+
+	@Override
+	public void updateStoreInfo(StoreInfo store) {
+		String sql = "UPDATE tstore set store_name=?,store_addr=?,store_pnum=?,store_postno=?,admin_no=? where store_no=?";
+		getJdbcTemplate().update(sql,new Object[] {store.getStore_name(),store.getStore_addr(),store.getStore_pnum(),store.getStore_postno(),store.getAdmin_no(),store.getStore_no()});
+	
+		
+		
+	}
 }

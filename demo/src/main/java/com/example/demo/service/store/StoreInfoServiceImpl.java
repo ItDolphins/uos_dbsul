@@ -33,4 +33,10 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 	public void insertStoreInfo(StoreInfo store) {
 		storeInfoDao.insertStoreInfo(store);
 	}
+
+	@Override
+	public void updateStoreInfo(StoreInfo store) {
+		storeInfoDao.updateStoreInfo(store);
+		
+	}
 }

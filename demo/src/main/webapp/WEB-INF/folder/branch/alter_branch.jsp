@@ -63,6 +63,7 @@
 		</div>
 		<!-- END PRIMARY CONTENT HEADING -->
 		<!-- SHOW HIDE COLUMNS -->
+		<form action="alter_branch_form" accept-charset="utf-8" name='store_form' method="get">
 		<div class="widget">
 			<h3 class="widget-header clearfix">
 				<h3>
@@ -75,6 +76,7 @@
 						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
+								<th></th>
 								<th>이름</th>
 								<th>주소</th>
 								<th>전화번호</th>
@@ -86,6 +88,8 @@
 									<c:forEach items="${storeList}" var="row">
 										<c:if test="${row.store_no eq '1'}">
 											<tr>
+												<td><input type="radio" name="radio_button" value="${row.store_no}"
+												           class="checkSelect" required="required"></td>
 												<td>${row.store_name}</td>
 												<td>${row.store_addr}</td>
 												<td>${row.store_pnum}</td>
@@ -112,6 +116,7 @@
 						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
+								<th></th>
 								<th>이름</th>
 								<th>주소</th>
 								<th>전화번호</th>
@@ -124,6 +129,8 @@
 									<c:forEach items="${storeList}" var="row">
 										<c:if test="${row.store_no ne '1'}">
 											<tr>
+												<td><input type="radio" name="radio_button" value="${row.store_no}"
+												           class="checkSelect" required="required"></td>
 												<td>${row.store_name}</td>
 												<td>${row.store_addr}</td>
 												<td>${row.store_pnum}</td>
@@ -141,14 +148,15 @@
 		</div>
 	</div>
 	<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-						<button type="button" onclick="location.href= '/alter_branch'" class="btn btn-default btn-lg"
+						<button type="submit" class="btn btn-default btn-lg"
 						        id="selectBtn">정보수정
 						</button>
-						<button type="button" onclick="location.href= '/add_branch_form'"
+						<button type="button" onclick="location.href= '/manage_branch'"
 						        class="btn btn-default btn-lg"
-						        id="selectBtn2">새 지점 등록
+						        id="selectBtn2">취소
 						</button>
 	</div>
+	</form>
 </div>
 
 <!-- END SHOW HIDE COLUMNS -->
