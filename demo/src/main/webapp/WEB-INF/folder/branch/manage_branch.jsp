@@ -144,7 +144,7 @@
 						<button type="button" onclick="location.href= '#'" class="btn btn-default btn-lg"
 						        id="selectBtn">정보수정
 						</button>
-						<button type="button" onclick="location.href= '#'"
+						<button type="button" onclick="location.href= '/add_branch_form'"
 						        class="btn btn-default btn-lg"
 						        id="selectBtn2">새 지점 등록
 						</button>
@@ -152,4 +152,4 @@
 </div>
 
 <!-- END SHOW HIDE COLUMNS -->
-
+<jsp:include page="../footer.jsp"/>

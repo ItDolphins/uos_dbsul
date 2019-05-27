@@ -7,4 +7,5 @@ import com.example.demo.model.StoreInfo;
 public interface StoreInfoDao {
 	StoreInfo getByStore_no(String id);
 	List<StoreInfo> StoreList();
+	void insertStoreInfo(StoreInfo store);
 }

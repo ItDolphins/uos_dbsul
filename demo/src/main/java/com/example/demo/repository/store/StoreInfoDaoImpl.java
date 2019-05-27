@@ -10,14 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.StoreInfo;
+import com.example.demo.service.admin.AdminService;
 
+@Transactional
 @Repository
 public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 
 	@Autowired 
 	DataSource dataSource;
+	
+	@Autowired
+	AdminService adminService;
 	
 	@PostConstruct
 	private void initialize(){
@@ -58,5 +64,14 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 				"from tstore  t, tadmin  a where t.admin_no = a.admin_no";
 		List<StoreInfo> store = (List<StoreInfo>)getJdbcTemplate().query(sql, new Object[] {},new StoreInfoMapper());
 		return store;
+	}
+
+
+	@Override
+	public void insertStoreInfo(StoreInfo store) {
+		String sql = "INSERT INTO tstore(store_name,store_addr,store_pnum,admin_no,store_postno) values(?,?,?,?,?)";
+		getJdbcTemplate().update(sql,new Object[] {store.getStore_name(),store.getStore_addr(),store.getStore_pnum(),store.getAdmin_no(),store.getStore_postno()});
+		
+		
 	}
 }

@@ -33,14 +33,24 @@ public class AuthProvider implements AuthenticationProvider {
 
 		Account account = accountService.getAccount(id);
 		System.out.println(account.getPassword());
-		if(account.getPassword().equals(pw)) {
+		if(account.getStore_no().equals("1") && account.getPassword().equals(pw) ) {
 			//Authentication request = new UsernamePasswordAuthenticationToken(id,pw);
 			List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
 			result.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 			Authentication result2 =  new UsernamePasswordAuthenticationToken(account, authentication.getCredentials(), result);
 			SecurityContextHolder.getContext().setAuthentication(result2);
 			return result2;
-		} else {
+		} 
+		else if(account.getPassword().equals(pw)) {
+			//Authentication request = new UsernamePasswordAuthenticationToken(id,pw);
+			List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
+			result.add(new SimpleGrantedAuthority("ROLE_USER"));
+			Authentication result2 =  new UsernamePasswordAuthenticationToken(account, authentication.getCredentials(), result);
+			SecurityContextHolder.getContext().setAuthentication(result2);
+			return result2;
+		}
+		
+		else {
 			throw new BadCredentialsException("비밀번호 안맞음");
 		}
 		

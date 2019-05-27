@@ -7,4 +7,5 @@ import com.example.demo.model.StoreInfo;
 public interface StoreInfoService {
 	StoreInfo getStoreInfo(String acnt_store_no);
 	List<StoreInfo> getStoreList();
+	void insertStoreInfo(StoreInfo store);
 }
