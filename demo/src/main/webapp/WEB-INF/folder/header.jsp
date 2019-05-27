@@ -263,12 +263,8 @@
 					<li>
 						<a href="/home"><i class="icon ion-ios-speedometer-outline"></i><span class="text">메인</span></a>
 					</li>
-					<li class="has-submenu" id="branch_menu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-ios-contact"></i><span class="text">직원 정보 관리</span></a>
-						<ul class="list-unstyled sub-menu collapse">
-							<li><a href="/manage_employee"><span class="text">직원 관리</span></a></li>
-							<!--li><a href="/add_employee_form"><span class="text">근무 관리</span></a></li-->
-						</ul>
+					<li>
+						<a href="/manage_employee"><i class="icon ion-ios-contact"></i><span class="text">직원 정보 관리</span></a>
 					</li>
 					<li class="has-submenu" id="headquarter_menu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-contact"></i><span class="text">지점 정보 관리</span></a>
@@ -277,10 +273,16 @@
 						</ul>
 					</li>
 					<li class="has-submenu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">물품 관리</span></a>
+						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">품목 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/prod_Info"><span class="text">물품 조회</span></a></li>
 							<li><a href="/prod_manage"><span class="text">물품 관리</span></a></li>
+						</ul>
+					</li>
+					<li class="has-submenu">
+						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">물품 관리</span></a>
+						<ul class="list-unstyled sub-menu collapse">
+							<li><a href="/manage_order"><span class="text">발주 관리</span></a></li>
 						</ul>
 					</li>
 					<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>

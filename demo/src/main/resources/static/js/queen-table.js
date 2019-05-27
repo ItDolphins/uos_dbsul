@@ -50,6 +50,18 @@ $(document).ready(function(){
 			},
 		});
 
+		$('#datatable-column-interactive2').dataTable({
+			sDom: "RC<'clearfix'>" +
+				"<'row'<'col-sm-6'l><'col-sm-6'f>r>"+
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>",
+			colVis: {
+				buttonText: 'Show / Hide Columns',
+				restore: "Restore",
+				showAll: "Show all"
+			},
+		});
+
 		/* data export */
 		var exportTable = $('#datatable-data-export').DataTable({
 			sDom: "T<'clearfix'>" +

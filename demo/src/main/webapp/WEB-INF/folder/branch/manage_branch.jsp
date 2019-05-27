@@ -71,7 +71,7 @@
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
-						<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
+						<table id="datatable-column-interactive2" style="border-right: #ccc 1px solid"
 						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
