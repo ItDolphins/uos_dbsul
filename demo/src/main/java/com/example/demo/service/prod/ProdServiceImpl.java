@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Busi;
 import com.example.demo.model.Prod;
 import com.example.demo.repository.prod.ProdDao;
 
@@ -23,8 +24,10 @@ public class ProdServiceImpl implements ProdService {
 	@Override
 	public void insertProd(Prod prod) {
 		// TODO Auto-generated method stub
-		String busi_no=prod.getBusi_no();
-		prodDao.matchBusiName(busi_no);
+		String busi_name=prod.getBusi_name();
+		Busi busi=null;
+		busi=prodDao.matchBusiName(busi_name);
+		prod.setBusi_no(busi.getBusi_no());
 		prodDao.insertProdToDB(prod);
 	}
 

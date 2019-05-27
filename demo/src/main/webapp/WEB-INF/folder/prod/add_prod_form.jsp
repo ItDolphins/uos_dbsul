@@ -65,30 +65,30 @@
 							<fieldset>
 								<legend>등록 양식</legend>
 								<div class="form-group">
-									<label for="ticket-type" class="col-sm-3 control-label">상품명</label>
+									<label for="" class="col-sm-3 control-label">상품명</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="prod_name" name="prod_name" placeholder="상품명">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="ticket-name" class="col-sm-3 control-label">가격</label>
+									<label for="" class="col-sm-3 control-label">가격</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="prod_price" name="prod_price" placeholder="가격">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="ticket-email" class="col-sm-3 control-label">업체명</label>
+									<label for="" class="col-sm-3 control-label">업체명</label>
 									<div class="col-sm-9">
-										<input type="email" class="form-control" id="busi_name" name="busi_name" placeholder="업체명">
+										<input type="text" class="form-control" id="busi_name" name="busi_name" placeholder="업체명">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="ticket-priority" class="col-sm-3 control-label">위험도</label>
+									<label for="" class="col-sm-3 control-label">위험도</label>
 									<div class="col-sm-9">
 										<select id="dmg_risk" name="dmg_risk" class="select-ticket-priority">
-											<option value="row">낮음</option>
-											<option value="higj" >높음</option>
-											<option value="medium" >중간</option>
+											<option value="낮음">낮음</option>
+											<option value="중간" >중간</option>
+											<option value="높음" >높음</option>
 										</select>
 									</div>
 								</div>

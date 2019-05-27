@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.model.Busi;
 import com.example.demo.model.Prod;
 
 
@@ -59,20 +60,36 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 			return prod;
 		}
 	}
+	public class BusiMapper implements RowMapper<Busi>{
 
-	@Override
-	public void insertProdToDB(Prod pord) {
-		// TODO Auto-generated method stub
-		String sql = "insert PROD (prod_name,prod_no,prod_price,dmg_risk,busi_no) values(?,?,?,?)";
-		//getJdbcTemplate().update(sql,new Object[] {prod.getStaff_name(),staff.getStaff_pos(),staff.getStore_no(),
-			//	staff.getResign_flag(),staff.getStaff_acntno(),staff.getStaff_pnum(),staff.getStaff_acntbank()});
+		@Override
+		public Busi mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			Busi busi=new Busi();
+			
+			busi.setBusi_no(rs.getString("busi_no"));
+			busi.setBusi_addr(rs.getString("busi_addr"));
+			busi.setBusi_name(rs.getString("busi_name"));
+			busi.setBusi_pNum(rs.getString("busi_pNum"));
+			busi.setBusi_postNo(rs.getString("busi_postno"));
+			return busi;
+		}
+
 	}
 
 	@Override
-	public Prod matchBusiName(String busi_no) {
+	public void insertProdToDB(Prod prod) {
 		// TODO Auto-generated method stub
-		String sql ="Select busi_name from BUSI where busi_no=?";
-		Prod busi=(Prod)getJdbcTemplate().queryForObject(sql, new Object[] {busi_no}, new ProdMapper());
+		String sql = "insert into PROD (prod_name,prod_no,prod_price,dmg_risk,busi_no) values(?,SEQ_PROD.NEXTVAL,?,?,?)";
+		getJdbcTemplate().update(sql,new Object[] {prod.getProd_name(),prod.getProd_price(),prod.getDmg_risk(),
+			prod.getBusi_no()});
+	}
+
+	@Override
+	public Busi matchBusiName(String busi_name) {
+		// TODO Auto-generated method stub
+		String sql ="Select * from BUSI where busi_name=?";
+		Busi busi=(Busi)getJdbcTemplate().queryForObject(sql, new Object[] {busi_name}, new BusiMapper());
 		return busi;
 	}
 }

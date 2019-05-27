@@ -52,8 +52,8 @@ public class ProdController {
 	
 	@PostMapping("/add_prod")
 	public String add_prod(@ModelAttribute("prod") Prod prod) {
-		
-		
+
+		prodService.insertProd(prod);
 		
 		return "redirect:/prod_manage";
 	}
