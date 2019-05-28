@@ -59,7 +59,7 @@ public class BranchController {
 	}
 	
 	@GetMapping("/alter_branch")
-	public ModelAndView alter_branch_form(ModelAndView mav) {
+	public ModelAndView alter_branch(ModelAndView mav) {
 		
 		List<StoreInfo> storeList = storeInfoService.getStoreList();
 		

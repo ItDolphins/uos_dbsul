@@ -269,11 +269,13 @@
 					</li>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ADMIN')">
-					<li class="has-submenu" id="headquarter_menu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-ios-contact"></i><span class="text">지점 정보 관리</span></a>
-						<ul class="list-unstyled sub-menu collapse">
-							<li><a href="/manage_branch"><span class="text">지점 관리</span></a></li>
-						</ul>
+					<li>
+						<a href="/manage_branch"><i class="icon ion-ios-contact"></i><span class="text">지점 정보 관리</span></a>
+					</li>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ADMIN')">
+					<li>
+						<a href="/manage_admin"><i class="icon ion-ios-contact"></i><span class="text">지점 관리자 정보 관리</span></a>
 					</li>
 					</sec:authorize>
 					<li class="has-submenu">
