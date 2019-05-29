@@ -291,7 +291,11 @@
 							<li><a href="/manage_order"><span class="text">발주 관리</span></a></li>
 						</ul>
 					</li>
-					<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>
+					<sec:authorize access="hasRole('USER')">
+					<li>
+						<a href="/sell_product"><i class="icon ion-social-designernews"></i><span class="text">판매</span></a>
+					</li>
+					</sec:authorize>
 					<li class="has-submenu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-copy-outline"></i><span class="text">Pages</span></a>
 						<ul class="list-unstyled sub-menu collapse">
