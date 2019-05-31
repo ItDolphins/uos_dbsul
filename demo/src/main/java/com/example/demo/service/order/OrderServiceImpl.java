@@ -16,14 +16,14 @@ public class OrderServiceImpl implements OrderService{
 	OrderDao orderDao;
 
 	@Override
-	public List<Order> getOrderList(String store_no){
+	public List<Order> getOrderList(int store_no){
 
 		List<Order> orderList = orderDao.findByStore_no(store_no);
 		return orderList;
 	}
 
 	@Override
-	public 	Order getOrder(String order_no){
+	public 	Order getOrder(int order_no){
 		Order order = orderDao.getByOrder_no(order_no);
 		return order;
 	}

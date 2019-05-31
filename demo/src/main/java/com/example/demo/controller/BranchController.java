@@ -33,8 +33,6 @@ public class BranchController {
 	
 	@GetMapping("/manage_branch")
 	public ModelAndView manage_branch(ModelAndView mav) {
-		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
 		List<StoreInfo> storeList = storeInfoService.getStoreList();
 		
 		mav.addObject("storeList",storeList);
@@ -71,7 +69,7 @@ public class BranchController {
 	@RequestMapping("/alter_branch_form")
 	public ModelAndView alter_branch_form(ModelAndView mav,HttpServletRequest request) {
 		String store_no = request.getParameter("radio_button");
-		StoreInfo store = storeInfoService.getStoreInfo(store_no);
+		StoreInfo store = storeInfoService.getStoreInfo(Integer.parseInt(store_no));
 		mav.addObject("store",store);
 		if(store_no.equals("1"))
 			mav.setViewName("branch/alter_headquarter_form");

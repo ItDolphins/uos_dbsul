@@ -52,7 +52,7 @@ public class ReleaseController {
 	@GetMapping("/sell_product")
 	public ModelAndView prod_Info(ModelAndView mav) {
 		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String acnt_store_no = account.getStore_no();
+		int acnt_store_no = account.getStore_no();
 		List<Stock> stockList = releaseService.getStockList(acnt_store_no);
 		
 		mav.addObject("stockList",stockList);

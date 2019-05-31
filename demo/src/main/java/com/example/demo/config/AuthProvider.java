@@ -33,7 +33,7 @@ public class AuthProvider implements AuthenticationProvider {
 
 		Account account = accountService.getAccount(id);
 		System.out.println(account.getPassword());
-		if(account.getStore_no().equals("1") && account.getPassword().equals(pw) ) {
+		if(( account.getStore_no() == 1 ) && account.getPassword().equals(pw) ) {
 			//Authentication request = new UsernamePasswordAuthenticationToken(id,pw);
 			List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
 			result.add(new SimpleGrantedAuthority("ROLE_ADMIN"));

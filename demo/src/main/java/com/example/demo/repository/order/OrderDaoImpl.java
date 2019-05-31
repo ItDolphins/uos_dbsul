@@ -29,8 +29,8 @@ public class OrderDaoImpl extends  JdbcDaoSupport implements  OrderDao{
 		public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Order order = new Order();
 
-			order.setOrder_no(rs.getString("order_no"));
-			order.setStore_no(rs.getString("store_no"));
+			order.setOrder_no(rs.getInt("order_no"));
+			order.setStore_no(rs.getInt("store_no"));
 			order.setOrder_date(rs.getDate("order_date"));
 			order.setOrder_state(rs.getString("order_state"));
 
@@ -39,13 +39,13 @@ public class OrderDaoImpl extends  JdbcDaoSupport implements  OrderDao{
 	}
 
 	@Override
-	public  List<Order> findByStore_no(String store_no){
+	public  List<Order> findByStore_no(int store_no){
 		String sql  = "select *  from torder where store_no = ?";
 		List<Order> orderList = (List<Order>) getJdbcTemplate().query(sql, new Object[] {store_no}, new OrderMapper());
 		return orderList;
 	}
 	@Override
-	public  Order getByOrder_no(String order_no ){
+	public  Order getByOrder_no(int order_no ){
 		String sql = "select * from torder where order_no = ?";
 		Order order = (Order) getJdbcTemplate().queryForObject(sql, new Object[] {order_no},new OrderMapper());
 		return order;

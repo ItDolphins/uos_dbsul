@@ -16,13 +16,13 @@ public class WorkServiceImpl implements WorkService {
 	WorkDao  workDao;
 
 	@Override
-	public List<Work> getWorkList(String staff_no){
+	public List<Work> getWorkList(int staff_no){
 		List<Work> workList = workDao.findWorkByStaff_no(staff_no);
 		return workList;
 	}
 
 	@Override
-	public Work getWork(String work_no){
+	public Work getWork(int work_no){
 
 		Work work =  workDao.getWorkByWork_no(work_no);
 		return work;

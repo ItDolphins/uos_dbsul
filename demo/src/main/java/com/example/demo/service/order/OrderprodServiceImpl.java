@@ -14,7 +14,7 @@ public class OrderprodServiceImpl implements OrderprodService {
 	OrderprodDao orderprodDao;
 
 	@Override
-	public  List<Orderprod> getOrderprodList(String order_no){
+	public  List<Orderprod> getOrderprodList(int order_no){
 
 		List<Orderprod> orderprodList  = orderprodDao.findByOrder_no(order_no);
 		return orderprodList;

@@ -23,7 +23,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public boolean checkByAdminNo(String admin_no) {
+	public boolean checkByAdminNo(int admin_no) {
 		return adminDao.findByAdminNo(admin_no).isPresent();
 	}
 
@@ -40,7 +40,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Admin getByAdminNo(String adminNo) {
+	public Admin getByAdminNo(int adminNo) {
 		Admin admin = adminDao.getInfoByAdminNo(adminNo);
 		return admin;
 	}

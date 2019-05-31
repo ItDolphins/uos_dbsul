@@ -6,9 +6,9 @@ import com.example.demo.model.Admin;
 
 public interface AdminService {
 	List<String> getAdminName();
-	boolean checkByAdminNo(String admin_no);
+	boolean checkByAdminNo(int admin_no);
 	List<Admin> getAdminList();
 	void insertAdmin(Admin admin);
-	Admin getByAdminNo(String adminNo);
+	Admin getByAdminNo(int adminNo);
 	void alterAdminInfo(Admin admin);
 }

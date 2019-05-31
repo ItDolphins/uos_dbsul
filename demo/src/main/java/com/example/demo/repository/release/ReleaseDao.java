@@ -5,5 +5,5 @@ import java.util.List;
 import com.example.demo.model.Stock;
 
 public interface ReleaseDao {
-	List<Stock> getStockList(String acnt_store_no);
+	List<Stock> getStockList(int acnt_store_no);
 }

@@ -34,17 +34,17 @@ public class WorkDaoImpl extends JdbcDaoSupport implements WorkDao {
 	public class WorkMapper implements RowMapper<Work> {
 		public Work mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Work work = new Work();
-			work.setStaff_no(rs.getString("staff_no"));
-			work.setWork_no(rs.getString("work_no"));
-			work.setWork_start_time(rs.getTimestamp("work_start_time"));
-			work.setWork_end_time(rs.getTimestamp("work_end_time"));
+			work.setStaff_no(rs.getInt("staff_no"));
+			work.setWork_no(rs.getInt("work_no"));
+			work.setWork_start_time(rs.getDate("work_start_time"));
+			work.setWork_end_time(rs.getDate("work_end_time"));
 
 			return work;
 		}
 	}
 
 	@Override
-	public List<Work> findWorkByStaff_no(String staff_no){
+	public List<Work> findWorkByStaff_no(int staff_no){
 
 		String sql = "select * from twork where staff_no = ? order by work_start_time desc";
 		List<Work> workList = (List<Work>) getJdbcTemplate().query(sql,new Object[] {staff_no},new WorkMapper());
@@ -53,7 +53,7 @@ public class WorkDaoImpl extends JdbcDaoSupport implements WorkDao {
 	}
 
 	@Override
-	public Work getWorkByWork_no(String work_no){
+	public Work getWorkByWork_no(int work_no){
 		String sql = "select * from twork where work_no = ?";
 		Work work =  (Work) getJdbcTemplate().queryForObject(sql, new Object[] {work_no},new WorkMapper());
 		return work;

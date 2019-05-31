@@ -5,5 +5,5 @@ import com.example.demo.model.Orderprod;
 import java.util.List;
 
 public interface OrderprodDao {
-	List<Orderprod> findByOrder_no(String order_no);
+	List<Orderprod> findByOrder_no(int order_no);
 }

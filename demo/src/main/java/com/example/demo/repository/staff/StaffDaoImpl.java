@@ -39,11 +39,11 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao {
 			staff.setResign_flag(rs.getString("resign_flag"));
 			staff.setStaff_acntno(rs.getString("staff_acntno"));
 			staff.setStaff_name(rs.getString("staff_name"));
-			staff.setStaff_no(rs.getString("staff_no"));
+			staff.setStaff_no(rs.getInt("staff_no"));
 			staff.setStaff_pnum(rs.getString("staff_pnum"));
 			staff.setStaff_pos(rs.getString("staff_pos"));
 			staff.setStaff_acntbank(rs.getString("staff_acntbank"));
-			staff.setStore_no(rs.getString("store_no"));
+			staff.setStore_no(rs.getInt("store_no"));
 
 			return staff;
 		}
@@ -51,7 +51,7 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao {
 
 
 	@Override
-	public List<Staff> findByAcnt_store_no(String acnt_store_no) {
+	public List<Staff> findByAcnt_store_no(int acnt_store_no) {
 		String sql = "select * from staff where store_no = ?";
 		List<Staff> staff = (List<Staff>) getJdbcTemplate().query(sql,new Object[] {acnt_store_no},new StaffMapper());
 		return staff;
@@ -59,7 +59,7 @@ public class StaffDaoImpl extends JdbcDaoSupport implements StaffDao {
 
 
 	@Override
-	public Staff getByStaff_no(String staff_no) {
+	public Staff getByStaff_no(int staff_no) {
 		String sql = "select * from staff where staff_no = ?";
 		Staff staff = (Staff)getJdbcTemplate().queryForObject(sql,new Object[] {staff_no}, new StaffMapper());
 		

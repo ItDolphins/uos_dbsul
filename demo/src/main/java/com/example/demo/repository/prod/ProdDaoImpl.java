@@ -50,7 +50,7 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 		public Prod mapRow(ResultSet rs,int rowNum) throws SQLException{
 			Prod prod=new Prod();
 			
-			prod.setProd_no(rs.getString("prod_no"));
+			prod.setProd_no(rs.getInt("prod_no"));
 			prod.setProd_price(rs.getInt("prod_price"));
 			prod.setDmg_risk(rs.getString("dmg_risk"));
 			prod.setProd_name(rs.getString("prod_name"));
@@ -67,7 +67,7 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 			// TODO Auto-generated method stub
 			Busi busi=new Busi();
 			
-			busi.setBusi_no(rs.getString("busi_no"));
+			busi.setBusi_no(rs.getInt("busi_no"));
 			busi.setBusi_addr(rs.getString("busi_addr"));
 			busi.setBusi_name(rs.getString("busi_name"));
 			busi.setBusi_pNum(rs.getString("busi_pNum"));

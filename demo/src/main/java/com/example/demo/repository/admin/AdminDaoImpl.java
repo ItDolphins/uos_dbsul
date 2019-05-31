@@ -44,7 +44,7 @@ public class AdminDaoImpl extends JdbcDaoSupport implements AdminDao{
 			Admin admin = new Admin();
 			
 			admin.setAdmin_name(rs.getString("admin_name"));
-			admin.setAdmin_no(rs.getString("admin_no"));
+			admin.setAdmin_no(rs.getInt("admin_no"));
 			admin.setAdmin_pnum(rs.getString("admin_pnum"));
 			admin.setAdmin_pos(rs.getString("admin_pos"));
 			
@@ -60,17 +60,17 @@ public class AdminDaoImpl extends JdbcDaoSupport implements AdminDao{
 	}
 
 	@Override
-	public Optional<String> findByAdminNo(String admin_no) {
+	public Optional<String> findByAdminNo(int admin_no) {
 		String sql = "select admin_no from tadmin where admin_no = ?";
 		try {
-			return Optional.of(getJdbcTemplate().queryForObject(sql, new Object[] {admin_no},String.class));
+			return Optional.of(getJdbcTemplate().queryForObject(sql, new Object[] {Integer.toString(admin_no)},String.class));
 		} catch(EmptyResultDataAccessException e) {
 			return Optional.empty();
 		}
 	}
 
 	@Override
-	public String getByAdminNo(String adminNo) {
+	public String getByAdminNo(int adminNo) {
 		return findByAdminNo(adminNo).orElseThrow(() -> new IllegalArgumentException("Cannot find Admin by No : " + adminNo));
 	}
 
@@ -90,7 +90,7 @@ public class AdminDaoImpl extends JdbcDaoSupport implements AdminDao{
 	}
 
 	@Override
-	public Admin getInfoByAdminNo(String adminNo) {
+	public Admin getInfoByAdminNo(int adminNo) {
 		String sql = "SELECT * from tadmin where admin_no = ?";
 		Admin admin = getJdbcTemplate().queryForObject(sql, new Object[] {adminNo},new AdminMapper());
 		

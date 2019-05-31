@@ -60,7 +60,7 @@ public class AdminController {
 	
 	@RequestMapping("/alter_admin_form")
 	public ModelAndView alter_admin_form(ModelAndView mav,HttpServletRequest request) {
-		String admin_no = request.getParameter("radio_button");
+		int admin_no = Integer.parseInt(request.getParameter("radio_button"));
 		
 		Admin admin = adminService.getByAdminNo(admin_no);
 		mav.addObject("admin",admin);
