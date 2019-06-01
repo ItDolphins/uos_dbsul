@@ -12,15 +12,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.example.demo.model.Stock;
 import com.example.demo.repository.admin.AdminDao;
 import com.example.demo.service.AccountService;
-import com.example.demo.service.release.ReleaseService;
 import com.example.demo.service.staff.StaffService;
+import com.example.demo.service.stock.StockService;
 import com.example.demo.service.store.StoreInfoService;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner{
 
-	@Autowired
-	ReleaseService releaseService;
 	
 	public static void main(String[] args) {
 		

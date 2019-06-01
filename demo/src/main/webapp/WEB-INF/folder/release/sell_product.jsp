@@ -106,18 +106,16 @@
 							</tbody>
 						</table>
 					</div>
-					 <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-9">
-                                        <input type="button"
-                                               class="btn btn-primary btn-block" value="판매" onclick="javascript:transfer()"/>
-                                        <input type="button" class="btn btn-primary btn-block"
-                                               onclick="location.href = '/home'" value="취소">
-                                    </div>
-                                </div>
-					</div>
-				</div>
+				</div>	
 			</h3>
 		</div>
+		<div class="form-group">
+        	<div class="col-sm-offset-3 col-sm-9">
+            	<input type="button" class="btn btn-primary btn-block" value="판매" onclick="javascript:transfer()"/>
+                <input type="button" class="btn btn-primary btn-block" onclick="location.href = '/home'" value="취소">
+            </div>
+        </div>
+        </div>
 <script>
 $("#datatable-column-interactive tr").click(function(){
 	var str="";
@@ -173,17 +171,22 @@ function tableToJson(table) { // 변환 함수
     var data = [];
 
     var headers = [];
-    for(var i=0; i<table.rows[0].cells.length; i++) {
-        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
-    }
+    //for(var i=0; i<table.rows[0].cells.length; i++) {
+    //    headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+    //}
+    
+    headers[0] = "prod_no";
+    headers[1] = "expdate"
+    headers[2] = "amount";
 
     for(var i=1; i<table.rows.length; i++) {
         var tableRow = table.rows[i];
         var rowData = {};
 
-        for(var j=0; j<tableRow.cells.length; j++) {
-            rowData[headers[j]] = tableRow.cells[j].innerHTML;
-        }
+        rowData[headers[0]] = tableRow.cells[0].innerHTML;
+        rowData[headers[1]] = tableRow.cells[2].innerHTML;
+        rowData[headers[2]] = tableRow.cells[3].innerHTML;
+
         data.push(rowData);
     }
 
