@@ -126,7 +126,6 @@
 							<thead>
 							<tr>
 								<th style="width:10px"></th>
-								<th>근무번호</th>
 								<th>출근시간</th>
 								<th>퇴근시간</th>
 							</tr>
@@ -142,9 +141,8 @@
 										                var="end"/>
 										<c:if test="${mon - thisMon eq 0 }">
 											<tr>
-												<td><input type="radio" name="radio_button" value="${row.work_no}"
+												<td><input type="radio" name="radio_button" value="${row.work_start_time}"
 												           class="checkSelect" required="required"></td>
-												<td>${row.work_no}</td>
 												<td>${start}</td>
 												<td>${end}</td>
 											</tr>
@@ -188,7 +186,6 @@
 								<thead>
 								<tr>
 									<th style="width:10px"></th>
-									<th>근무번호</th>
 									<th>출근시간</th>
 									<th>퇴근시간</th>
 								</tr>
@@ -202,9 +199,9 @@
 											<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd HH:mm" var="end"/>
 											<c:if test="${mon-thisMon ne 0}">
 												<tr>
-													<td><input type="radio" name="radio_button" value="${row.work_no}"
-													           class="checkSelect" required="required"></td>
-													<td>${row.work_no}</td>
+													<td><input type="radio" name="radio_button" value="${row.work_start_time}"
+													           class="checkSelect" required="required">
+													</td>
 													<td>${start}</td>
 													<td>${end}</td>
 												</tr>
@@ -218,6 +215,7 @@
 					</div>
 				</h3>
 			</div>
+			<input type="hidden" name="staff_no" value="${staff.staff_no}">
 		</form>
 	</div>
 </div>

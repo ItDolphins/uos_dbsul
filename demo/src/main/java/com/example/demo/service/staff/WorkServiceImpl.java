@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -22,14 +25,14 @@ public class WorkServiceImpl implements WorkService {
 	}
 
 	@Override
-	public Work getWork(int work_no){
+	public Work getWork(int staff_no , Timestamp work_start_time){
 
-		Work work =  workDao.getWorkByWork_no(work_no);
+		Work work =  workDao.getWorkByStaff_noAndWork_start_time(staff_no, work_start_time);
 		return work;
 	}
 	@Override
-	public void updateWork(Work work){
-		workDao.updateWork(work);
+	public void updateWork(Work work,Timestamp ex_work_start_time){
+		workDao.updateWork(work,ex_work_start_time);
 	}
 
 	@Override

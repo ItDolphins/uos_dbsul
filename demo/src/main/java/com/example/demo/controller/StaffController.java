@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 
+import java.sql.Timestamp;
+
 import java.util.List;
 
 
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.example.demo.model.Account;
 import com.example.demo.model.Work;
+import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,6 +34,7 @@ public class StaffController {
 	StaffService staffService;
 	@Autowired
 	WorkService workService;
+
 
 
 	@GetMapping("/manage_employee")
@@ -122,16 +126,18 @@ public class StaffController {
 
 	@RequestMapping("/alter_work_form")
 	public ModelAndView alter_work_form(ModelAndView mav, HttpServletRequest request) {
-		int work_no = Integer.parseInt(request.getParameter("radio_button"));
-		Work work = workService.getWork(work_no);
+		Timestamp work_start_time = Timestamp.valueOf(request.getParameter("radio_button"));
+		int staff_no = Integer.parseInt(request.getParameter("staff_no"));
+		Work work = workService.getWork(staff_no, work_start_time);
 		mav.addObject("work", work);
 		mav.setViewName("staff/alter_work_form");
 		return mav;
 	}
 
 	@RequestMapping("/process_alter_work")
-	public String process_alter_work(@ModelAttribute("work") Work work) {
-		workService.updateWork(work);
+	public String process_alter_work(@ModelAttribute("work") Work work, @RequestParam("ex_work_start_time") Timestamp ex_work_start_time) {
+		System.out.println(ex_work_start_time);
+		workService.updateWork(work,ex_work_start_time);
 		int staff_no = work.getStaff_no();
 
 		return "redirect:/alter_work?staff_no="+staff_no;

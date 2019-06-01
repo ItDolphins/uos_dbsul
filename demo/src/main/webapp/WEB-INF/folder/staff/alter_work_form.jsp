@@ -66,10 +66,10 @@
 								<legend>근무 정보</legend>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">출근 시간</label>
-									<input type="hidden" id="work_no" name="work_no" value="${work.work_no}">
-									<input type="hidden" id="staff_no" name="staff_no" value="${work.staff_no}">
-									<input type="hidden" id="work_start_time" name="work_start_time" value="${work.work_start_time}">
-									<input type="hidden" id="work_end_time" name="work_end_time" value="${work.work_end_time}">
+									<input type="hidden" id="staff_no" name="staff_no" value="${work.staff_no}" required="required">
+									<input type="hidden" id="work_start_time" name="work_start_time" value="${work.work_start_time}"required="required">
+									<input type="hidden" id="ex_work_start_time" name="ex_work_start_time" value="${work.work_start_time}"required="required">
+									<input type="hidden" id="work_end_time" name="work_end_time" value="${work.work_end_time}" required="required">
 									<div class="col-sm-9">
 										<fmt:formatDate value="${work.work_start_time}" pattern="yyyy-MM-dd" var="startD"/>
 										<fmt:formatDate value="${work.work_start_time}" pattern="HH:mm" var="startT"/>

@@ -125,7 +125,6 @@
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 						<tr>
-							<th>근무번호</th>
 							<th>출근시간</th>
 							<th>퇴근시간</th>
 						</tr>
@@ -139,7 +138,6 @@
 									<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd HH:mm" var="end"/>
 									<c:if test="${mon - thisMon eq 0 }">
 										<tr>
-											<td>${row.work_no}</td>
 											<td>${start}</td>
 											<td>${end}</td>
 										</tr>
@@ -174,7 +172,6 @@
 						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
-								<th>근무번호</th>
 								<th>출근시간</th>
 								<th>퇴근시간</th>
 							</tr>
@@ -190,7 +187,6 @@
 										                var="end"/>
 										<c:if test="${mon-thisMon ne 0}">
 											<tr>
-												<td>${row.work_no}</td>
 												<td>${start}</td>
 												<td>${end}</td>
 											</tr>
