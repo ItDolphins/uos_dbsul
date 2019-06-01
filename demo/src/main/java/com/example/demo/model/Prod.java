@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter @Setter
 public class Prod {
 	
-	private String prod_no;
+	private int prod_no;
 	
 	private int prod_price;
 	
@@ -17,7 +17,7 @@ public class Prod {
 	
 	private String busi_name;
 	
-	private String busi_no;
+	private int busi_no;
 	
 	private String prod_code;
 	

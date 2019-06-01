@@ -35,11 +35,11 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 		public StoreInfo mapRow(ResultSet rs, int rowNum) throws SQLException{
 			StoreInfo storeInfo = new StoreInfo();
 
-			storeInfo.setAdmin_no(rs.getString("admin_no"));
+			storeInfo.setAdmin_no(rs.getInt("admin_no"));
 			storeInfo.setAdmin_name(rs.getString("admin_name"));
-			storeInfo.setStore_code(rs.getString("store_code"));
+			storeInfo.setStore_class(rs.getString("store_class"));
 			storeInfo.setStore_name(rs.getString("store_name"));
-			storeInfo.setStore_no(rs.getString("store_no"));
+			storeInfo.setStore_no(rs.getInt("store_no"));
 			storeInfo.setStore_pnum(rs.getString("store_pnum"));
 			storeInfo.setStore_postno(rs.getString("store_postno"));
 			storeInfo.setStore_addr(rs.getString("store_addr"));
@@ -49,8 +49,8 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 	}
 
 	@Override
-	public StoreInfo getByStore_no(String acnt_store_no) {
-		String sql = "select t.store_code, t.store_name, t.store_no, t.store_pnum,t.store_addr, t.store_postno,a.admin_no, a.admin_name " +
+	public StoreInfo getByStore_no(int acnt_store_no) {
+		String sql = "select t.store_class, t.store_name, t.store_no, t.store_pnum,t.store_addr, t.store_postno,a.admin_no, a.admin_name " +
 				"from tstore  t, tadmin  a where t.store_no = ? and t.admin_no = a.admin_no";
 		StoreInfo storeInfo = (StoreInfo)getJdbcTemplate().queryForObject(sql,new Object[] {acnt_store_no}, new StoreInfoMapper());
 
@@ -60,7 +60,7 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 
 	@Override
 	public List<StoreInfo> StoreList() {
-		String sql = "select t.store_code, t.store_name, t.store_no, t.store_pnum,t.store_addr, t.store_postno,a.admin_no, a.admin_name " +
+		String sql = "select t.store_class, t.store_name, t.store_no, t.store_pnum,t.store_addr, t.store_postno,a.admin_no, a.admin_name " +
 				"from tstore  t, tadmin  a where t.admin_no = a.admin_no";
 		List<StoreInfo> store = (List<StoreInfo>)getJdbcTemplate().query(sql, new Object[] {},new StoreInfoMapper());
 		return store;

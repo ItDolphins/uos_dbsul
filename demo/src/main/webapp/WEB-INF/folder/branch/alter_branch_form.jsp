@@ -69,42 +69,42 @@
 									<label for="staff_name" class="col-sm-3 control-label">이름</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="store_name"
-										       name="store_name" required="required" value=${store.store_name}>
+										       name="store_name" required="required" value="${store.store_name}">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="store_addr" class="col-sm-3 control-label">주소</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="store_addr"
-										       name="store_addr" required="required" value=${store.store_addr}>
+										       name="store_addr" required="required" value="${store.store_addr}">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="store_pnum" class="col-sm-3 control-label">전화번호</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="store_pnum"
-										       name="store_pnum" required="required" value=${store.store_pnum}>
+										       name="store_pnum" required="required" value="${store.store_pnum}">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="store_postno" class="col-sm-3 control-label">우편번호</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="store_postno"
-										       name="store_postno" required="required" value=${store.store_postno}>
+										       name="store_postno" required="required" value="${store.store_postno}">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="staff_pnum" class="col-sm-3 control-label">본사 관리자 번호</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="admin_no"
-										       name="admin_no" required="required" value=${store.admin_no}>
+										       name="admin_no" required="required" value="${store.admin_no}">
 									</div>
 								</div>
 								<div class="form-group" style="display:none">
 									<label for="staff_no" class="col-sm-3 control-label">지점 번호</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="store_no"
-										       name="store_no" required="required" value=${store.store_no}>
+										       name="store_no" required="required" value="${store.store_no}">
 									</div>
 								</div>
 								<div class="form-group">

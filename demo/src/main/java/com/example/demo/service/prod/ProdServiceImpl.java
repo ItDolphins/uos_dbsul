@@ -49,5 +49,16 @@ public abstract class ProdServiceImpl implements ProdService {
 		prodDao.insertProdToDB(prod);
 	}
 
+	@Override
+	public boolean checkByProdNo(int prod_no) {
+		return prodDao.findByProdNo(prod_no).isPresent();
+	}
+
+	@Override
+	public String getNameByProdNo(int prod_no) {
+		String result = prodDao.getNameByProdNo(prod_no);
+		return result;
+	}
+
 	
 }

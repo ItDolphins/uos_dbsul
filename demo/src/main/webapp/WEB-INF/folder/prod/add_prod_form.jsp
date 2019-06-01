@@ -106,13 +106,5 @@
         </div>
     </div>
 </div>
-<script src="/resources/js/jquery/jquery-2.1.0.min.js"></script>
-	<script src="/resources/js/bootstrap/bootstrap.js"></script>
-	<script src="/resources/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	<script src="/resources/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="/resources/js/queen-common.js"></script>
-	<script src="/resources/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	<script src="/resources/js/plugins/bootstrap-slider/bootstrap-slider.js"></script>
-	<script src="/resources//js/queen-form-layouts.js"></script>
 
 <jsp:include page="../footer.jsp"/>

@@ -6,8 +6,8 @@ import com.example.demo.model.Work;
 
 public interface WorkService {
 
-	List<Work> getWorkList(String staff_no );
-	Work getWork(String work_no);
+	List<Work> getWorkList(int staff_no );
+	Work getWork(int work_no);
 	void updateWork(Work work);
 	void insertWork(Work work);
 }

@@ -10,8 +10,8 @@ import java.util.Date;
 @Getter @Setter
 public class Order {
 
-	private String order_no;
+	private int order_no;
 	private Date order_date;
-	private String store_no;
+	private int store_no;
 	private  String order_state;
 }

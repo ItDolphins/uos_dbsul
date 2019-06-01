@@ -41,7 +41,7 @@ public class OrderController {
 	@RequestMapping("/manage_orderprod")
 	public ModelAndView manage_orderpord(ModelAndView mav, HttpServletRequest request) {
 
-		String order_no = request.getParameter("order_no");
+		int order_no = Integer.parseInt(request.getParameter("order_no"));
 
 		Order order = orderService.getOrder(order_no);
 		List<Orderprod> orderprodList = orderprodService.getOrderprodList(order_no);

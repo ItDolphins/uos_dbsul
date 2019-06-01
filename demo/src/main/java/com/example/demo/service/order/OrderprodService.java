@@ -5,6 +5,6 @@ import com.example.demo.model.Orderprod;
 import java.util.List;
 
 public interface OrderprodService {
-	List<Orderprod> getOrderprodList(String order_no);
+	List<Orderprod> getOrderprodList(int order_no);
 
 }

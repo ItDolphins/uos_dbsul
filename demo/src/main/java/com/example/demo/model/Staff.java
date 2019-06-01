@@ -8,7 +8,7 @@ import java.util.List;
 @Getter@Setter
 public class Staff {
 
-	private String staff_no;
+	private int staff_no;
 
 	private String staff_name;
 
@@ -22,5 +22,5 @@ public class Staff {
 
 	private String staff_acntbank;
 
-	private  String store_no;
+	private  int store_no;
 }
