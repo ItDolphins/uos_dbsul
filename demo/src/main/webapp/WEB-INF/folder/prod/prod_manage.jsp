@@ -69,72 +69,64 @@
 		</div>
 		<!-- END PRIMARY CONTENT HEADING -->
 		<!-- SHOW HIDE COLUMNS -->
-		<div class="widget">
-			<h3 class="widget-header clearfix"></h3>
-			<h3>
-				<i class="icon ion-ios-grid-view-outline"
-					style="padding: 0px 0px 0px 10px;"></i> <span>물품 정보</span>
-				<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-						<button type="button" onclick="location.href= '/alter_employee'" class="btn btn-default btn-lg"
-						        id="selectBtn">정보수정
-						</button>
-						<button type="button" onclick="location.href= '/add_prod_form'"  
-						        class="btn btn-default btn-lg"
-						        id="selectBtn2">새 물품 등록
-						</button>
-				</div>
-			</h3>
-			<div class="widget-content">
-				<div class="table-responsive">
-					<table id="datatable-column-filter"
-						class="table table-sorting table-striped table-hover datatable">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>상품명</th>
-								<th>가격</th>
-								<th>업체명</th>
-								<th>위험도</th>
-							</tr>
-						</thead>
-						<c:choose>
-							<c:when test="${fn:length(prodList) > 0}">
-								<tbody>
-									<c:forEach items="${prodList}" var="row">
-										<tr>
-											<td>${row.prod_no}</td>
-											<td>${row.prod_name}</td>
-											<td>${row.prod_price}</td>
-											<td>${row.busi_name}</td>
-											<td>${row.dmg_risk}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</c:when>
-						</c:choose>
-					</table>
+		<form action="/alter_prod_form" accept-charset="utf-8" name='prod_form' method="get" >
+			<div class="widget">
+				<h3 class="widget-header clearfix"></h3>
+				<h3>
+					<i class="icon ion-ios-grid-view-outline"
+						style="padding: 0px 0px 0px 10px;"></i> <span>물품 정보</span>
+					<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
+							<button type="submit"  class="btn btn-default btn-lg"
+							        id="selectBtn">정보수정
+							</button>
+							<button type="button" onclick="location.href= '/add_prod_form'"  
+							        class="btn btn-default btn-lg"
+							        id="selectBtn2">새 물품 등록
+							</button>
+					</div>
+				</h3>
+				<div class="widget-content">
+					<div class="table-responsive">
+						<table id="datatable-column-interactive"
+							class="table table-sorting table-hover table-bordered colored-header datatable">
+							<thead>
+								<tr>
+									<th style="width:10px"></th>
+									<th>번호</th>
+									<th>상품명</th>
+									<th>가격</th>
+									<th>업체명</th>
+									<th>위험도</th>
+								</tr>
+							</thead>
+							<c:choose>
+								<c:when test="${fn:length(prodList) > 0}">
+									<tbody>
+										<c:forEach items="${prodList}" var="row">
+											<tr>
+												<td><input type="radio" name="prod_no" value="${row.prod_no}"
+													           class="checkSelect" required="required"></td>
+												<td>${row.prod_no}</td>
+												<td>${row.prod_name}</td>
+												<td>${row.prod_price}</td>
+												<td>${row.busi_name}</td>
+												<td>${row.dmg_risk}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</c:when>
+							</c:choose>
+						</table>
+					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 </div>
 <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="../footer.jsp" />
 
-<script src="/resources/js/jquery/jquery-2.1.0.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap.js"></script>
-<script
-	src="/resources/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-<script
-	src="/resources/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<script src="/resources/js/queen-common.js"></script>
-<script src="/resources/js/plugins/datatable/jquery.dataTables.min.js"></script>
-<script
-	src="/resources/js/plugins/datatable/exts/dataTables.colVis.bootstrap.js"></script>
-<script
-	src="/resources/js/plugins/datatable/exts/dataTables.colReorder.min.js"></script>
-<script
-	src="/resources/js/plugins/datatable/exts/dataTables.tableTools.min.js"></script>
-<script src="/resources/js/plugins/datatable/dataTables.bootstrap.js"></script>
-<script src="/resources/js/queen-table.js"></script>
+
+
+
 

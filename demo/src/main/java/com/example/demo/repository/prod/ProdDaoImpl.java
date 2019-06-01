@@ -92,4 +92,21 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 		Busi busi=(Busi)getJdbcTemplate().queryForObject(sql, new Object[] {busi_name}, new BusiMapper());
 		return busi;
 	}
+
+	@Override
+	public Prod findProdByNo(String prod_no) {
+		// TODO Auto-generated method stub
+		String sql="SELECT prod_no, prod_price, dmg_risk, prod_name, b.busi_name  FROM PROD  p, BUSI  b where p.busi_no=b.busi_no and p.prod_no=?";
+		Prod prod = (Prod)getJdbcTemplate().queryForObject(sql,new Object[] {prod_no},new ProdMapper());
+		
+		return prod;
+	}
+
+	@Override
+	public void alterProdToDB(Prod prod) {
+		// TODO Auto-generated method stub
+		String sql = "update prod set prod_name=?,prod_price=?,dmg_risk=?,busi_no=? where prod_no=?";
+		getJdbcTemplate().update(sql,new Object[] {prod.getProd_name(),prod.getProd_price(),prod.getDmg_risk(),
+			prod.getBusi_no(), prod.getProd_no()});
+	}
 }

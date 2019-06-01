@@ -11,9 +11,8 @@
         <!-- PRIMARY CONTENT HEADING -->
         <div class="primary-content-heading clearfix">
             <br>
-            <h2>물품 신규 등록</h2>
+            <h2>물품 정보 수정</h2>
             <ul class="breadcrumb pull-left">
-
                 <!-- quick task modal -->
                 <div class="modal fade" id="quick-task-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
@@ -54,32 +53,32 @@
                 <!-- TICKET FORM -->
                 <div class="widget">
 					<div class="widget-header clearfix">
-						<h3><i class="icon ion-compose"></i> <span>물품 신규 등록</span></h3>
+						<h3><i class="icon ion-compose"></i> <span>물품 정보 수정</span></h3>
 						<div class="btn-group widget-header-toolbar visible-lg">
 							<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
 							<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
 						</div>
 					</div>
 					<div class="widget-content">
-						<form class="form-horizontal form-ticket" role="form", action="/add_prod" method="post" >
+						<form class="form-horizontal form-ticket" role="form", action="/alter_prod" method="post" >
 							<fieldset>
 								<legend>등록 양식</legend>
 								<div class="form-group">
 									<label for="" class="col-sm-3 control-label">상품명</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="prod_name" name="prod_name" placeholder="상품명">
+										<input type="text" class="form-control" id="prod_name" name="prod_name" placeholder="상품명" value= ${prod.prod_name}>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="" class="col-sm-3 control-label">가격</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="prod_price" name="prod_price" placeholder="가격">
+										<input type="text" class="form-control" id="prod_price" name="prod_price" placeholder="가격"value= ${prod.prod_price}>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="" class="col-sm-3 control-label">업체명</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" id="busi_name" name="busi_name" placeholder="업체명">
+										<input type="text" class="form-control" id="busi_name" name="busi_name" placeholder="업체명"value= ${prod.busi_name}>
 									</div>
 								</div>
 								<div class="form-group">
@@ -116,3 +115,10 @@
 	<script src="/resources//js/queen-form-layouts.js"></script>
 
 <jsp:include page="../footer.jsp"/>
+
+<script>
+	$(document).ready(function(){
+		$('#dmg_risk').val('${prod.dmg_risk}').prop("selected",true);
+	});
+
+</script>
