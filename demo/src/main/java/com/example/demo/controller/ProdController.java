@@ -17,7 +17,7 @@ import com.example.demo.model.Prod;
 import com.example.demo.service.prod.ProdService;
 
 
-@Controller @Configuration
+@Controller
 public class ProdController {
 	
 	
