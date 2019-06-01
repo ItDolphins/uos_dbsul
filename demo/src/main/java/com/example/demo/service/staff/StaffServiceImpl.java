@@ -5,10 +5,12 @@ import java.util.List;
 import com.example.demo.service.staff.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Staff;
 import com.example.demo.repository.staff.StaffDao;
 
+@Transactional
 @Service
 public class StaffServiceImpl implements StaffService {
 

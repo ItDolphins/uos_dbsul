@@ -3,6 +3,7 @@ package com.example.demo.repository.prod;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -13,11 +14,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Busi;
 import com.example.demo.model.Prod;
 
-
+@Transactional
 @Repository
 public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 
@@ -91,5 +93,23 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 		String sql ="Select * from BUSI where busi_name=?";
 		Busi busi=(Busi)getJdbcTemplate().queryForObject(sql, new Object[] {busi_name}, new BusiMapper());
 		return busi;
+	}
+	
+	@Override
+	public Optional<String> findByProdNo(int prod_no) {
+		String sql = "select prod_no from prod where prod_no = ?";
+		try {
+			return Optional.of(getJdbcTemplate().queryForObject(sql, new Object[] {prod_no},String.class));
+		} catch(EmptyResultDataAccessException e) {
+			return Optional.empty();
+		}
+	}
+
+	@Override
+	public String getNameByProdNo(int prod_no) {
+		String sql = "select prod_name from prod where prod_no = ?";
+		String name = getJdbcTemplate().queryForObject(sql, new Object[] {prod_no},String.class);
+		
+		return name;
 	}
 }

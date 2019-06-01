@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,8 @@ import com.example.demo.model.Account;
 import com.example.demo.model.Admin;
 import com.example.demo.model.Prod;
 import com.example.demo.model.Stock;
+import com.example.demo.service.prod.ProdService;
+import com.example.demo.service.release.ReleaseService;
 import com.example.demo.service.stock.StockService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -38,7 +41,11 @@ import lombok.NoArgsConstructor;
 public class StockController {
 	
 	@Autowired
-	StockService releaseService;
+	StockService stockService;
+	
+	@Autowired
+	ReleaseService releaseService;
+	
 	
 	private String readJSONStringFromRequestBody(HttpServletRequest request){
 	    StringBuffer json = new StringBuffer();
@@ -61,7 +68,7 @@ public class StockController {
 	public ModelAndView prod_Info(ModelAndView mav) {
 		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		int acnt_store_no = account.getStore_no();
-		List<Stock> stockList = releaseService.getStockList(acnt_store_no);
+		List<Stock> stockList = stockService.getStockList(acnt_store_no);
 		
 		mav.addObject("stockList",stockList);
 		mav.setViewName("release/sell_product");
@@ -86,12 +93,15 @@ public class StockController {
 	@ResponseBody
 	public String product_sell_process(@RequestBody List<SellWrapper> requests) {
 		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String rls_code = "A";
+		Timestamp rls_date = new Timestamp(System.currentTimeMillis());
 		int acnt_store_no = account.getStore_no();
 		for(int i=0; i<requests.size(); i++) {
 			SellWrapper sell = requests.get(i);
-			Stock stock = releaseService.getStock(sell.getProd_no(), sell.getExpdate(),acnt_store_no);
+			Stock stock = stockService.getStock(sell.getProd_no(), sell.getExpdate(),acnt_store_no);
 			int changed_amount = stock.getStock_qnt() - sell.getAmount();
-			releaseService.updateStock(stock, changed_amount);
+			stockService.updateStock(stock, changed_amount);
+			releaseService.insertRelease(stock, rls_code, rls_date,sell.getAmount());
 		}
 		return null;
 		

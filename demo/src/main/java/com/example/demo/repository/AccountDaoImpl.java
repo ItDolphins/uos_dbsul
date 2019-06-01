@@ -13,8 +13,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.demo.model.Account;
 
+@Transactional
 @Repository
 public class AccountDaoImpl extends JdbcDaoSupport implements AccountDao {
 	
