@@ -62,6 +62,7 @@
 					<div class="widget-content">
 						<form class="form-horizontal form-ticket" role="form", action="/alter_prod" method="post" >
 							<fieldset>
+								<input type="hidden" name="prod_no" value=${prod.prod_no}>
 								<legend>등록 양식</legend>
 								<div class="form-group">
 									<label for="" class="col-sm-3 control-label">상품명</label>

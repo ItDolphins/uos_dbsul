@@ -46,7 +46,7 @@ public class ProdServiceImpl implements ProdService {
 		Busi busi=null;
 		busi=prodDao.matchBusiName(busi_name);
 		prod.setBusi_no(busi.getBusi_no());
-		prodDao.insertProdToDB(prod);
+		prodDao.alterProdToDB(prod);
 	}
 
 	@Override
