@@ -71,6 +71,7 @@ public class BranchController {
 		String store_no = request.getParameter("radio_button");
 		StoreInfo store = storeInfoService.getStoreInfo(Integer.parseInt(store_no));
 		mav.addObject("store",store);
+		System.out.println(store.getStore_addr());
 		if(store_no.equals("1"))
 			mav.setViewName("branch/alter_headquarter_form");
 		else

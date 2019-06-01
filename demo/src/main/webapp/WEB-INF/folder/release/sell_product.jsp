@@ -201,6 +201,7 @@ function transfer(e){
 		 data: JSON.stringify(jsonObj),
 		 success: function(){
 			 alert('성공했습니다.');
+			 window.location.href = "/home";
 		 },
 		 error: function(e){
 			 console.log(e);
