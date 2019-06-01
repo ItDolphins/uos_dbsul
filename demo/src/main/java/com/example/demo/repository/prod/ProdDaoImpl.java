@@ -103,7 +103,7 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 		
 		return prod;
 	}
-
+	
 	@Override
 	public void alterProdToDB(Prod prod) {
 		// TODO Auto-generated method stub

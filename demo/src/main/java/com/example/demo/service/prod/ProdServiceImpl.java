@@ -11,7 +11,7 @@ import com.example.demo.model.Prod;
 import com.example.demo.repository.prod.ProdDao;
 
 @Service @Transactional
-public abstract class ProdServiceImpl implements ProdService {
+public class ProdServiceImpl implements ProdService {
 	
 	@Autowired
 	ProdDao prodDao;
