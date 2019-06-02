@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Busi;
 import com.example.demo.model.Prod;
 import com.example.demo.repository.prod.ProdDao;
 
-@Service
+@Service @Transactional
 public class ProdServiceImpl implements ProdService {
 	
 	@Autowired
@@ -21,7 +22,7 @@ public class ProdServiceImpl implements ProdService {
 		return prod;
 	}
 
-	@Override
+	@Override 
 	public void insertProd(Prod prod) {
 		// TODO Auto-generated method stub
 		String busi_name=prod.getBusi_name();
@@ -29,6 +30,34 @@ public class ProdServiceImpl implements ProdService {
 		busi=prodDao.matchBusiName(busi_name);
 		prod.setBusi_no(busi.getBusi_no());
 		prodDao.insertProdToDB(prod);
+	}
+
+	@Override
+	public Prod getProdbyNo(String prod_no) {
+		// TODO Auto-generated method stub
+		Prod prod=prodDao.findProdByNo(prod_no);
+		return prod;
+	}
+
+	@Override
+	public void alterProd(Prod prod) {
+		// TODO Auto-generated method stub
+		String busi_name=prod.getBusi_name();
+		Busi busi=null;
+		busi=prodDao.matchBusiName(busi_name);
+		prod.setBusi_no(busi.getBusi_no());
+		prodDao.alterProdToDB(prod);
+	}
+
+	@Override
+	public boolean checkByProdNo(int prod_no) {
+		return prodDao.findByProdNo(prod_no).isPresent();
+	}
+
+	@Override
+	public String getNameByProdNo(int prod_no) {
+		String result = prodDao.getNameByProdNo(prod_no);
+		return result;
 	}
 
 	

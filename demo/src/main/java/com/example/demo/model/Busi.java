@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class Busi {
-	private String busi_no;
+	private int busi_no;
 	private String busi_addr;
 	private String busi_name;
 	private String busi_postNo;

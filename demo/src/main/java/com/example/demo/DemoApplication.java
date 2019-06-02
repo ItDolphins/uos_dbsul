@@ -1,5 +1,10 @@
 package com.example.demo;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,28 +12,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.example.demo.model.Release;
+import com.example.demo.model.Stock;
 import com.example.demo.repository.admin.AdminDao;
 import com.example.demo.service.AccountService;
+import com.example.demo.service.release.ReleaseService;
 import com.example.demo.service.staff.StaffService;
+import com.example.demo.service.stock.StockService;
 import com.example.demo.service.store.StoreInfoService;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner{
-	
 
-
-	
-	@Autowired
-	AccountService accountService;
-	
-	@Autowired
-	StoreInfoService storeInfoService;
-	
-	@Autowired
-	StaffService staffService;
-	
-	@Autowired
-	AdminDao adminDao;
 	
 	public static void main(String[] args) {
 		
@@ -39,6 +34,9 @@ public class DemoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	ReleaseService rlsService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -50,6 +48,13 @@ public class DemoApplication implements CommandLineRunner{
 		//Staff s = staffService.getStaffInfo("1");
 		//System.out.println(s.getStaff_name());
 		
+		//List<Stock> s = releaseService.getStockList("3");
+		
+		//Timestamp date = new Timestamp(System.currentTimeMillis());
+		//System.out.println(date);
+		
+		//List<Release> rls = rlsService.getReleaseList();
+		//System.out.println(rls.get(2).getRls_date());
 	}
 
 }

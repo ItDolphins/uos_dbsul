@@ -286,12 +286,32 @@
 						</ul>
 					</li>
 					<li class="has-submenu">
+						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">이벤트 관리</span></a>
+						<ul class="list-unstyled sub-menu collapse">
+							<li><a href="/event_Info"><span class="text">이벤트 조회</span></a></li>
+							<li><a href="/event_manage"><span class="text">이벤트 추가</span></a></li>
+						</ul>
+					</li>
+					<li class="has-submenu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">물품 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/manage_order"><span class="text">발주 관리</span></a></li>
 						</ul>
 					</li>
-					<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>
+					<sec:authorize access="hasRole('ADMIN')">
+					<li class="has-submenu">
+						<a href="#" class="submenu-toggle"><i class="icon ion-social-designernews"></i><span class="text">출고 관리</span></a>
+						<ul class="list-unstyled sub-menu collapse">
+							<li><a href="/show_rls"><span class="text">출고 종합</span></a></li>
+							<li><a href="/show_sell"><span class="text">판매 정보</span></a></li>
+						</ul>
+					</li>
+					</sec:authorize>
+					<sec:authorize access="hasRole('USER')">
+					<li>
+						<a href="/sell_product"><i class="icon ion-social-designernews"></i><span class="text">판매</span></a>
+					</li>
+					</sec:authorize>
 					<li class="has-submenu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-copy-outline"></i><span class="text">Pages</span></a>
 						<ul class="list-unstyled sub-menu collapse">
