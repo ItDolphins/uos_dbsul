@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface OrderService {
 
-	List<Order> getOrderList(String store_no);
-	Order getOrder(String order_no);
+	List<Order> getOrderList(int store_no);
+	Order getOrder(int order_no);
 }
