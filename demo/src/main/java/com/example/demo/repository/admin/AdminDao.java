@@ -7,10 +7,10 @@ import com.example.demo.model.Admin;
 
 public interface AdminDao {
 	List<String> adminNameList();
-	String getByAdminNo(String adminNo);
-	Optional<String> findByAdminNo(String admin_no);
+	String getByAdminNo(int adminNo);
+	Optional<String> findByAdminNo(int admin_no);
 	List<Admin> getAdminList();
 	void insertAdminInfo(Admin admin);
-	Admin getInfoByAdminNo(String adminNo);
+	Admin getInfoByAdminNo(int adminNo);
 	void alterAdminInfo(Admin admin);
 }
