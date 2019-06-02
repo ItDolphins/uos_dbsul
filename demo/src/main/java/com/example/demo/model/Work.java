@@ -4,13 +4,13 @@ package com.example.demo.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 
 @Getter @Setter
 public class Work {
-	private String staff_no;
-	private String work_no;
-	private Timestamp work_start_time;
-	private Timestamp work_end_time;
+	private int staff_no;
+	private int work_no;
+	private Date work_start_time;
+	private Date work_end_time;
 }
