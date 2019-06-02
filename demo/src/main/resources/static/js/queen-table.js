@@ -37,6 +37,80 @@ $(document).ready(function(){
 				.draw();
 		});
 
+		/* column filters */
+		var dtTable = $('#datatable-column-filter4').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		}); 
+
+		$('#datatable-column-filter4 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter4 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter2 .row-filter input').on('keyup change', function() {
+			dtTable
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
+		
+		/* column filters */
+		var dtTable = $('#datatable-column-filter6').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		}); 
+
+		$('#datatable-column-filter6 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter6 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter6 .row-filter input').on('keyup change', function() {
+			dtTable
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
+		
+		var dtTable = $('#datatable-column-filter5').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		}); 
+
+		$('#datatable-column-filter5 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter5 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter5 .row-filter input').on('keyup change', function() {
+			dtTable
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
+		
+		var dtTable = $('#datatable-column-filter7').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		}); 
+
+		$('#datatable-column-filter7 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter7 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter7 .row-filter input').on('keyup change', function() {
+			dtTable
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
+		
 		/* column interactive */
 		$('#datatable-column-interactive').dataTable({
 			sDom: "RC<'clearfix'>" +

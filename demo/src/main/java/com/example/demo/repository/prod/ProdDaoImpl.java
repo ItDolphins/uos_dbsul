@@ -129,4 +129,12 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 		
 		return name;
 	}
+
+	@Override
+	public int getPriceByProdNo(int prod_no) {
+		String sql = "select prod_price from prod where prod_no = ?";
+		int price = getJdbcTemplate().queryForObject(sql,new Object[] {prod_no},int.class);
+		
+		return price;
+	}
 }

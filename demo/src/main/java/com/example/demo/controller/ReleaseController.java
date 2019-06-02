@@ -10,9 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Account;
 import com.example.demo.model.Release;
+import com.example.demo.model.Sell;
 import com.example.demo.model.Stock;
 import com.example.demo.service.prod.ProdService;
 import com.example.demo.service.release.ReleaseService;
+import com.example.demo.service.sell.SellService;
 
 @Controller
 public class ReleaseController{
@@ -22,6 +24,9 @@ public class ReleaseController{
 	
 	@Autowired
 	ProdService prodService;
+	
+	@Autowired
+	SellService sellService;
 	
 	@GetMapping("/show_rls")
 	public ModelAndView rls_Info(ModelAndView mav) {
@@ -46,6 +51,9 @@ public class ReleaseController{
 	
 	@GetMapping("/show_sell")
 	public ModelAndView sell_Info(ModelAndView mav) {
+		
+		List<Sell> sellList = sellService.getSellList();
+		mav.addObject("sellList",sellList);
 		
 		mav.setViewName("release/show_sell");
 		

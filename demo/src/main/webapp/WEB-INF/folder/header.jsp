@@ -312,30 +312,11 @@
 						<a href="/sell_product"><i class="icon ion-social-designernews"></i><span class="text">판매</span></a>
 					</li>
 					</sec:authorize>
-					<li class="has-submenu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-ios-copy-outline"></i><span class="text">Pages</span></a>
-						<ul class="list-unstyled sub-menu collapse">
-							<li><a href="page-projects.html"><span class="text">Projects</span></a></li>
-							<li><a href="page-project-detail.html"><span class="text">Project Detail</span></a></li>
-							<li><a href="page-user-profile.html"><span class="text">Profile</span></a></li>
-							<li><a href="page-search-result.html"><span class="text">Search Result</span></a></li>
-							<li><a href="page-inbox.html"><span class="text">Inbox</span><span class='badge bg-orange'>12</span></a></li>
-							<li><a href="page-view-message.html"><span class="text">View Message</span></a></li>
-							<li><a href="page-new-message.html"><span class="text">New Message</span></a></li>
-							<li><a href="page-knowledgebase.html"><span class="text">Knowledge Base</span></a></li>
-							<li><a href="page-submit-ticket.html"><span class="text">Submit Ticket</span></a></li>
-							<li><a href="page-faq.html"><span class="text">FAQ</span></a></li>
-							<li><a href="page-pricing-tables.html"><span class="text">Pricing Tables</span></a></li>
-							<li><a href="page-invoice.html"><span class="text">Invoice</span></a></li>
-							<li><a href="page-register.html"><span class="text">Register</span></a></li>
-							<li><a href="page-login.html"><span class="text">Login</span></a></li>
-							<li><a href="page-login-alt.html"><span class="text">Login Alt.</span></a></li>
-							<li><a href="page-404.html"><span class="text">Not Found 404</span></a></li>
-							<li><a href="page-505.html"><span class="text">Error 505</span></a></li>
-							<li><a href="page-blank.html"><span class="text">Blank Page</span></a></li>
-						</ul>
+					<sec:authorize access="hasRole('ADMIN')">
+					<li>
+						<a href="/manage_member"><i class="icon ion-social-designernews"></i><span class="text">회원 관리</span></a>
 					</li>
-				</ul>
+					</sec:authorize>
 				<h3>ESSENTIALS</h3>
 				<ul class="main-menu">
 					<li class="has-submenu">

@@ -11,4 +11,5 @@ public interface ProdService {
 	Prod getProdbyNo(String prod_no);
 	boolean checkByProdNo(int prod_no);
 	String getNameByProdNo(int prod_no);
+	int getPriceByProdNo(int prod_no);
 }

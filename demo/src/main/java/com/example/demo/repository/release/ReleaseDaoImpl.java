@@ -67,4 +67,11 @@ public class ReleaseDaoImpl extends JdbcDaoSupport implements ReleaseDao{
 		
 	}
 
+	@Override
+	public int getMaxRlsno() {
+		String sql = "SELECT MAX(rls_no) FROM rls";
+		int result = getJdbcTemplate().queryForObject(sql, new Object[] {},int.class);
+		return result;
+	}
+
 }
