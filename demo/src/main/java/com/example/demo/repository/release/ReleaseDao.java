@@ -10,4 +10,5 @@ import com.example.demo.model.Stock;
 public interface ReleaseDao {
 	List<Release> getReleaseList();
 	void insertRelease(Stock stock,String rls_code,Timestamp rls_date,int rls_qnt);
+	int getMaxRlsno();
 }

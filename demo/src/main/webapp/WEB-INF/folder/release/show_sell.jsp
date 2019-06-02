@@ -67,34 +67,28 @@
 			<h3 class="widget-header clearfix">
 				<h3>
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>지점 관리자 정보</span>
+					<span>판매 정보</span>
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
-						<table id="datatable-column-filter7" style="border-right: #ccc 1px solid"
+						<table id="datatable-column-filter4" style="border-right: #ccc 1px solid"
 						       class="table table-sorting table-striped table-hover datatable dataTable no-footer">
 							<thead>
 							<tr>
 								<th>출고번호</th>
-								<th>지점번호</th>
-								<th>출고코드</th>
-								<th>출고시간</th>
-								<th>상품이름</th>
-								<th>유통기간</th>
-								<th>수량</th>
+								<th>판매번호</th>
+								<th>회원번호</th>
+								<th>판매가격</th>
 							</tr>
 							</thead>
 							<c:choose>
-								<c:when test="${fn:length(rlsList) > 0}">
-									<c:forEach items="${rlsList}" var="row">
+								<c:when test="${fn:length(sellList) > 0}">
+									<c:forEach items="${sellList}" var="row">
 											<tr>
 												<td>${row.rls_no}</td>
-												<td>${row.store_no}</td>
-												<td>${row.rls_code}</td>
-												<td>${row.rls_date}</td>
-												<td>${row.prod_name}</td>
-												<td>${row.expdate}</td>
-												<td>${row.rls_qnt}</td>
+												<td>${row.sell_no}</td>
+												<td>${row.member_no}</td>
+												<td>${row.sell_price}</td>
 											</tr>
 									</c:forEach>
 								</c:when>
@@ -104,16 +98,6 @@
 				</div>
 			</h3>
 		</div>
-		
-	<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-						<button type="button" onclick="location.href= '/alter_admin'" class="btn btn-default btn-lg"
-						        id="selectBtn">정보수정
-						</button>
-						<button type="button" onclick="location.href= '/add_admin_form'"
-						        class="btn btn-default btn-lg"
-						        id="selectBtn2">새 관리자 등록
-						</button>
-	</div>
 </div>
 
 <!-- END SHOW HIDE COLUMNS -->

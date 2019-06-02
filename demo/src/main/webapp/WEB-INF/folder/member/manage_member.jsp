@@ -67,34 +67,34 @@
 			<h3 class="widget-header clearfix">
 				<h3>
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>지점 관리자 정보</span>
+					<span>회원 정보</span>
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
-						<table id="datatable-column-filter7" style="border-right: #ccc 1px solid"
-						       class="table table-sorting table-striped table-hover datatable dataTable no-footer">
+						<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
+						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
-								<th>출고번호</th>
-								<th>지점번호</th>
-								<th>출고코드</th>
-								<th>출고시간</th>
-								<th>상품이름</th>
-								<th>유통기간</th>
-								<th>수량</th>
+								<th>회원번호</th>
+								<th>회원이름</th>
+								<th>성별</th>
+								<th>생일</th>
+								<th>등록일자</th>
+								<th>마일리지</th>
+								<th>등급</th>
 							</tr>
 							</thead>
 							<c:choose>
-								<c:when test="${fn:length(rlsList) > 0}">
-									<c:forEach items="${rlsList}" var="row">
+								<c:when test="${fn:length(memberList) > 0}">
+									<c:forEach items="${memberList}" var="row">
 											<tr>
-												<td>${row.rls_no}</td>
-												<td>${row.store_no}</td>
-												<td>${row.rls_code}</td>
-												<td>${row.rls_date}</td>
-												<td>${row.prod_name}</td>
-												<td>${row.expdate}</td>
-												<td>${row.rls_qnt}</td>
+												<td>${row.member_no}</td>
+												<td>${row.member_name}</td>
+												<td>${row.member_gend}</td>
+												<td>${row.member_birth}</td>
+												<td>${row.member_reg_day}</td>
+												<td>${row.member_mileage}</td>
+												<td>${row.member_class}</td>
 											</tr>
 									</c:forEach>
 								</c:when>

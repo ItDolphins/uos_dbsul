@@ -161,5 +161,3 @@ public class StaffController {
 		return "redirect:/manage_work?staff_no="+staff_no;
 	}
 }
-
-

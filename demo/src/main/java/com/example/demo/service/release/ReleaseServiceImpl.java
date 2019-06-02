@@ -31,5 +31,11 @@ public class ReleaseServiceImpl implements ReleaseService{
 		return rlsList;
 	}
 
+	@Override
+	public int getMaxRlsno() {
+		int result = releaseDao.getMaxRlsno();
+		return result;
+	}
+
 
 }

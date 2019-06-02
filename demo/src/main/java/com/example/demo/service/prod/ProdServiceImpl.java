@@ -60,5 +60,11 @@ public class ProdServiceImpl implements ProdService {
 		return result;
 	}
 
+	@Override
+	public int getPriceByProdNo(int prod_no) {
+		int price = prodDao.getPriceByProdNo(prod_no);
+		return price;
+	}
+
 	
 }

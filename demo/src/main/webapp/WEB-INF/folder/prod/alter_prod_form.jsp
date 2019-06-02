@@ -121,5 +121,4 @@
 	$(document).ready(function(){
 		$('#dmg_risk').val('${prod.dmg_risk}').prop("selected",true);
 	});
-
 </script>

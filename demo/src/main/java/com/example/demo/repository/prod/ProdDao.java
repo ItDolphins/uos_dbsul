@@ -14,4 +14,5 @@ public interface ProdDao {
 	Prod findProdByNo(String prod_no);
 	Optional<String> findByProdNo(int prod_no);
 	String getNameByProdNo(int prod_no);
+	int getPriceByProdNo(int prod_no);
 }
