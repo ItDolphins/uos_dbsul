@@ -3,6 +3,7 @@ package com.example.demo.repository.prod;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -13,11 +14,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Busi;
 import com.example.demo.model.Prod;
 
-
+@Transactional
 @Repository
 public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 
@@ -50,7 +52,7 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 		public Prod mapRow(ResultSet rs,int rowNum) throws SQLException{
 			Prod prod=new Prod();
 			
-			prod.setProd_no(rs.getString("prod_no"));
+			prod.setProd_no(rs.getInt("prod_no"));
 			prod.setProd_price(rs.getInt("prod_price"));
 			prod.setDmg_risk(rs.getString("dmg_risk"));
 			prod.setProd_name(rs.getString("prod_name"));
@@ -67,7 +69,7 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 			// TODO Auto-generated method stub
 			Busi busi=new Busi();
 			
-			busi.setBusi_no(rs.getString("busi_no"));
+			busi.setBusi_no(rs.getInt("busi_no"));
 			busi.setBusi_addr(rs.getString("busi_addr"));
 			busi.setBusi_name(rs.getString("busi_name"));
 			busi.setBusi_pNum(rs.getString("busi_pNum"));
@@ -91,5 +93,40 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 		String sql ="Select * from BUSI where busi_name=?";
 		Busi busi=(Busi)getJdbcTemplate().queryForObject(sql, new Object[] {busi_name}, new BusiMapper());
 		return busi;
+	}
+
+	@Override
+	public Prod findProdByNo(String prod_no) {
+		// TODO Auto-generated method stub
+		String sql="SELECT prod_no, prod_price, dmg_risk, prod_name, b.busi_name  FROM PROD  p, BUSI  b where p.busi_no=b.busi_no and p.prod_no=?";
+		Prod prod = (Prod)getJdbcTemplate().queryForObject(sql,new Object[] {prod_no},new ProdMapper());
+		
+		return prod;
+	}
+	
+	@Override
+	public void alterProdToDB(Prod prod) {
+		// TODO Auto-generated method stub
+		String sql = "update prod set prod_name=?,prod_price=?,dmg_risk=?,busi_no=? where prod_no=?";
+		getJdbcTemplate().update(sql,new Object[] {prod.getProd_name(),prod.getProd_price(),prod.getDmg_risk(),
+			prod.getBusi_no(), prod.getProd_no()});
+	}
+	
+	@Override
+	public Optional<String> findByProdNo(int prod_no) {
+		String sql = "select prod_no from prod where prod_no = ?";
+		try {
+			return Optional.of(getJdbcTemplate().queryForObject(sql, new Object[] {prod_no},String.class));
+		} catch(EmptyResultDataAccessException e) {
+			return Optional.empty();
+		}
+	}
+
+	@Override
+	public String getNameByProdNo(int prod_no) {
+		String sql = "select prod_name from prod where prod_no = ?";
+		String name = getJdbcTemplate().queryForObject(sql, new Object[] {prod_no},String.class);
+		
+		return name;
 	}
 }
