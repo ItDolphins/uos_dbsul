@@ -15,24 +15,30 @@ import com.example.demo.repository.stock.StockDao;
 public class StockServiceImpl implements StockService{
 	
 	@Autowired
-	StockDao releaseDao;
+	StockDao stockDao;
 	
 	@Override
 	public List<Stock> getStockList(int acnt_store_no) {
-		List<Stock> stockList = releaseDao.getStockList(acnt_store_no);
+		List<Stock> stockList = stockDao.getStockList(acnt_store_no);
 		return stockList;
 	}
 
 	@Override
 	public Stock getStock(int prod_no, Date expdate, int store_no) {
-		Stock stock = releaseDao.getStock(prod_no, expdate, store_no);
+		Stock stock = stockDao.getStock(prod_no, expdate, store_no);
 		return stock;
 	}
 
 	@Override
 	public void updateStock(Stock stock, int changed_amount) {
-		releaseDao.updateStock(stock, changed_amount);
+		stockDao.updateStock(stock, changed_amount);
 		
+	}
+
+	@Override
+	public int getStock_qnt(int prod_no, Date expdate, int store_no) {
+		int stock_qnt = stockDao.getStock_qnt(prod_no, expdate, store_no);
+		return stock_qnt;
 	}
 
 }

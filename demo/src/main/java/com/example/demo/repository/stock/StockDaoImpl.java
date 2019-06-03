@@ -82,4 +82,11 @@ public class StockMapper implements RowMapper<Stock>{
 		
 	}
 
+	@Override
+	public int getStock_qnt(int prod_no, Date expdate, int store_no) {
+		String sql = "select stock_qnt from stock where prod_no = ? and expdate = ? and store_no = ?";
+		int stock_qnt = getJdbcTemplate().queryForObject(sql, new Object[] {prod_no,expdate,store_no},int.class);
+		return stock_qnt;
+	}
+
 }

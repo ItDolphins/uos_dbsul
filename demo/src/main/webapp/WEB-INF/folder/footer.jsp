@@ -31,6 +31,8 @@
 		src="/resources/js/plugins/datatable/exts/dataTables.tableTools.min.js"></script>
 <script src="/resources/js/plugins/datatable/dataTables.bootstrap.js"></script>
 <script src="/resources/js/queen-table.js"></script>
+	<script src="/resources/js/queen-form-layouts.js"></script>
+
 </body>
 
 </html>
