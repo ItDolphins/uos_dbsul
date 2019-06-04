@@ -37,7 +37,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title" id="myModalLabel">Quick Task</h4>
 						</div>
-						
+					
 					</div>
 				</div>
 			</div>
@@ -46,170 +46,173 @@
 		<!-- END PRIMARY CONTENT HEADING -->
 		<!-- SHOW HIDE COLUMNS -->
 		<div class="col-md-6">
-		<div class="widget">
-			<h3 class="widget-header clearfix">
-				<h3>
-					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>재고목록</span>
-				</h3>
-				<div class="widget-content">
-					<div class="table-responsive">
-						<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
-						       class="table table-sorting table-hover table-bordered colored-header datatable">
-							<thead>
-							<tr>
-								<th>번호</th>
-								<th>이름</th>
-								<th>유통기한</th>
-								<th>재고</th>
-							</tr>
-							</thead>
-							<c:choose>
-								<c:when test="${fn:length(stockList) > 0}">
-									<c:forEach items="${stockList}" var="row">
+			<div class="widget">
+				<h3 class="widget-header clearfix">
+					<h3>
+						<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
+						<span>재고목록</span>
+					</h3>
+					<div class="widget-content">
+						<div class="table-responsive">
+							<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
+							       class="table table-sorting table-hover table-bordered colored-header datatable">
+								<thead>
+								<tr>
+									<th>번호</th>
+									<th>이름</th>
+									<th>유통기한</th>
+									<th>재고</th>
+								</tr>
+								</thead>
+								<c:choose>
+									<c:when test="${fn:length(stockList) > 0}">
+										<c:forEach items="${stockList}" var="row">
 											<tr id="${row.prod_no}">
 												<td>${row.prod_no}</td>
 												<td>${row.prod_name}</td>
 												<td>${row.expdate}</td>
 												<td>${row.stock_qnt}</td>
 											</tr>
-									</c:forEach>
-								</c:when>
-							</c:choose>
-						</table>
+										</c:forEach>
+									</c:when>
+								</c:choose>
+							</table>
+						</div>
 					</div>
-					</div>
-				</div>
-			</h3>
+				</h3>
+			</div>
 		</div>
 		<div class="col-md-6">
-		<div class="widget">
-			<h3 class="widget-header clearfix">
-				<h3>
-					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>판매목록</span>
-				</h3>
-				<div class="widget-content">
-					<div class="table-responsive">
-						<table id="sell-table" style="border-right: #ccc 1px solid"
-						       class="table table-sorting table-hover table-bordered colored-header datatable">
-							<thead>
-							<tr>
-								<th>번호</th>
-								<th>이름</th>
-								<th>유통기한</th>
-								<th>수량</th>
-								<th>남은재고</th>
-							</tr>
-							</thead>
-							<tbody id="sellList">
-							</tbody>
-						</table>
+			<div class="widget">
+				<h3 class="widget-header clearfix">
+					<h3>
+						<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
+						<span>판매목록</span>
+					</h3>
+					<div class="widget-content">
+						<div class="table-responsive">
+							<table id="sell-table" style="border-right: #ccc 1px solid"
+							       class="table table-sorting table-hover table-bordered colored-header datatable">
+								<thead>
+								<tr>
+									<th>번호</th>
+									<th>이름</th>
+									<th>유통기한</th>
+									<th>수량</th>
+									<th>남은재고</th>
+								</tr>
+								</thead>
+								<tbody id="sellList">
+								</tbody>
+							</table>
+						</div>
 					</div>
-				</div>	
-			</h3>
+				</h3>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<input type="button" class="btn btn-primary btn-block" value="판매" onclick="javascript:transfer()"/>
+					<input type="button" class="btn btn-primary btn-block" onclick="location.href = '/home'" value="취소">
+				</div>
+			</div>
 		</div>
-		<div class="form-group">
-        	<div class="col-sm-offset-3 col-sm-9">
-            	<input type="button" class="btn btn-primary btn-block" value="판매" onclick="javascript:transfer()"/>
-                <input type="button" class="btn btn-primary btn-block" onclick="location.href = '/home'" value="취소">
-            </div>
-        </div>
-        </div>
+	</div>
+</div>
 <script>
-$("#datatable-column-interactive tr").click(function(){
-	var str="";
-	
-	var tr = $(this);
-	var tdArr = new Array();
-	var td = tr.children();
-	
-	td.each(function(i){
-		tdArr.push(td.eq(i).text());
-	});
-	
-	var prod_no = td.eq(0).text();
-	var prod_name = td.eq(1).text();
-	var expdate = td.eq(2).text();
-	var stock_qnt = td.eq(3).text();
-	
-	if(stock_qnt != 0){
-		stock_qnt = parseInt(stock_qnt) - 1;
-		$(this).find('td:eq(3)').html(stock_qnt);
-	}
-	else{
-		alert("재고가 없습니다.");
-		return false;
-	}
-		
-	var sell_qnt = 1;
-	var flag = true;
-	$("#sellList tr").each(function(){
-		var x = $(this).find('td').eq(0).html();
-		if(x == prod_no){
-			sell_qnt = parseInt($(this).find('td').eq(3).html()) + 1;
-			$(this).find('td:eq(3)').html(sell_qnt);
-			$(this).find('td:eq(4)').html(stock_qnt);
-			flag = false;
-			return true;
-		}
-	})
-	
-	if(flag){
-	str += '<tr>';
-	str += '<td name="prod_no">'+prod_no+'</td>';
-	str += '<td name="prod_name">'+prod_name+'</td>';
-	str += '<td name="expdate">'+expdate+'</td>';
-	str += '<td>'+sell_qnt+'</td>';
-	str += '<td name="stock_qnt">'+stock_qnt+'</td>';
-	str += '</tr>';
-	
-	$("#sell-table").append(str);
-	}
-	});
-function tableToJson(table) { // 변환 함수
-    var data = [];
+    $("#datatable-column-interactive tr").click(function () {
+        var str = "";
 
-    var headers = [];
-    //for(var i=0; i<table.rows[0].cells.length; i++) {
-    //    headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
-    //}
-    
-    headers[0] = "prod_no";
-    headers[1] = "expdate"
-    headers[2] = "amount";
+        var tr = $(this);
+        var tdArr = new Array();
+        var td = tr.children();
 
-    for(var i=1; i<table.rows.length; i++) {
-        var tableRow = table.rows[i];
-        var rowData = {};
+        td.each(function (i) {
+            tdArr.push(td.eq(i).text());
+        });
 
-        rowData[headers[0]] = tableRow.cells[0].innerHTML;
-        rowData[headers[1]] = tableRow.cells[2].innerHTML;
-        rowData[headers[2]] = tableRow.cells[3].innerHTML;
+        var prod_no = td.eq(0).text();
+        var prod_name = td.eq(1).text();
+        var expdate = td.eq(2).text();
+        var stock_qnt = td.eq(3).text();
 
-        data.push(rowData);
+        if (stock_qnt != 0) {
+            stock_qnt = parseInt(stock_qnt) - 1;
+            $(this).find('td:eq(3)').html(stock_qnt);
+        } else {
+            alert("재고가 없습니다.");
+            return false;
+        }
+
+        var sell_qnt = 1;
+        var flag = true;
+        $("#sellList tr").each(function () {
+            var x = $(this).find('td').eq(0).html();
+            if (x == prod_no) {
+                sell_qnt = parseInt($(this).find('td').eq(3).html()) + 1;
+                $(this).find('td:eq(3)').html(sell_qnt);
+                $(this).find('td:eq(4)').html(stock_qnt);
+                flag = false;
+                return true;
+            }
+        })
+
+        if (flag) {
+            str += '<tr>';
+            str += '<td name="prod_no">' + prod_no + '</td>';
+            str += '<td name="prod_name">' + prod_name + '</td>';
+            str += '<td name="expdate">' + expdate + '</td>';
+            str += '<td>' + sell_qnt + '</td>';
+            str += '<td name="stock_qnt">' + stock_qnt + '</td>';
+            str += '</tr>';
+
+            $("#sell-table").append(str);
+        }
+    });
+
+    function tableToJson(table) { // 변환 함수
+        var data = [];
+
+        var headers = [];
+        //for(var i=0; i<table.rows[0].cells.length; i++) {
+        //    headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+        //}
+
+        headers[0] = "prod_no";
+        headers[1] = "expdate"
+        headers[2] = "amount";
+
+        for (var i = 1; i < table.rows.length; i++) {
+            var tableRow = table.rows[i];
+            var rowData = {};
+
+            rowData[headers[0]] = tableRow.cells[0].innerHTML;
+            rowData[headers[1]] = tableRow.cells[2].innerHTML;
+            rowData[headers[2]] = tableRow.cells[3].innerHTML;
+
+            data.push(rowData);
+        }
+
+        return data;
     }
 
-    return data;
-}
-function transfer(e){
-	var jsonObj = tableToJson(document.getElementById("sell-table"));
-	 $.ajax({
-		 type: "POST",
-		 url: "/product_sell_process",
-		 contentType: 'application/json; charset=UTF-8',
-		 data: JSON.stringify(jsonObj),
-		 success: function(){
-			 alert('성공했습니다.');
-			 window.location.href = "/home";
-		 },
-		 error: function(e){
-			 console.log(e);
-			 alert("error : "+e);
-		 }
-	 });
+    function transfer(e) {
+        var jsonObj = tableToJson(document.getElementById("sell-table"));
+        $.ajax({
+            type: "POST",
+            url: "/product_sell_process",
+            contentType: 'application/json; charset=UTF-8',
+            data: JSON.stringify(jsonObj),
+            success: function () {
+                alert('성공했습니다.');
+                window.location.href = "/home";
+            },
+            error: function (e) {
+                console.log(e);
+                alert("error : " + e);
+            }
+        });
 
-}
+    }
 </script>
 <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="../footer.jsp"/>

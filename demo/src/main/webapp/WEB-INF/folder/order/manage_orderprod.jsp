@@ -67,18 +67,18 @@
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
 					<span>발주 물품</span>
 					<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-						<form action="/alter_work" accept-charset="utf-8" name='order_form' method="get">
+						<form action="/alter_orderprod_form" accept-charset="utf-8" name='order_form' method="get">
 							<button type="button" onclick="location.href= '/manage_order'"
 							        class="btn btn-default btn-lg"
 							        id="selectBtn3">뒤로
 							</button>
-							<button type="submit" onclick="location.href= '/alter_work'" class="btn btn-default btn-lg"
-							        id="selectBtn">근무 수정<input type="hidden" name="order_no" value="${order.order_no}">
-							</button>
-							<button type="button" onclick="location.href= '/add_work_form?order_no='+${order.order_no}"
-							        class="btn btn-default btn-lg"
-							        id="selectBtn2">새 근무 등록
-							</button>
+							<c:if test="${order.order_state eq '발주신청중'}">
+								<button type="submit" onclick="location.href= '/alter_orderprod_form'"
+								        class="btn btn-default btn-lg"
+								        id="selectBtn">발주물품 수정<input type="hidden" name="order_no"
+								                                     value="${order.order_no}">
+								</button>
+							</c:if>
 						</form>
 					</div>
 				</h3>
@@ -125,11 +125,11 @@
 						</thead>
 						<tbody>
 						<c:forEach items="${orderprodList}" var="row">
-								<tr>
-									<td>${row.prod_no}</td>
-									<td>${row.prod_name}</td>
-									<td>${row.prod_qnt}</td>
-								</tr>
+							<tr>
+								<td>${row.prod_no}</td>
+								<td>${row.prod_name}</td>
+								<td>${row.prod_qnt}</td>
+							</tr>
 						</c:forEach>
 						</tbody>
 					</table>

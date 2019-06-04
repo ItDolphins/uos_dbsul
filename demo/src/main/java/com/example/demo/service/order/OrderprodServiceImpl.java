@@ -22,4 +22,19 @@ public class OrderprodServiceImpl implements OrderprodService {
 		return orderprodList;
 	}
 
+	@Override
+	public void insertOrderprod(Orderprod orderprod){
+		orderprodDao.insertOrderprod(orderprod);
+	}
+
+	@Override
+	public void updateOrderprod(Orderprod orderprod){
+		orderprodDao.updateOrderprod(orderprod);
+	}
+
+	@Override
+	public void deleteOrderprods(int order_no){
+		orderprodDao.deleteOrderprodByOrder_no(order_no);
+	}
+
 }

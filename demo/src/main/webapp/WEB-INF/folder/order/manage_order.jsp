@@ -70,10 +70,7 @@
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
 					<span>발주 정보</span>
 					<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-						<button type="button" onclick="location.href= '/alter_employee'" class="btn btn-default btn-lg"
-						        id="selectBtn">정보 수정
-						</button>
-						<button type="button" onclick="location.href= '/add_employee_form'"
+						<button type="button" onclick="location.href= '/add_order_form'"
 						        class="btn btn-default btn-lg"
 						        id="selectBtn2">신규 발주 등록
 						</button>

@@ -1,6 +1,5 @@
 package com.example.demo.repository.order;
 
-import com.example.demo.model.Order;
 import com.example.demo.model.Orderprod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -42,10 +41,30 @@ public class OrderprodDaoImpl extends JdbcDaoSupport implements OrderprodDao {
 
 	@Override
 	public  List<Orderprod> findByOrder_no(int order_no){
-		String sql = "select order_no,o.prod_no, prod_qnt, prod_name from orderprod o, prod p where o.prod_no = p.prod_no and order_no = ?";
+		String sql = "select order_no,o.prod_no, prod_qnt, prod_name from orderprod o, prod p " +
+				"where o.prod_no = p.prod_no and order_no = ?";
 		List<Orderprod> orderprodList = (List<Orderprod>) getJdbcTemplate().query(sql, new Object[] {order_no},new OrderprodMapper());
 
 		return orderprodList;
+	}
+
+	@Override
+	public void insertOrderprod(Orderprod orderprod){
+		String sql ="insert into orderprod (order_no , prod_no , prod_qnt)" +
+				"values (?,?,?)";
+		getJdbcTemplate().update(sql, new Object[]{orderprod.getOrder_no(), orderprod.getProd_no(),orderprod.getProd_qnt()});
+	}
+
+	@Override
+	public void updateOrderprod(Orderprod orderprod){
+		String sql = "update orderprod set prod_qnt=? where order_no = ?, prod_no=?";
+		getJdbcTemplate().update(sql, new Object[]{orderprod.getProd_qnt(), orderprod.getOrder_no(), orderprod.getProd_no()});
+	}
+
+	@Override
+	public void deleteOrderprodByOrder_no(int order_no){
+		String sql = "delete from orderprod where order_no = ? ";
+		getJdbcTemplate().update(sql, new Object[]{order_no});
 	}
 
 }

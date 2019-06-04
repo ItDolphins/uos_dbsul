@@ -29,4 +29,19 @@ public class OrderServiceImpl implements OrderService{
 		return order;
 	}
 
+	@Override
+	public Order getOrderByOrder_state(int store_no, String order_state){
+		Order order = orderDao.findOrderByStore_noAndOrder_state(store_no ,order_state);
+		return order;
+	}
+
+	@Override
+	public void insertOrder(Order order){
+		orderDao.insertOrder(order);
+	}
+
+	@Override
+	public void updateOrder(Order order){
+		orderDao.updateOrder(order);
+	}
 }
