@@ -317,6 +317,11 @@
 						<a href="/manage_member"><i class="icon ion-social-designernews"></i><span class="text">회원 관리</span></a>
 					</li>
 					</sec:authorize>
+					<sec:authorize access="hasRole('USER')">
+					<li>
+						<a href="/otherRls_form"><i class="icon ion-social-designernews"></i><span class="text">반품 폐기</span></a>
+					</li>
+					</sec:authorize>
 				<h3>ESSENTIALS</h3>
 				<ul class="main-menu">
 					<li class="has-submenu">
