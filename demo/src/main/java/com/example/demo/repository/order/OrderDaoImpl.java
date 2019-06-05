@@ -55,10 +55,10 @@ public class OrderDaoImpl extends  JdbcDaoSupport implements  OrderDao{
 	}
 
 	@Override
-	public 	Order findOrderByStore_noAndOrder_state(int store_no, String order_state){
+	public 	List<Order> findOrderByStore_noAndOrder_state(int store_no, String order_state){
 		String sql = "select * from torder where store_no=? and order_state=?";
-		Order order = (Order) getJdbcTemplate().queryForObject(sql, new Object[]{store_no, order_state} ,new OrderMapper());
-		return order;
+		List<Order> orderList= (List<Order>) getJdbcTemplate().query(sql, new Object[]{store_no, order_state} ,new OrderMapper());
+		return orderList;
 	}
 
 	@Override

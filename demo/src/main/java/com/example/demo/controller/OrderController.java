@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.model.Account;
-import com.example.demo.model.Order;
-import com.example.demo.model.Orderprod;
-import com.example.demo.model.Prod;
+import com.example.demo.dto.WrhsInfo;
+import com.example.demo.model.*;
+import com.example.demo.service.busireq.BusireqService;
+import com.example.demo.service.busireq.WrhsInfoService;
 import com.example.demo.service.order.OrderService;
 import com.example.demo.service.order.OrderprodService;
 import com.example.demo.service.prod.ProdService;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,6 +30,12 @@ public class OrderController {
 
 	@Autowired
 	ProdService prodService;
+
+	@Autowired
+	BusireqService busireqService;
+
+	@Autowired
+	WrhsInfoService wrhsInfoService;
 
 	@GetMapping("/manage_order")
 	public ModelAndView manage_order(ModelAndView mav) {
@@ -80,7 +87,7 @@ public class OrderController {
 		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Order order = new Order(account.getStore_no());
 		orderService.insertOrder(order);
-		int order_no = orderService.getOrderByOrder_state(order.getStore_no(), order.getOrder_state()).getOrder_no();
+		int order_no = orderService.getOrderByOrder_state(order.getStore_no(), order.getOrder_state()).get(0).getOrder_no();
 		Orderprod orderprod  = new Orderprod();
 		orderprod.setOrder_no(order_no);
 		for (int i = 0; i<requests.size(); i++){
@@ -124,5 +131,31 @@ public class OrderController {
 			orderprodService.insertOrderprod(orderprod);
 		}
 		return null;
+	}
+
+	@GetMapping("/search_busireq")
+	public ModelAndView search_busireq(ModelAndView mav) {
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int store_no = account.getStore_no();
+		List<Order> orderList = orderService.getOrderList(store_no);
+		List<Busireq> busireqList = new ArrayList<Busireq>();
+		for (Order order : orderList){
+			busireqList.addAll(busireqService.getBusireqList(order.getOrder_no()));
+		}
+
+		mav.addObject("busireqList", busireqList);
+		mav.setViewName("order/search_busireq");
+		return mav;
+	}
+
+	@GetMapping("/search_wrhsInfo")
+	public ModelAndView search_wrhsInfo(ModelAndView mav) {
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int store_no = account.getStore_no();
+		List<WrhsInfo> wrhsInfoList = wrhsInfoService.getWrhsInfoList(store_no);
+
+		mav.addObject("wrhsInfoList", wrhsInfoList);
+		mav.setViewName("order/search_wrhsInfo");
+		return mav;
 	}
 }

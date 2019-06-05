@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.example.demo.model.Account;
 import com.example.demo.model.Work;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.context.SecurityContextHolder;

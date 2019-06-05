@@ -30,9 +30,9 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public Order getOrderByOrder_state(int store_no, String order_state){
-		Order order = orderDao.findOrderByStore_noAndOrder_state(store_no ,order_state);
-		return order;
+	public List<Order> getOrderByOrder_state(int store_no, String order_state){
+		List<Order> orderList = orderDao.findOrderByStore_noAndOrder_state(store_no ,order_state);
+		return orderList;
 	}
 
 	@Override

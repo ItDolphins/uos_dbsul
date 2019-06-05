@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.model.StoreInfo;
+import com.example.demo.dto.StoreInfo;
 import com.example.demo.service.admin.AdminService;
 
 @Transactional
@@ -83,5 +83,18 @@ public class StoreInfoDaoImpl extends JdbcDaoSupport implements StoreInfoDao {
 	
 		
 		
+	}
+
+	public class store_noMapper implements RowMapper<Integer> {
+		public Integer mapRow(ResultSet rs, int rowNum) throws SQLException{
+			return rs.getInt("store_no");
+		}
+	}
+
+	public List<Integer> findStore_noByAdmin_no(int admin_no){
+		String sql = "select store_no " +
+				"from tstore  where  admin_no = ?";
+		List<Integer> store_noList = (List<Integer>) getJdbcTemplate().query(sql, new Object[] { admin_no}, new store_noMapper() );
+		return store_noList;
 	}
 }

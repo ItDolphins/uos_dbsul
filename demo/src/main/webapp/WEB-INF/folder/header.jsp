@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%
 	String pagefile = request.getParameter("page");
-	if(pagefile == null) {pagefile = "home";}
+	if (pagefile == null) {
+		pagefile = "home";
+	}
 %>
 
 <!DOCTYPE html>
@@ -11,7 +13,7 @@
 <!--[if !(IE)]><!-->
 <html lang="en" class="no-js">
 <!--<![endif]-->
-
+<
 <head>
 	<title>UOS25 Management System</title>
 	<meta charset="utf-8">
@@ -23,12 +25,17 @@
 	<link href="resources/css/ionicons.css" rel="stylesheet" type="text/css">
 	<link href="resources/css/main.css" rel="stylesheet" type="text/css">
 	<!-- Google Fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet'
+	      type='text/css'>
 	<!-- Fav and touch icons -->
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144" href="resources/ico/queenadmin-favicon144x144.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="114x114" href="resources/ico/queenadmin-favicon114x114.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72" href="resources/ico/queenadmin-favicon72x72.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="57x57" href="resources/ico/queenadmin-favicon57x57.png">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144"
+	      href="resources/ico/queenadmin-favicon144x144.png">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="114x114"
+	      href="resources/ico/queenadmin-favicon114x114.png">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72"
+	      href="resources/ico/queenadmin-favicon72x72.png">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="57x57"
+	      href="resources/ico/queenadmin-favicon57x57.png">
 	<link rel="shortcut icon" href="resources/ico/favicon.ico">
 </head>
 
@@ -38,11 +45,12 @@
 	<!-- TOP NAV BAR -->
 	<nav class="top-bar navbar-fixed-top" role="navigation">
 		<div class="logo-area">
-			<a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i class="icon ion-arrow-swap"></i></a>
+			<a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i
+					class="icon ion-arrow-swap"></i></a>
 			<a class="btn btn-link btn-off-canvas pull-left"><i class="icon ion-navicon"></i></a>
 			<div class="logo pull-left">
 				<a href="/home">
-					<img src="resources/img/uos25.png" alt="UOS25 Logo" />
+					<img src="resources/img/uos25.png" alt="UOS25 Logo"/>
 				</a>
 			</div>
 		</div>
@@ -75,7 +83,8 @@
 											</div>
 											<div class="media-body">
 												<h5 class="media-heading name">Antonius</h5>
-												<p class="text">The problem just happened this morning. I can't see ...</p>
+												<p class="text">The problem just happened this morning. I can't see
+													...</p>
 												<span class="timestamp text-muted">4 minutes ago</span>
 											</div>
 										</div>
@@ -103,7 +112,8 @@
 											</div>
 											<div class="media-body">
 												<h5 class="media-heading name">Stella</h5>
-												<p class="text">Ok now I can see the status for each item. Thanks! :D</p>
+												<p class="text">Ok now I can see the status for each item. Thanks!
+													:D</p>
 												<span class="timestamp text-muted">Oct 6</span>
 											</div>
 										</div>
@@ -117,7 +127,8 @@
 											</div>
 											<div class="media-body">
 												<h5 class="media-heading name">Jane Doe</h5>
-												<p class="text"><i class="icon ion-reply text-muted"></i> Please check the status of your ...</p>
+												<p class="text"><i class="icon ion-reply text-muted"></i> Please check
+													the status of your ...</p>
 												<span class="timestamp text-muted">Oct 2</span>
 											</div>
 										</div>
@@ -131,7 +142,8 @@
 											</div>
 											<div class="media-body">
 												<h5 class="media-heading name">John Simmons</h5>
-												<p class="text"><i class="icon ion-reply text-muted"></i> I've fixed the problem :)</p>
+												<p class="text"><i class="icon ion-reply text-muted"></i> I've fixed the
+													problem :)</p>
 												<span class="timestamp text-muted">Sep 12</span>
 											</div>
 										</div>
@@ -220,7 +232,9 @@
 			<div class="logged-user">
 				<div class="btn-group">
 					<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-						<img src="resources/img/user-loggedin.png" alt="Sebastian" /><span class="name"><sec:authentication property="principal.username"/> <i class="icon ion-ios-arrow-down"></i></span>
+						<img src="resources/img/user-loggedin.png" alt="Sebastian"/><span
+							class="name"><sec:authentication property="principal.username"/> <i
+							class="icon ion-ios-arrow-down"></i></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
 						<li>
@@ -247,7 +261,8 @@
 			<div class="action-group visible-lg-inline-block">
 				<ul>
 					<li class="action-item chat">
-						<a href="#" id="toggle-right-sidebar" class="toggle-right-sidebar"><i class="icon ion-ios-chatboxes-outline"></i><span class="count">5</span></a>
+						<a href="#" id="toggle-right-sidebar" class="toggle-right-sidebar"><i
+								class="icon ion-ios-chatboxes-outline"></i><span class="count">5</span></a>
 					</li>
 				</ul>
 			</div>
@@ -260,12 +275,13 @@
 			<nav id="main-nav" class="main-nav">
 				<h3>MAIN</h3>
 				<ul class="main-menu">
-						<li>
-							<a href="/home"><i class="icon ion-ios-speedometer-outline"></i><span class="text">메인</span></a>
-						</li>
+					<li>
+						<a href="/home"><i class="icon ion-ios-speedometer-outline"></i><span class="text">메인</span></a>
+					</li>
 					<sec:authorize access="hasRole('USER')">
 					<li>
-						<a href="/manage_employee"><i class="icon ion-ios-contact"></i><span class="text">직원 정보 관리</span></a>
+						<a href="/manage_employee"><i class="icon ion-ios-contact"></i><span
+								class="text">직원 정보 관리</span></a>
 					</li>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ADMIN')">
@@ -275,7 +291,8 @@
 					</sec:authorize>
 					<sec:authorize access="hasRole('ADMIN')">
 					<li>
-						<a href="/manage_admin"><i class="icon ion-ios-contact"></i><span class="text">지점 관리자 정보 관리</span></a>
+						<a href="/manage_admin"><i class="icon ion-ios-contact"></i><span
+								class="text">지점 관리자 정보 관리</span></a>
 					</li>
 					</sec:authorize>
 					<li class="has-submenu">
@@ -292,15 +309,30 @@
 							<li><a href="/event_manage"><span class="text">이벤트 추가</span></a></li>
 						</ul>
 					</li>
+					<sec:authorize access="hasRole('USER')">
 					<li class="has-submenu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">물품 관리</span></a>
+						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">발주 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/manage_order"><span class="text">발주 관리</span></a></li>
+							<li><a href="/search_busireq"><span class="text">업체 요청 조회</span></a></li>
+							<li><a href="/search_wrhsInfo"><span class="text">입고 조회</span></a></li>
 						</ul>
 					</li>
+					</sec:authorize>
 					<sec:authorize access="hasRole('ADMIN')">
 					<li class="has-submenu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-social-designernews"></i><span class="text">출고 관리</span></a>
+						<a href="#" class="submenu-toggle"><i class="icon ion-social-designernews"></i><span
+								class="text">업체 주문</span></a>
+						<ul class="list-unstyled sub-menu collapse">
+							<li><a href="/add_busireq"><span class="text">발주 처리</span></a></li>
+							<li><a href="/lookup_busireq"><span class="text">업체 요청 조회</span></a></li>
+							<li><a href="/add_busireq_form"><span class="text">업체 요청 처리</span></a></li>
+							<li><a href="/lookup_wrhsInfo"><span class="text">입고 조회</span></a></li>
+						</ul>
+					</li>
+					<li class="has-submenu">
+						<a href="#" class="submenu-toggle"><i class="icon ion-social-designernews"></i><span
+								class="text">출고 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/show_rls"><span class="text">출고 종합</span></a></li>
 							<li><a href="/show_sell"><span class="text">판매 정보</span></a></li>
@@ -314,51 +346,59 @@
 					</sec:authorize>
 					<sec:authorize access="hasRole('ADMIN')">
 					<li>
-						<a href="/manage_member"><i class="icon ion-social-designernews"></i><span class="text">회원 관리</span></a>
+						<a href="/manage_member"><i class="icon ion-social-designernews"></i><span
+								class="text">회원 관리</span></a>
 					</li>
 					</sec:authorize>
 					<sec:authorize access="hasRole('USER')">
 					<li>
-						<a href="/otherRls_form"><i class="icon ion-social-designernews"></i><span class="text">반품 폐기</span></a>
+						<a href="/otherRls_form"><i class="icon ion-social-designernews"></i><span
+								class="text">반품 폐기</span></a>
 					</li>
 					</sec:authorize>
-				<h3>ESSENTIALS</h3>
-				<ul class="main-menu">
-					<li class="has-submenu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span class="text">Charts</span></a>
-						<ul class="list-unstyled sub-menu collapse">
-							<li class="active"><a href="charts-basic.html"><span class="text">Basic</span></a></li>
-							<li><a href="charts-interactive.html"><span class="text">Interactive Charts</span></a></li>
-						</ul>
-					</li>
-					<li class="has-submenu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-ios-grid-view-outline"></i><span class="text">Tables</span></a>
-						<ul class="list-unstyled sub-menu collapse">
-							<li class="active"><a href="tables-static.html"><span class="text">Static Table</span></a></li>
-							<li><a href="tables-dynamic.html"><span class="text">Dynamic Table</span></a></li>
-						</ul>
-					</li>
-					<li><a href="maps.html"><i class="icon ion-ios-world-outline"></i><span class="text">Maps</span></a></li>
-					<li><a href="typography.html"><i class="icon ion-ios-compose-outline"></i><span class="text">Typography</span></a></li>
-					<li class="has-submenu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-navicon"></i><span class="text">Menu Levels</span></a>
-						<ul class="list-unstyled sub-menu collapse">
-							<li class="has-submenu">
-								<a href="#" class="submenu-toggle"><span class="text">Second Lvl A</span></a>
-								<ul class="list-unstyled sub-menu collapse">
-									<li><a href="#"><span class="text">Third Lvl A1</span></a></li>
-									<li><a href="#"><span class="text">Third Lvl A2</span></a></li>
-									<li><a href="#"><span class="text">Third Lvl A3</span></a></li>
-								</ul>
-							</li>
-							<li><a href="#"><span class="text">Second Lvl B</span></a></li>
-							<li><a href="#"><span class="text">Second Lvl C</span></a></li>
-							<li><a href="#"><span class="text">Second Lvl D</span></a></li>
-						</ul>
-					</li>
-				</ul>
+					<h3>ESSENTIALS</h3>
+					<ul class="main-menu">
+						<li class="has-submenu">
+							<a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span
+									class="text">Charts</span></a>
+							<ul class="list-unstyled sub-menu collapse">
+								<li class="active"><a href="charts-basic.html"><span class="text">Basic</span></a></li>
+								<li><a href="charts-interactive.html"><span class="text">Interactive Charts</span></a>
+								</li>
+							</ul>
+						</li>
+						<li class="has-submenu">
+							<a href="#" class="submenu-toggle"><i class="icon ion-ios-grid-view-outline"></i><span
+									class="text">Tables</span></a>
+							<ul class="list-unstyled sub-menu collapse">
+								<li class="active"><a href="tables-static.html"><span
+										class="text">Static Table</span></a></li>
+								<li><a href="tables-dynamic.html"><span class="text">Dynamic Table</span></a></li>
+							</ul>
+						</li>
+						<li><a href="maps.html"><i class="icon ion-ios-world-outline"></i><span class="text">Maps</span></a>
+						</li>
+						<li><a href="typography.html"><i class="icon ion-ios-compose-outline"></i><span class="text">Typography</span></a>
+						</li>
+						<li class="has-submenu">
+							<a href="#" class="submenu-toggle"><i class="icon ion-navicon"></i><span class="text">Menu Levels</span></a>
+							<ul class="list-unstyled sub-menu collapse">
+								<li class="has-submenu">
+									<a href="#" class="submenu-toggle"><span class="text">Second Lvl A</span></a>
+									<ul class="list-unstyled sub-menu collapse">
+										<li><a href="#"><span class="text">Third Lvl A1</span></a></li>
+										<li><a href="#"><span class="text">Third Lvl A2</span></a></li>
+										<li><a href="#"><span class="text">Third Lvl A3</span></a></li>
+									</ul>
+								</li>
+								<li><a href="#"><span class="text">Second Lvl B</span></a></li>
+								<li><a href="#"><span class="text">Second Lvl C</span></a></li>
+								<li><a href="#"><span class="text">Second Lvl D</span></a></li>
+							</ul>
+						</li>
+					</ul>
 			</nav>
 		</div>
 	</div>
-	
+
 	

@@ -2,9 +2,7 @@ package com.example.demo.repository.stock;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -70,9 +68,22 @@ public class StockMapper implements RowMapper<Stock>{
 	@Override
 	public Stock getStock(int prod_no, Date expdate, int store_no) {
 		String sql = "select * from stock where prod_no = ? and expdate = ? and store_no = ?";
-		Stock stock = (Stock)getJdbcTemplate().queryForObject(sql, new Object[] {prod_no,expdate,store_no},new StockMapper());
-		
+		Stock stock = (Stock) getJdbcTemplate().queryForObject(sql, new Object[]{prod_no, expdate, store_no}, new StockMapper());
+
 		return stock;
+	}
+
+	@Override
+	public List<Stock> findStock(int prod_no, Date expdate, int store_no) {
+		String sql = "select * from stock where prod_no = ? and expdate = ? and store_no = ?";
+		List<Stock> stockList;
+		try {
+			stockList = (List<Stock>) getJdbcTemplate().query(sql, new Object[]{prod_no, expdate, store_no}, new StockMapper());
+		}
+		catch (NullPointerException e){
+			return null;
+		}
+		return stockList;
 	}
 
 	@Override
@@ -81,8 +92,15 @@ public class StockMapper implements RowMapper<Stock>{
 		getJdbcTemplate().update(sql, new Object[] {changed_amount,stock.getProd_no(),stock.getExpdate(),stock.getStore_no()});
 		
 	}
-
 	@Override
+	public  void insertStock(Stock stock) {
+		String sql = "insert into stock (store_no, prod_no, expdate, stock_qnt) " +
+				"values(?,?,?,?)";
+		getJdbcTemplate().update(sql, new Object[] {stock.getStore_no(), stock.getProd_no(),
+		stock.getExpdate(), stock.getStock_qnt()});
+	}
+
+		@Override
 	public int getStock_qnt(int prod_no, Date expdate, int store_no) {
 		String sql = "select stock_qnt from stock where prod_no = ? and expdate = ? and store_no = ?";
 		int stock_qnt = getJdbcTemplate().queryForObject(sql, new Object[] {prod_no,expdate,store_no},int.class);

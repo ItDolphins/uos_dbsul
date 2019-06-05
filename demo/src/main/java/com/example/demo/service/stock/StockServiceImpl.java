@@ -1,6 +1,6 @@
 package com.example.demo.service.stock;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,24 @@ public class StockServiceImpl implements StockService{
 	}
 
 	@Override
+	public  boolean isStockExist(int prod_no,Date expdate, int store_no){
+		List<Stock> stockList= stockDao.findStock(prod_no, expdate, store_no);
+		if(stockList.size() != 0)
+			return true;
+		else
+			return false;
+
+	}
+
+	@Override
 	public void updateStock(Stock stock, int changed_amount) {
 		stockDao.updateStock(stock, changed_amount);
 		
+	}
+
+	@Override
+	public  void insertStock(Stock stock){
+		stockDao.insertStock(stock);
 	}
 
 	@Override

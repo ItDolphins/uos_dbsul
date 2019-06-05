@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import com.example.demo.model.StoreInfo;
+import com.example.demo.dto.StoreInfo;
 import com.example.demo.service.store.StoreInfoService;
 
 @Controller

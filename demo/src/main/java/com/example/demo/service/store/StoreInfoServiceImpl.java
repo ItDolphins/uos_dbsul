@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.model.StoreInfo;
+import com.example.demo.dto.StoreInfo;
 import com.example.demo.repository.store.StoreInfoDao;
 
 @Transactional
@@ -38,5 +38,11 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 	public void updateStoreInfo(StoreInfo store) {
 		storeInfoDao.updateStoreInfo(store);
 		
+	}
+
+	@Override
+	public List<Integer> getStore_noList(int admin_no){
+		List<Integer> store_noList = storeInfoDao.findStore_noByAdmin_no(admin_no);
+		return  store_noList;
 	}
 }

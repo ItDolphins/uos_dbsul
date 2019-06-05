@@ -5,20 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.Account;
-import com.example.demo.model.Prod;
-import com.example.demo.model.Staff;
-import com.example.demo.model.StoreInfo;
-import com.example.demo.model.Work;
+import com.example.demo.dto.StoreInfo;
 import com.example.demo.service.admin.AdminService;
-import com.example.demo.service.prod.ProdService;
 import com.example.demo.service.store.StoreInfoService;
 
 
