@@ -55,6 +55,8 @@ public class DemoApplication implements CommandLineRunner{
 		
 		//List<Release> rls = rlsService.getReleaseList();
 		//System.out.println(rls.get(2).getRls_date());
+		
+
 	}
 
 }

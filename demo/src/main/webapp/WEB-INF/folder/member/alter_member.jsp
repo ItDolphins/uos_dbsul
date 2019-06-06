@@ -63,6 +63,7 @@
 		</div>
 		<!-- END PRIMARY CONTENT HEADING -->
 		<!-- SHOW HIDE COLUMNS -->
+		<form action="/alter_member_form" accept-charset="utf-8" name="admin_form" method="get">
 		<div class="widget">
 			<h3 class="widget-header clearfix">
 				<h3>
@@ -75,6 +76,7 @@
 						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
+								<th></th>
 								<th>회원번호</th>
 								<th>회원이름</th>
 								<th>성별</th>
@@ -88,6 +90,8 @@
 								<c:when test="${fn:length(memberList) > 0}">
 									<c:forEach items="${memberList}" var="row">
 											<tr>
+												<td><input type="radio" name="radio_button" value="${row.member_no}"
+												           class="checkSelect" required="required"></td>
 												<td>${row.member_no}</td>
 												<td>${row.member_name}</td>
 												<td>${row.member_gend}</td>
@@ -104,16 +108,16 @@
 				</div>
 			</h3>
 		</div>
-		
 	<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-						<button type="button" onclick="location.href= '/alter_member'" class="btn btn-default btn-lg"
+						<button type="submit"  class="btn btn-default btn-lg"
 						        id="selectBtn">정보수정
 						</button>
-						<button type="button" onclick="location.href= '/add_member_form'"
+						<button type="button" onclick="location.href= '/manage_member'"
 						        class="btn btn-default btn-lg"
-						        id="selectBtn2">회원 추가
+						        id="selectBtn2">취소
 						</button>
 	</div>
+		</form>
 </div>
 
 <!-- END SHOW HIDE COLUMNS -->
