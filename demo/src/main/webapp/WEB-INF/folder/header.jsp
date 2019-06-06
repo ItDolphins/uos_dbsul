@@ -299,15 +299,13 @@
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">품목 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/prod_Info"><span class="text">물품 조회</span></a></li>
-							<li><a href="/prod_manage"><span class="text">물품 관리</span></a></li>
-						</ul>
-					</li>
-					<li class="has-submenu">
-						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">이벤트 관리</span></a>
-						<ul class="list-unstyled sub-menu collapse">
-							<li><a href="/event_Info"><span class="text">이벤트 조회</span></a></li>
-							<li><a href="/pr_event_add_form"><span class="text">증정 이벤트 추가</span></a></li>
-							<li><a href="/dc_event_add_form"><span class="text">할인 이벤트 추가</span></a></li>
+							<sec:authorize access="hasRole('ADMIN')">
+								<li><a href="/prod_manage"><span class="text">물품 관리</span></a></li>
+								<li><a href="/stock_manage"><span class="text">재고 관리</span></a></li>
+							</sec:authorize>
+							<sec:authorize access="hasRole('USER')">
+								<li><a href="/lookup_stock"><span class="text">재고 관리</span></a></li>
+							</sec:authorize>
 						</ul>
 					</li>
 					<sec:authorize access="hasRole('USER')">
@@ -331,30 +329,51 @@
 							<li><a href="/lookup_wrhsInfo"><span class="text">입고 조회</span></a></li>
 						</ul>
 					</li>
+					</sec:authorize>
 					<li class="has-submenu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-social-designernews"></i><span
 								class="text">출고 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
-							<li><a href="/show_rls"><span class="text">출고 종합</span></a></li>
-							<li><a href="/show_sell"><span class="text">판매 정보</span></a></li>
+							<sec:authorize access="hasRole('ADMIN')">
+								<li><a href="/show_rls"><span class="text">출고 종합</span></a></li>
+								<li><a href="/show_sell"><span class="text">판매 정보</span></a></li>
+							</sec:authorize>
+							<sec:authorize access="hasRole('USER')">
+								<li><a href="/lookup_rls"><span class="text">출고 조회</span></a></li>
+								<li><a href="/lookup_sell"><span class="text">판매 조회</span></a></li>
+								<li><a href="/sell_product"></i><span
+										class="text">판매</span></a></li>
+								<li><a href="/otherRls_form"></i><span
+										class="text">반품 폐기</span></a></li>
+							</sec:authorize>
 						</ul>
 					</li>
-					</sec:authorize>
-					<sec:authorize access="hasRole('USER')">
-					<li>
-						<a href="/sell_product"><i class="icon ion-social-designernews"></i><span class="text">판매</span></a>
+					<li class="has-submenu">
+						<a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span class="text">재무 관리</span></a>
+						<ul class="list-unstyled sub-menu collapse">
+							<sec:authorize access="hasRole('USER')">
+								<li><a href="/manage_sales"><span class="text">매출 관리</span></a></li>
+								<li><a href="/manage_calc"><span class="text">정산 관리</span></a></li>
+							</sec:authorize>
+							<sec:authorize access="hasRole('ADMIN')">
+								<li><a href="/lookup_sales"><span class="text">매출 관리</span></a></li>
+								<li><a href="/lookup_calc"><span class="text">정산 관리</span></a></li>
+							</sec:authorize>
+						</ul>
 					</li>
-					</sec:authorize>
+					<li class="has-submenu">
+						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">이벤트 관리</span></a>
+						<ul class="list-unstyled sub-menu collapse">
+							<li><a href="/event_Info"><span class="text">이벤트 조회</span></a></li>
+							<sec:authorize access="hasRole('ADMIN')">
+								<li><a href="/event_manage"><span class="text">이벤트 추가</span></a></li>
+							</sec:authorize>
+						</ul>
+					</li>
 					<sec:authorize access="hasRole('ADMIN')">
 					<li>
 						<a href="/manage_member"><i class="icon ion-social-designernews"></i><span
 								class="text">회원 관리</span></a>
-					</li>
-					</sec:authorize>
-					<sec:authorize access="hasRole('USER')">
-					<li>
-						<a href="/otherRls_form"><i class="icon ion-social-designernews"></i><span
-								class="text">반품 폐기</span></a>
 					</li>
 					</sec:authorize>
 					<h3>ESSENTIALS</h3>

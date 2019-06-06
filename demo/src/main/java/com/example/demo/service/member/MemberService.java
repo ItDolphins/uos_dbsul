@@ -9,4 +9,7 @@ import com.example.demo.model.Member;
 
 public interface MemberService {
 	List<Member> getMemberList();
+	void insertMember(Member member);
+	Member getByMemberNo(int member_no);
+	void alterMemberInfo(Member member);
 }

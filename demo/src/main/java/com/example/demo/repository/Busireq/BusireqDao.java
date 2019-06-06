@@ -32,6 +32,7 @@ public class BusireqDao extends JdbcDaoSupport  {
 		public Busireq mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Busireq busireq = new Busireq();
 
+			busireq.setStore_no(rs.getInt("store_no"));
 			busireq.setReq_no(rs.getInt("req_no"));
 			busireq.setOrder_no(rs.getInt("order_no"));
 			busireq.setBusi_conf_flag(rs.getString("busi_conf_flag"));
@@ -39,6 +40,7 @@ public class BusireqDao extends JdbcDaoSupport  {
 			busireq.setDeliv_date(rs.getDate("deliv_date"));
 			busireq.setDeliv_state(rs.getString("deliv_state"));
 			busireq.setProd_no(rs.getInt("prod_no"));
+			busireq.setProd_name(rs.getString("prod_name"));
 			busireq.setReq_qnt(rs.getInt("req_qnt"));
 
 			return busireq;
@@ -46,20 +48,23 @@ public class BusireqDao extends JdbcDaoSupport  {
 	}
 
 	public Busireq findByReq_no(int req_no){
-		String sql = "select * from busireq where req_no = ?";
+		String sql = "select o.store_no , req_no, b.order_no, busi_conf_flag, b.order_date, deliv_date, deliv_state, p.prod_no, p.prod_name, req_qnt  " +
+				"from busireq b, prod p, torder o where req_no = ? and b.prod_no = p.prod_no and o.order_no = b.order_no";
 		Busireq busireq = getJdbcTemplate().queryForObject(sql, new Object[] {req_no}, new BusireqMapper());
 		return busireq;
 	}
 
 	public List<Busireq> findByOrder_no(int order_no){
-		String sql  = "select * from busireq where order_no = ? ";
+		String sql  = "select o.store_no, req_no, b.order_no, busi_conf_flag, b.order_date, deliv_date, deliv_state, p.prod_no, p.prod_name, req_qnt  " +
+				"from busireq b, prod p, torder o where b.order_no = ? and b.prod_no = p.prod_no and o.order_no = b.order_no";
 		List<Busireq> busireqList = getJdbcTemplate().query(sql, new Object[]{order_no} , new BusireqMapper());
 
 		return busireqList;
 	}
 
 	public List<Busireq> findByOrder_noAndNotDeliv_state(int order_no ,String deliv_state){
-		String sql = "select * from busireq where order_no = ? and deliv_state <> ?";
+		String sql = "select o.store_no, req_no, b.order_no, busi_conf_flag, b.order_date, deliv_date, deliv_state, p.prod_no, p.prod_name, req_qnt  " +
+				"from busireq b, prod p, torder o where b.order_no = ? and deliv_state <> ? and b.prod_no = p.prod_no and o.order_no = b.order_no";
 		List<Busireq> busireqList;
 		try {
 			busireqList = (List<Busireq>) getJdbcTemplate().query(sql, new Object[]{order_no, deliv_state}, new BusireqMapper());

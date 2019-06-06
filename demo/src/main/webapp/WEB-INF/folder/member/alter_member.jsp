@@ -63,39 +63,43 @@
 		</div>
 		<!-- END PRIMARY CONTENT HEADING -->
 		<!-- SHOW HIDE COLUMNS -->
+		<form action="/alter_member_form" accept-charset="utf-8" name="admin_form" method="get">
 		<div class="widget">
 			<h3 class="widget-header clearfix">
 				<h3>
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>판매 정보</span>
+					<span>회원 정보</span>
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
-						<table id="datatable-column-filter7" style="border-right: #ccc 1px solid"
-						       class="table table-sorting table-striped table-hover datatable dataTable no-footer">
+						<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
+						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
-								<th>출고번호</th>
-								<th>판매번호</th>
-								<th>지점번호</th>
+								<th></th>
 								<th>회원번호</th>
-								<th>물품이름</th>
-								<th>수량</th>
-								<th>판매가격</th>
+								<th>회원이름</th>
+								<th>성별</th>
+								<th>생일</th>
+								<th>등록일자</th>
+								<th>마일리지</th>
+								<th>등급</th>
 							</tr>
 							</thead>
 							<c:choose>
-								<c:when test="${fn:length(sellList) > 0}">
-									<c:forEach items="${sellList}" var="row">
-										<tr>
-											<td>${row.rls_no}</td>
-											<td>${row.sell_no}</td>
-											<td>${row.store_no}</td>
-											<td>${row.member_no}</td>
-											<td>${row.prod_name}</td>
-											<td>${row.rls_qnt}</td>
-											<td>${row.sell_price}</td>
-										</tr>
+								<c:when test="${fn:length(memberList) > 0}">
+									<c:forEach items="${memberList}" var="row">
+											<tr>
+												<td><input type="radio" name="radio_button" value="${row.member_no}"
+												           class="checkSelect" required="required"></td>
+												<td>${row.member_no}</td>
+												<td>${row.member_name}</td>
+												<td>${row.member_gend}</td>
+												<td>${row.member_birth}</td>
+												<td>${row.member_reg_day}</td>
+												<td>${row.member_mileage}</td>
+												<td>${row.member_class}</td>
+											</tr>
 									</c:forEach>
 								</c:when>
 							</c:choose>
@@ -104,7 +108,16 @@
 				</div>
 			</h3>
 		</div>
+	<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
+						<button type="submit"  class="btn btn-default btn-lg"
+						        id="selectBtn">정보수정
+						</button>
+						<button type="button" onclick="location.href= '/manage_member'"
+						        class="btn btn-default btn-lg"
+						        id="selectBtn2">취소
+						</button>
 	</div>
+		</form>
 </div>
 
 <!-- END SHOW HIDE COLUMNS -->

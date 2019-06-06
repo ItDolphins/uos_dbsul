@@ -10,6 +10,8 @@ import java.util.Date;
 @Getter @Setter
 public class Busireq {
 
+
+	private int store_no;
 	private int req_no;
 	private int order_no;
 	private String busi_conf_flag;
@@ -17,6 +19,7 @@ public class Busireq {
 	private String deliv_state;
 	private Date deliv_date;
 	private int prod_no;
+	private  String prod_name;
 	private int req_qnt;
 
 	public Busireq(){

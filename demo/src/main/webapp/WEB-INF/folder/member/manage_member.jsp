@@ -106,12 +106,12 @@
 		</div>
 		
 	<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-						<button type="button" onclick="location.href= '/alter_admin'" class="btn btn-default btn-lg"
+						<button type="button" onclick="location.href= '/alter_member'" class="btn btn-default btn-lg"
 						        id="selectBtn">정보수정
 						</button>
-						<button type="button" onclick="location.href= '/add_admin_form'"
+						<button type="button" onclick="location.href= '/add_member_form'"
 						        class="btn btn-default btn-lg"
-						        id="selectBtn2">새 관리자 등록
+						        id="selectBtn2">회원 추가
 						</button>
 	</div>
 </div>

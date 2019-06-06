@@ -44,16 +44,17 @@ public class ReleaseDaoImpl extends JdbcDaoSupport implements ReleaseDao{
 			rls.setRls_code(rs.getString("rls_code"));
 			rls.setRls_date(rs.getTimestamp("rls_date"));
 			rls.setExpdate(rs.getDate("expdate"));
-			rls.setProd_no(rs.getInt("rls_no"));
+			rls.setProd_no(rs.getInt("prod_no"));
 			rls.setRls_qnt(rs.getInt("rls_qnt"));
+			rls.setProd_name(rs.getString("prod_name"));
 			
 			return rls;
 		}
 	}
 	@Override
-	public List<Release> getReleaseList() {
-		String sql = "select * from rls";
-		List<Release> releaseList = (List<Release>)getJdbcTemplate().query(sql, new Object[] {},new ReleaseListMapper());
+	public List<Release> getReleaseList(int store_no) {
+		String sql = "select rls_no, store_no, rls_code, rls_date, expdate, p.prod_no, rls_qnt, p.prod_name from rls r, prod p where store_no = ? and r.prod_no = p.prod_no";
+		List<Release> releaseList = (List<Release>)getJdbcTemplate().query(sql, new Object[] {store_no},new ReleaseListMapper());
 		
 		return releaseList;
 	}

@@ -22,8 +22,8 @@ public class SellServiceImpl implements SellService{
 	}
 
 	@Override
-	public List<Sell> getSellList() {
-		List<Sell> sellList = sellDao.getSellList();
+	public List<Sell> getSellList(int store_no) {
+		List<Sell> sellList = sellDao.getSellList(store_no);
 		return sellList;
 	}
 	

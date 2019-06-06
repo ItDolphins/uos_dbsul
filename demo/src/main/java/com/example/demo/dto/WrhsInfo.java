@@ -15,6 +15,7 @@ public class WrhsInfo {
 	private Date wrhs_date;
 	private Date expdate;
 	private int prod_no;
+	private String prod_name;
 	private int req_qnt;
 	private int store_no;
 

@@ -58,7 +58,7 @@
 							       class="table table-sorting table-hover table-bordered colored-header datatable">
 								<thead>
 								<tr>
-									<th>번호</th>
+									<th>물품번호</th>
 									<th>이름</th>
 									<th>유통기한</th>
 									<th>재고</th>
@@ -203,7 +203,7 @@
             contentType: 'application/json; charset=UTF-8',
             data: JSON.stringify(jsonObj),
             success: function () {
-                alert('성공했습니다.');
+                alert('판매에 성공했습니다.');
                 window.location.href = "/home";
             },
             error: function (e) {

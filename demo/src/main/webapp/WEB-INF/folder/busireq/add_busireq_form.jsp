@@ -63,7 +63,8 @@
 								<th>요청 일자</th>
 								<th>배송 일자</th>
 								<th>배송 상태</th>
-								<th>발주 물품</th>
+								<th>물품 번호</th>
+								<th>물품 이름</th>
 								<th>요청 수량</th>
 							</tr>
 							</thead>
@@ -78,6 +79,7 @@
 											<td>${row.deliv_date}</td>
 											<td>${row.deliv_state}</td>
 											<td>${row.prod_no}</td>
+											<td>${row.prod_name}</td>
 											<td>${row.req_qnt}</td>
 										</tr>
 									</c:forEach>
@@ -107,7 +109,8 @@
 							<th>요청 일자</th>
 							<th>배송 일자</th>
 							<th>배송 상태</th>
-							<th>발주 물품</th>
+							<th>물품 번호</th>
+							<th>물품 이름</th>
 							<th>요청 수량</th>
 						</tr>
 						</thead>
@@ -152,7 +155,8 @@
         var order_date = td.eq(3).text();
         var deliv_date = td.eq(4).text();
         var prod_no = td.eq(6).text();
-        var req_qnt = td.eq(7).text();
+        var prod_name = td.eq(7).text();
+        var req_qnt = td.eq(8).text();
 
 
         var flag = true;
@@ -173,6 +177,7 @@
             str += '<td >' + deliv_date + '</td>';
             str += '<td >' + deliv_state + '</td>';
             str += '<td >' + prod_no + '</td>';
+            str += '<td >' + prod_name + '</td>';
             str += '<td >' + req_qnt + '</td>';
             str += '</tr>';
 
