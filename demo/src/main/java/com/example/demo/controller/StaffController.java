@@ -3,14 +3,18 @@ package com.example.demo.controller;
 
 import java.sql.Timestamp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
 import javax.servlet.http.HttpServletRequest;
 
 
+import com.example.demo.dto.WorkSum;
 import com.example.demo.model.Account;
 import com.example.demo.model.Work;
+import com.example.demo.service.staff.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.model.Staff;
 
 import com.example.demo.service.staff.StaffService;
-import com.example.demo.service.staff.WorkService;
 
 
 @Controller
@@ -33,7 +36,6 @@ public class StaffController {
 	StaffService staffService;
 	@Autowired
 	WorkService workService;
-
 
 
 	@GetMapping("/manage_employee")
@@ -105,6 +107,11 @@ public class StaffController {
 		Staff staff = staffService.getStaff(staff_no);
 		List<Work> workList = workService.getWorkList(staff_no);
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+
+		WorkSum workSum = workService.getWorkSum(staff_no, sdf.format(new Date()));
+
+		mav.addObject("workSum", workSum);
 		mav.addObject("staff", staff);
 		mav.addObject("workList", workList);
 		mav.setViewName("staff/manage_work");

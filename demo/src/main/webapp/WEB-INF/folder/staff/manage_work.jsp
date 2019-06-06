@@ -85,14 +85,23 @@
 						</form>
 					</div>
 				</h3>
-				<!--div class="btn-group widget-header-toolbar visible-lg">
-					<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand">
-						<i class="icon ion-ios-arrow-up"></i>
-					</a>
-					<a href="#" title="Remove" class="btn btn-link btn-remove">
-						<i class="icon ion-ios-close-empty"></i>
-					</a>
-				</div-->
+				<div class="widget-content">
+					<div class="table-responsive">
+						<table id="datatable-column-interactive-menu2" style="border-right: #ccc 1px solid"
+						       class="table table-sorting table-hover table-bordered colored-header datatable">
+							<thead>
+							<tr>
+								<th>총근무시간</th>
+								<th>임금</th>
+							</tr>
+							</thead>
+							<tbody>
+							<td>${workSum.worktimeSum}</td>
+							<td>${workSum.salarySum}</td>
+							</tbody>
+						</table>
+					</div>
+				</div>
 				<div class="widget-content">
 					<div class="table-responsive">
 						<table id="datatable-column-interactive-menu" style="border-right: #ccc 1px solid"
@@ -134,7 +143,8 @@
 							<c:when test="${fn:length(workList) > 0}">
 								<c:forEach items="${workList}" var="row">
 									<fmt:formatDate value="${row.work_start_time}" pattern="yyyMM" var="mon"/>
-									<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd HH:mm" var="start"/>
+									<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd HH:mm"
+									                var="start"/>
 									<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd HH:mm" var="end"/>
 									<c:if test="${mon - thisMon eq 0 }">
 										<tr>
@@ -150,7 +160,6 @@
 				</div>
 			</div>
 		</div>
-		
 		<div class="widget">
 			<h3 class="widget-header clearfix" style="background-color: white">
 				<div class="btn-group widget-header-toolbar visible-lg">

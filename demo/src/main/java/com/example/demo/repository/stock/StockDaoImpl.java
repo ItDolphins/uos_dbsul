@@ -28,20 +28,7 @@ public class StockDaoImpl extends JdbcDaoSupport implements StockDao{
 		setDataSource(dataSource);
 	}
 	
-	public class StockListMapper implements RowMapper<Stock>{
-		
-		public Stock mapRow(ResultSet rs, int rowNum) throws SQLException{
-			Stock stock = new Stock();
-					
-			stock.setExpdate(rs.getDate("expdate"));
-			stock.setProd_name(rs.getString("prod_name"));
-			stock.setProd_no(rs.getInt("prod_no"));
-			stock.setStock_qnt(rs.getInt("stock_qnt"));
-			
-			return stock;
-		}
-	}
-	
+
 public class StockMapper implements RowMapper<Stock>{
 		
 		public Stock mapRow(ResultSet rs, int rowNum) throws SQLException{
@@ -51,16 +38,17 @@ public class StockMapper implements RowMapper<Stock>{
 			stock.setProd_no(rs.getInt("prod_no"));
 			stock.setStock_qnt(rs.getInt("stock_qnt"));
 			stock.setStore_no(rs.getInt("store_no"));
-			
+			stock.setProd_name(rs.getString("prod_name"));
+
 			return stock;
 		}
 	}
 	
 	@Override
 	public List<Stock> getStockList(int acnt_store_no) {
-		String sql = "select s.prod_no, s.expdate, s.stock_qnt,p.prod_name from"
+		String sql = "select s.store_no, s.prod_no, s.expdate, s.stock_qnt,p.prod_name from"
 				+ " stock s, prod p where s.store_no = ? and s.prod_no = p.prod_no";
-		List<Stock> stock = (List<Stock>)getJdbcTemplate().query(sql, new Object[] {acnt_store_no},new StockListMapper());
+		List<Stock> stock = (List<Stock>)getJdbcTemplate().query(sql, new Object[] {acnt_store_no},new StockMapper());
 		
 		return stock;
 	}

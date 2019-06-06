@@ -58,7 +58,7 @@
 							       class="table table-sorting table-hover table-bordered colored-header datatable">
 								<thead>
 								<tr>
-									<th>번호</th>
+									<th>물품번호</th>
 									<th>이름</th>
 									<th>유통기한</th>
 									<th>재고</th>

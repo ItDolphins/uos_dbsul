@@ -299,14 +299,22 @@
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">품목 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/prod_Info"><span class="text">물품 조회</span></a></li>
-							<li><a href="/prod_manage"><span class="text">물품 관리</span></a></li>
+							<sec:authorize access="hasRole('ADMIN')">
+								<li><a href="/prod_manage"><span class="text">물품 관리</span></a></li>
+								<li><a href="/stock_manage"><span class="text">재고 관리</span></a></li>
+							</sec:authorize>
+							<sec:authorize access="hasRole('USER')">
+								<li><a href="/lookup_stock"><span class="text">재고 관리</span></a></li>
+							</sec:authorize>
 						</ul>
 					</li>
 					<li class="has-submenu">
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">이벤트 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/event_Info"><span class="text">이벤트 조회</span></a></li>
-							<li><a href="/event_manage"><span class="text">이벤트 추가</span></a></li>
+							<sec:authorize access="hasRole('ADMIN')">
+								<li><a href="/event_manage"><span class="text">이벤트 추가</span></a></li>
+							</sec:authorize>
 						</ul>
 					</li>
 					<sec:authorize access="hasRole('USER')">

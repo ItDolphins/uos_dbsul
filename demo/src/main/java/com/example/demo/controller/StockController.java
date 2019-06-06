@@ -3,10 +3,12 @@ package com.example.demo.controller;
 import java.io.BufferedReader;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.demo.service.store.StoreInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -36,6 +38,9 @@ public class StockController {
 	
 	@Autowired
 	StockService stockService;
+
+	@Autowired
+	StoreInfoService storeInfoService;
 	
 	@Autowired
 	ReleaseService releaseService;
@@ -63,6 +68,33 @@ public class StockController {
 	    return json.toString();
 	}
 
+
+	@GetMapping("/stock_manage")
+	public ModelAndView stock_manage(ModelAndView mav) {
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Integer> store_noList = storeInfoService.getStore_noList(account.getAdmin_no());
+
+		List<Stock> stockList= new ArrayList<Stock>();
+
+		for( int store_no : store_noList){
+			stockList.addAll(stockService.getStockList(store_no));
+		}
+		mav.addObject("stockList",stockList);
+		mav.setViewName("prod/stock_manage");
+
+		return mav;
+	}
+
+	@GetMapping("/lookup_stock")
+	public ModelAndView lookup_stock(ModelAndView mav) {
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		List<Stock> stockList= stockService.getStockList(account.getStore_no());
+		mav.addObject("stockList",stockList);
+		mav.setViewName("prod/lookup_stock");
+
+		return mav;
+	}
 
 	@GetMapping("/sell_product")
 	public ModelAndView prod_Info(ModelAndView mav) {
