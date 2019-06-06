@@ -142,6 +142,9 @@ public class StockController {
 			sell.setMember_no(3); //임의로 3번회원이라고 가정
 			sell.setSell_price(prodService.getPriceByProdNo(sellItem.getProd_no())* sellItem.getAmount());
 			sellSerivce.insertSell(sell);
+			
+			//여기부터 마일리지 처리부분
+			
 		}
 		return null;
 		

@@ -203,7 +203,7 @@
             contentType: 'application/json; charset=UTF-8',
             data: JSON.stringify(jsonObj),
             success: function () {
-                alert('성공했습니다.');
+                alert('판매에 성공했습니다.');
                 window.location.href = "/home";
             },
             error: function (e) {
