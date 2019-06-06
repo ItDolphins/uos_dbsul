@@ -365,6 +365,7 @@
 						<a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">이벤트 관리</span></a>
 						<ul class="list-unstyled sub-menu collapse">
 							<li><a href="/event_Info"><span class="text">이벤트 조회</span></a></li>
+							<li><a href="/event_manage"><span class="text">이벤트 관리</span></a></li>
 							<li><a href="/pr_event_add_form"><span class="text">증정 이벤트 추가</span></a></li>
 							<li><a href="/dc_event_add_form"><span class="text">할인 이벤트 추가</span></a></li>
 						</ul>

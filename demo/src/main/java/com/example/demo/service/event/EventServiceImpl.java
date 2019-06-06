@@ -1,7 +1,6 @@
 package com.example.demo.service.event;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,13 +27,29 @@ public class EventServiceImpl implements EventService {
 	}
 	
 	@Override
+	public ArrayList<Event> getNowDcEventList() {
+		// TODO Auto-generated method stub
+		ArrayList<Event> event=eventDao.findNowDcEvent();
+		
+		return event;
+	}
+	
+	@Override
 	public ArrayList<Event> getPrEventList() {
 		// TODO Auto-generated method stub
 		ArrayList<Event> event=eventDao.findAllPrEvent();
 		
 		return event;
 	}
-
+	
+	@Override
+	public ArrayList<Event> getNowPrEventList() {
+		// TODO Auto-generated method stub
+		ArrayList<Event> event=eventDao.findNowPrEvent();
+		
+		return event;
+	}
+	
 	@Override
 	public void insertPrEvent(Event event) {
 		// TODO Auto-generated method stub

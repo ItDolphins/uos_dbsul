@@ -21,8 +21,8 @@ public class EventController {
 	
 	@GetMapping("/event_Info")
 	public ModelAndView event_Info(ModelAndView mav) {
-		List<Event> eventDcList = eventService.getDcEventList();
-		List<Event> eventPrList = eventService.getPrEventList();
+		List<Event> eventDcList = eventService.getNowDcEventList();
+		List<Event> eventPrList = eventService.getNowPrEventList();
 		mav.addObject("eventDcList",eventDcList);
 		mav.addObject("eventPrList",eventPrList);
 		
@@ -31,6 +31,21 @@ public class EventController {
 		return mav;
 		
 	}
+	
+	
+	@GetMapping("/event_manage")
+	public ModelAndView event_Manage(ModelAndView mav) {
+		List<Event> eventDcList = eventService.getDcEventList();
+		List<Event> eventPrList = eventService.getPrEventList();
+		mav.addObject("eventDcList",eventDcList);
+		mav.addObject("eventPrList",eventPrList);
+		
+		mav.setViewName("event/event_manage");
+		
+		return mav;
+		
+	}
+	
 	
 	
 	@GetMapping("/pr_event_add_form")
@@ -55,7 +70,7 @@ public class EventController {
 
 		eventService.insertPrEvent(event);
 		
-		return "redirect:/home";
+		return "redirect:/event_manage";
 	}
 	
 	@PostMapping("/add_dc_event")
@@ -63,7 +78,7 @@ public class EventController {
 
 		eventService.insertDcEvent(event);
 		
-		return "redirect:/home";
+		return "redirect:/event_manage";
 	}
 	
 	

@@ -85,9 +85,36 @@ public class EventDaoImpl  extends JdbcDaoSupport implements EventDao {
 		}
 	}
 	
+	public ArrayList<Event> findNowPrEvent() {
+		// TODO Auto-generated method stub
+				
+		String sql="select present_no, p.prod_name as event_prod, event_name, event_start_day, event_end_day, p2.prod_name as present_prod  from tpresent tp, prod p, prod p2 where tp.event_prod=p.prod_no and tp.present_prod=p2.prod_no and to_char( event_start_day, 'yyyymmdd' ) <= to_char( sysdate, 'yyyymmdd')and to_char( event_end_day, 'yyyymmdd' ) >= to_char( sysdate, 'yyyymmdd')";
+		try {
+			ArrayList<Event> result = (ArrayList<Event>)getJdbcTemplate().query(sql,new Object[] {},new PrEventMapper());
+		return result;
+		
+		}catch (EmptyResultDataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public ArrayList<Event> findAllDcEvent() {
 		// TODO Auto-generated method stub
 		String sql="select dc_no, p.prod_name as event_prod , event_name, event_start_day, event_end_day, dc_rate  from dc dc, prod p where dc.event_prod=p.prod_no";
+		try {
+			ArrayList<Event> result = (ArrayList<Event>)getJdbcTemplate().query(sql,new Object[] {},new DcEventMapper());
+		return result;
+		
+		}catch (EmptyResultDataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<Event> findNowDcEvent() {
+		// TODO Auto-generated method stub
+		String sql="select dc_no, p.prod_name as event_prod , event_name, event_start_day, event_end_day, dc_rate  from dc dc, prod p where dc.event_prod=p.prod_no and (to_char( event_start_day, 'yyyymmdd' ) <= to_char( sysdate, 'yyyymmdd') and to_char( event_end_day, 'yyyymmdd' ) >= to_char( sysdate, 'yyyymmdd'))";
 		try {
 			ArrayList<Event> result = (ArrayList<Event>)getJdbcTemplate().query(sql,new Object[] {},new DcEventMapper());
 		return result;

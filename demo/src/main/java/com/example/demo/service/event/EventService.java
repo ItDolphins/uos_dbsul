@@ -6,7 +6,9 @@ import com.example.demo.model.Event;
 
 public interface EventService {
 	ArrayList<Event> getDcEventList();
+	ArrayList<Event> getNowDcEventList();
 	ArrayList<Event> getPrEventList();
+	ArrayList<Event> getNowPrEventList();
 	void insertPrEvent(Event event);
 	void insertDcEvent(Event event);
 }
