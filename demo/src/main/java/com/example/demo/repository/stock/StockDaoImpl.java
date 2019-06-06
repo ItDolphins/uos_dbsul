@@ -46,7 +46,7 @@ public class StockMapper implements RowMapper<Stock>{
 	
 	@Override
 	public List<Stock> getStockList(int acnt_store_no) {
-		String sql = "select s.store_no, s.prod_no, s.expdate, s.stock_qnt,p.prod_name from"
+		String sql = "select s.store_no, s.prod_no, s.expdate, s.stock_qnt, p.prod_name from"
 				+ " stock s, prod p where s.store_no = ? and s.prod_no = p.prod_no";
 		List<Stock> stock = (List<Stock>)getJdbcTemplate().query(sql, new Object[] {acnt_store_no},new StockMapper());
 		
@@ -55,7 +55,8 @@ public class StockMapper implements RowMapper<Stock>{
 
 	@Override
 	public Stock getStock(int prod_no, Date expdate, int store_no) {
-		String sql = "select * from stock where prod_no = ? and expdate = ? and store_no = ?";
+		String sql = "select s.store_no, s.prod_no, s.expdate, s.stock_qnt, p.prod_name  from stock s, prod p " +
+				"where s.prod_no = ? and s.expdate = ? and s.store_no = ? and s.prod_no = p.prod_no";
 		Stock stock = (Stock) getJdbcTemplate().queryForObject(sql, new Object[]{prod_no, expdate, store_no}, new StockMapper());
 
 		return stock;
@@ -63,7 +64,8 @@ public class StockMapper implements RowMapper<Stock>{
 
 	@Override
 	public List<Stock> findStock(int prod_no, Date expdate, int store_no) {
-		String sql = "select * from stock where prod_no = ? and expdate = ? and store_no = ?";
+		String sql = "select s.store_no, s.prod_no, s.expdate, s.stock_qnt, p.prod_name  from stock s, prod p " +
+				"where s.prod_no = ? and s.expdate = ? and s.store_no = ? and s.prod_no = p.prod_no";
 		List<Stock> stockList;
 		try {
 			stockList = (List<Stock>) getJdbcTemplate().query(sql, new Object[]{prod_no, expdate, store_no}, new StockMapper());

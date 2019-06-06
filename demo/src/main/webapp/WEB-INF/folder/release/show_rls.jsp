@@ -67,7 +67,7 @@
 			<h3 class="widget-header clearfix">
 				<h3>
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>지점 관리자 정보</span>
+					<span>출고 정보</span>
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
@@ -87,15 +87,15 @@
 							<c:choose>
 								<c:when test="${fn:length(rlsList) > 0}">
 									<c:forEach items="${rlsList}" var="row">
-											<tr>
-												<td>${row.rls_no}</td>
-												<td>${row.store_no}</td>
-												<td>${row.rls_code}</td>
-												<td>${row.rls_date}</td>
-												<td>${row.prod_name}</td>
-												<td>${row.expdate}</td>
-												<td>${row.rls_qnt}</td>
-											</tr>
+										<tr>
+											<td>${row.rls_no}</td>
+											<td>${row.store_no}</td>
+											<td>${row.rls_code}</td>
+											<td>${row.rls_date}</td>
+											<td>${row.prod_name}</td>
+											<td>${row.expdate}</td>
+											<td>${row.rls_qnt}</td>
+										</tr>
 									</c:forEach>
 								</c:when>
 							</c:choose>
@@ -105,16 +105,16 @@
 			</h3>
 		</div>
 		
-	<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-						<button type="button" onclick="location.href= '/alter_admin'" class="btn btn-default btn-lg"
-						        id="selectBtn">정보수정
-						</button>
-						<button type="button" onclick="location.href= '/add_admin_form'"
-						        class="btn btn-default btn-lg"
-						        id="selectBtn2">새 관리자 등록
-						</button>
+		<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
+			<button type="button" onclick="location.href= '/alter_admin'" class="btn btn-default btn-lg"
+			        id="selectBtn">정보수정
+			</button>
+			<button type="button" onclick="location.href= '/add_admin_form'"
+			        class="btn btn-default btn-lg"
+			        id="selectBtn2">새 관리자 등록
+			</button>
+		</div>
 	</div>
 </div>
-
 <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="../footer.jsp"/>

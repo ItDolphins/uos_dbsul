@@ -6,5 +6,5 @@ import com.example.demo.model.Sell;
 
 public interface SellService {
 	void insertSell(Sell sell);
-	List<Sell> getSellList();
+	List<Sell> getSellList(int store_no);
 }

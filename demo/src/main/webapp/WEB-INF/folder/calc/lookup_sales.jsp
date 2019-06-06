@@ -10,7 +10,7 @@
 	<div class="container-fluid primary-content">
 		<!-- PRIMARY CONTENT HEADING -->
 		<div class="primary-content-heading clearfix">
-			<h2>재고 조회</h2>
+			<h2>매출</h2>
 			<div class="sticky-content pull-right">
 				<div class="btn-group btn-dropdown">
 					<button type="button" class="btn btn-default btn-sm btn-favorites"
@@ -73,28 +73,26 @@
 			<h3 class="widget-header clearfix"></h3>
 			<h3>
 				<i class="icon ion-ios-grid-view-outline"
-				   style="padding: 0px 0px 0px 10px;"></i> <span>재고 정보</span>
+				   style="padding: 0px 0px 0px 10px;"></i> <span>매출 내역</span>
 			</h3>
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table id="datatable-column-interactive"
+					<table id="datatable-column-filter"
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 						<tr>
-							<th>물품번호</th>
-							<th>이름</th>
-							<th>유통기한</th>
-							<th>재고</th>
+							<th>지점</th>
+							<th>매출일자</th>
+							<th>매출액</th>
 						</tr>
 						</thead>
 						<c:choose>
-							<c:when test="${fn:length(stockList) > 0}">
-								<c:forEach items="${stockList}" var="row">
-									<tr id="${row.prod_no}">
+							<c:when test="${fn:length(salesList) > 0}">
+								<c:forEach items="${salesList}" var="row">
+									<tr >
+										<td>${row.store_no}</td>
 										<td>${row.prod_no}</td>
-										<td>${row.prod_name}</td>
 										<td>${row.expdate}</td>
-										<td>${row.stock_qnt}</td>
 									</tr>
 								</c:forEach>
 							</c:when>
@@ -106,6 +104,7 @@
 	</div>
 </div>
 <!-- END SHOW HIDE COLUMNS -->
+<script src="/resources/js/queen-table2.js"></script>
 <jsp:include page="../footer.jsp" />
 
 

@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.service.store.StoreInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,10 @@ import com.example.demo.service.stock.StockService;
 
 @Controller
 public class ReleaseController{
-	
+
+	@Autowired
+	StoreInfoService storeInfoService;
+
 	@Autowired
 	ReleaseService rlsService;
 	
@@ -40,19 +45,13 @@ public class ReleaseController{
 	@GetMapping("/show_rls")
 	public ModelAndView rls_Info(ModelAndView mav) {
 		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		int acnt_store_no = account.getStore_no();
-		
-		List<Release> rlsList = rlsService.getReleaseList();
-		
-		for(int i=0; i<rlsList.size(); i++) {
-			int prod_no = rlsList.get(i).getProd_no();
-			if(prodService.checkByProdNo(prod_no)) {
-				rlsList.get(i).setProd_name(prodService.getNameByProdNo(prod_no));
-			}
-		}
+		List<Integer> store_noList =  storeInfoService.getStore_noList(account.getAdmin_no());
+
+		List<Release> rlsList = new ArrayList<>();
+		for( int store_no : store_noList)
+			rlsList.addAll(rlsService.getReleaseList(store_no));
+
 		mav.addObject("rlsList",rlsList);
-		
-		
 		mav.setViewName("release/show_rls");
 
 		return mav;
@@ -60,12 +59,41 @@ public class ReleaseController{
 	
 	@GetMapping("/show_sell")
 	public ModelAndView sell_Info(ModelAndView mav) {
-		
-		List<Sell> sellList = sellService.getSellList();
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Integer> store_noList =  storeInfoService.getStore_noList(account.getAdmin_no());
+
+		List<Sell> sellList = new ArrayList<>();
+		for(int store_no : store_noList){
+			sellList.addAll(sellService.getSellList(store_no));
+		}
+
 		mav.addObject("sellList",sellList);
-		
 		mav.setViewName("release/show_sell");
 		
+		return mav;
+	}
+
+	@GetMapping("/lookup_rls")
+	public ModelAndView lookup_Info(ModelAndView mav) {
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		List<Release> rlsList = rlsService.getReleaseList(account.getStore_no());
+
+		mav.addObject("rlsList",rlsList);
+		mav.setViewName("release/lookup_rls");
+
+		return mav;
+	}
+
+	@GetMapping("/lookup_sell")
+	public ModelAndView lookup_sell(ModelAndView mav) {
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		List<Sell> sellList = sellService.getSellList(account.getStore_no());
+
+		mav.addObject("sellList",sellList);
+		mav.setViewName("release/lookup_sell");
+
 		return mav;
 	}
 	

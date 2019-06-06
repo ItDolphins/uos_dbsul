@@ -23,9 +23,9 @@ $(document).ready(function(){
 			sDom: // redefine sDom without lengthChange and default search box
 				"t"+
 				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
-		}); 
+		});
 
-		$('#datatable-column-filter thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter thead').append('<tr class="row-filter"><th></th><th></th><th></th></tr>');
 		$('#datatable-column-filter thead .row-filter th').each( function() {
 			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
 		});
@@ -38,7 +38,7 @@ $(document).ready(function(){
 		});
 
 		/* column filters */
-		var dtTable = $('#datatable-column-filter4').DataTable({ // use DataTable, not dataTable
+		var dtTable4 = $('#datatable-column-filter4').DataTable({ // use DataTable, not dataTable
 			sDom: // redefine sDom without lengthChange and default search box
 				"t"+
 				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
@@ -50,14 +50,14 @@ $(document).ready(function(){
 		});
 
 		$('#datatable-column-filter2 .row-filter input').on('keyup change', function() {
-			dtTable
+			dtTable4
 				.column($(this).parent().index()+':visible')
 				.search(this.value)
 				.draw();
 		});
 		
 		/* column filters */
-		var dtTable = $('#datatable-column-filter6').DataTable({ // use DataTable, not dataTable
+		var dtTable6 = $('#datatable-column-filter6').DataTable({ // use DataTable, not dataTable
 			sDom: // redefine sDom without lengthChange and default search box
 				"t"+
 				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
@@ -69,35 +69,19 @@ $(document).ready(function(){
 		});
 
 		$('#datatable-column-filter6 .row-filter input').on('keyup change', function() {
-			dtTable
+			dtTable6
 				.column($(this).parent().index()+':visible')
 				.search(this.value)
 				.draw();
 		});
-		
-		var dtTable = $('#datatable-column-filter5').DataTable({ // use DataTable, not dataTable
+
+
+
+		var dtTable7 = $('#datatable-column-filter7').DataTable({ // use DataTable, not dataTable
 			sDom: // redefine sDom without lengthChange and default search box
 				"t"+
 				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
-		}); 
-
-		$('#datatable-column-filter5 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th></tr>');
-		$('#datatable-column-filter5 thead .row-filter th').each( function() {
-			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
 		});
-
-		$('#datatable-column-filter5 .row-filter input').on('keyup change', function() {
-			dtTable
-				.column($(this).parent().index()+':visible')
-				.search(this.value)
-				.draw();
-		});
-		
-		var dtTable = $('#datatable-column-filter7').DataTable({ // use DataTable, not dataTable
-			sDom: // redefine sDom without lengthChange and default search box
-				"t"+
-				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
-		}); 
 
 		$('#datatable-column-filter7 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>');
 		$('#datatable-column-filter7 thead .row-filter th').each( function() {
@@ -105,12 +89,84 @@ $(document).ready(function(){
 		});
 
 		$('#datatable-column-filter7 .row-filter input').on('keyup change', function() {
-			dtTable
+			dtTable7
 				.column($(this).parent().index()+':visible')
 				.search(this.value)
 				.draw();
 		});
-		
+
+		var dtTable5 = $('#datatable-column-filter5').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		});
+
+		$('#datatable-column-filter5 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter5 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter5 .row-filter input').on('keyup change', function() {
+			dtTable5
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
+
+		var dtTable8 = $('#datatable-column-filter8').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		});
+
+		$('#datatable-column-filter8 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter8 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter8 .row-filter input').on('keyup change', function() {
+			dtTable8
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
+
+		var dtTable9 = $('#datatable-column-filter9').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		});
+
+		$('#datatable-column-filter9 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter9 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter9 .row-filter input').on('keyup change', function() {
+			dtTable9
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
+
+		var dtTable10 = $('#datatable-column-filter10').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		});
+
+		$('#datatable-column-filter10 thead').append('<tr class="row-filter"><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter10 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter10 .row-filter input').on('keyup change', function() {
+			dtTable10
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
+
 		/* column interactive */
 		$('#datatable-column-interactive').dataTable({
 			sDom: "RC<'clearfix'>" +

@@ -3,13 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <jsp:include page="../header.jsp"/>
 <!-- COLUMN RIGHT -->
 <div id="col-right" class="col-right ">
 	<div class="container-fluid primary-content">
 		<!-- PRIMARY CONTENT HEADING -->
 		<div class="primary-content-heading clearfix">
-			<h2>Search Business Request</h2>
+			<h2>Manage Admin</h2>
 			<div class="sticky-content pull-right">
 				<div class="btn-group btn-dropdown">
 					<button type="button" class="btn btn-default btn-sm btn-favorites" data-toggle="dropdown"><i
@@ -66,43 +67,35 @@
 			<h3 class="widget-header clearfix">
 				<h3>
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>업체 요청 조회</span>
+					<span>출고 정보</span>
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
-						<table id="datatable-column-filter10" style="border-right: #ccc 1px solid"
-						       class="table table-sorting table-hover table-bordered colored-header datatable">
+						<table id="datatable-column-filter6" style="border-right: #ccc 1px solid"
+						       class="table table-sorting table-striped table-hover datatable dataTable no-footer">
 							<thead>
 							<tr>
-								<th>요청번호</th>
-								<th>발주번호</th>
+								<th>출고번호</th>
 								<th>지점번호</th>
-								<th>업체 확인 여부</th>
-								<th>요청 일자</th>
-								<th>배송 일자</th>
-								<th>배송 상태</th>
-								<th>물품 번호</th>
-								<th>물품 이름</th>
-								<th>요청 수량</th>
+								<th>출고코드</th>
+								<th>출고시간</th>
+								<th>상품이름</th>
+								<th>유통기간</th>
+								<th>수량</th>
 							</tr>
 							</thead>
 							<c:choose>
-								<c:when test="${fn:length(busireqList) > 0}">
-									<c:forEach items="${busireqList}" var="row">
-										<c:if test="${row.deliv_state ne '배송완료'}">
-											<tr>
-												<td>${row.req_no}</td>
-												<td>${row.order_no}</td>
-												<td>${row.store_no}</td>
-												<td>${row.busi_conf_flag}</td>
-												<td>${row.order_date}</td>
-												<td>${row.deliv_date}</td>
-												<td>${row.deliv_state}</td>
-												<td>${row.prod_no}</td>
-												<td>${row.prod_name}</td>
-												<td>${row.req_qnt}</td>
-											</tr>
-										</c:if>
+								<c:when test="${fn:length(rlsList) > 0}">
+									<c:forEach items="${rlsList}" var="row">
+										<tr>
+											<td>${row.rls_no}</td>
+											<td>${row.store_no}</td>
+											<td>${row.rls_code}</td>
+											<td>${row.rls_date}</td>
+											<td>${row.prod_name}</td>
+											<td>${row.expdate}</td>
+											<td>${row.rls_qnt}</td>
+										</tr>
 									</c:forEach>
 								</c:when>
 							</c:choose>
@@ -111,69 +104,17 @@
 				</div>
 			</h3>
 		</div>
-		<div class="widget">
-			<h3 class="widget-header clearfix" style="background-color: white">
-				<div class="btn-group widget-header-toolbar visible-lg">
-					<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-collapse">
-						<i class="icon ion-ios-arrow-down" data-target="#wg"></i>
-					</a>
-					<a href="#" title="Remove" class="btn btn-link btn-remove">
-						<i class="icon ion-ios-close-empty"></i>
-					</a>
-				</div>
-				<h3>
-					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>배송 완료된 업체 요청</span>
-					<div class="widget-content"></div>
-				</h3>
-				<div id="wg" class="collapse">
-					<div class="table-responsive">
-						<table id="datatable-column-filter9" style="border-right: #ccc 1px solid"
-						       class="table table-sorting table-hover table-bordered colored-header datatable">
-							<thead>
-							<tr>
-								<th>요청번호</th>
-								<th>발주번호</th>
-								<th>지점번호</th>
-								<th>업체 확인 여부</th>
-								<th>요청 일자</th>
-								<th>배송 일자</th>
-								<th>배송 상태</th>
-								<th>물품 번호</th>
-								<th>물품 이름</th>
-								<th>요청 수량</th>
-							</tr>
-							</thead>
-							<c:choose>
-								<c:when test="${fn:length(busireqList) > 0}">
-									<c:forEach items="${busireqList}" var="row">
-										<c:if test="${row.deliv_state eq '배송완료'}">
-											<tr>
-												<td>${row.req_no}</td>
-												<td>${row.order_no}</td>
-												<td>${row.store_no}</td>
-												<td>${row.busi_conf_flag}</td>
-												<td>${row.order_date}</td>
-												<td>${row.deliv_date}</td>
-												<td>${row.deliv_state}</td>
-												<td>${row.prod_no}</td>
-												<td>${row.prod_name}</td>
-												<td>${row.req_qnt}</td>
-											</tr>
-										</c:if>
-									</c:forEach>
-								</c:when>
-							</c:choose>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</h3>
+		
+		<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
+			<button type="button" onclick="location.href= '/alter_admin'" class="btn btn-default btn-lg"
+			        id="selectBtn">정보수정
+			</button>
+			<button type="button" onclick="location.href= '/add_admin_form'"
+			        class="btn btn-default btn-lg"
+			        id="selectBtn2">새 관리자 등록
+			</button>
 		</div>
-		</h3>
 	</div>
 </div>
-</div>
-
 <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="../footer.jsp"/>

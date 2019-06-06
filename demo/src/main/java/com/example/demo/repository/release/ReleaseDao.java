@@ -8,7 +8,7 @@ import com.example.demo.model.Release;
 import com.example.demo.model.Stock;
 
 public interface ReleaseDao {
-	List<Release> getReleaseList();
+	List<Release> getReleaseList(int store_no);
 	void insertRelease(Stock stock,String rls_code,Timestamp rls_date,int rls_qnt);
 	int getMaxRlsno();
 }

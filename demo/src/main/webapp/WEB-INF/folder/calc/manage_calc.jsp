@@ -10,7 +10,7 @@
 	<div class="container-fluid primary-content">
 		<!-- PRIMARY CONTENT HEADING -->
 		<div class="primary-content-heading clearfix">
-			<h2>재고 조회</h2>
+			<h2>정산</h2>
 			<div class="sticky-content pull-right">
 				<div class="btn-group btn-dropdown">
 					<button type="button" class="btn btn-default btn-sm btn-favorites"
@@ -73,7 +73,7 @@
 			<h3 class="widget-header clearfix"></h3>
 			<h3>
 				<i class="icon ion-ios-grid-view-outline"
-				   style="padding: 0px 0px 0px 10px;"></i> <span>재고 정보</span>
+				   style="padding: 0px 0px 0px 10px;"></i> <span>정산 내역</span>
 			</h3>
 			<div class="widget-content">
 				<div class="table-responsive">
@@ -81,20 +81,22 @@
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 						<tr>
-							<th>물품번호</th>
-							<th>이름</th>
-							<th>유통기한</th>
-							<th>재고</th>
+							<th>정산연월</th>
+							<th>유지비</th>
+							<th>인건비</th>
+							<th>월매출액</th>
+							<th>본사 수수료</th>
 						</tr>
 						</thead>
 						<c:choose>
-							<c:when test="${fn:length(stockList) > 0}">
-								<c:forEach items="${stockList}" var="row">
-									<tr id="${row.prod_no}">
-										<td>${row.prod_no}</td>
-										<td>${row.prod_name}</td>
-										<td>${row.expdate}</td>
-										<td>${row.stock_qnt}</td>
+							<c:when test="${fn:length(calcList) > 0}">
+								<c:forEach items="${calcList}" var="row">
+									<tr id="${row.calc_yrmn}">
+										<td>${row.calc_yrmn}</td>
+										<td>${row.maint_amt}</td>
+										<td>${row.labor_amt}</td>
+										<td>${row.mon_sales_amt}</td>
+										<td>${row.head_charge}</td>
 									</tr>
 								</c:forEach>
 							</c:when>

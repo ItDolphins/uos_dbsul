@@ -6,5 +6,5 @@ import com.example.demo.model.Sell;
 
 public interface SellDao {
 	void insertSell(Sell sell);
-	List<Sell> getSellList();
+	List<Sell> getSellList(int store_no);
 }

@@ -9,6 +9,6 @@ import com.example.demo.model.Stock;
 
 public interface ReleaseService {
 	void insertRelease(Stock stock, String rls_code, Timestamp rls_date,int rls_qnt);
-	List<Release> getReleaseList();
+	List<Release> getReleaseList(int store_no);
 	int getMaxRlsno();
 }

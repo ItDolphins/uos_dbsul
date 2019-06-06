@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <jsp:include page="../header.jsp" />
 <!-- COLUMN RIGHT -->
 <div id="col-right" class="col-right ">
 	<div class="container-fluid primary-content">
 		<!-- PRIMARY CONTENT HEADING -->
 		<div class="primary-content-heading clearfix">
-			<h2>재고조회</h2>
+			<h2>재고 조회</h2>
 			<div class="sticky-content pull-right">
 				<div class="btn-group btn-dropdown">
 					<button type="button" class="btn btn-default btn-sm btn-favorites"
@@ -77,7 +77,7 @@
 			</h3>
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table id="datatable-column-interactive"
+					<table id="datatable-column-filter5"
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 						<tr>

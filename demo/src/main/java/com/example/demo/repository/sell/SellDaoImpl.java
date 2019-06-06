@@ -34,11 +34,14 @@ public class SellDaoImpl extends JdbcDaoSupport implements SellDao{
 	public class SellMapper implements RowMapper<Sell>{
 		public Sell mapRow(ResultSet rs,int rowNum) throws SQLException{
 			Sell sell = new Sell();
-			
+
+			sell.setStore_no(rs.getInt("store_no"));
 			sell.setMember_no(rs.getInt("member_no"));
 			sell.setRls_no(rs.getInt("rls_no"));
 			sell.setSell_no(rs.getInt("sell_no"));
 			sell.setSell_price(rs.getInt("sell_price"));
+			sell.setProd_name(rs.getString("prod_name"));
+			sell.setRls_qnt(rs.getInt("rls_qnt"));
 			
 			return sell;
 		}
@@ -50,9 +53,10 @@ public class SellDaoImpl extends JdbcDaoSupport implements SellDao{
 	}
 
 	@Override
-	public List<Sell> getSellList() {
-		String sql = "SELECT * FROM sell";
-		List<Sell> sellList = getJdbcTemplate().query(sql,new Object[] {},new SellMapper());
+	public List<Sell> getSellList(int store_no) {
+		String sql = "SELECT r.store_no , sell_no, r.rls_no, member_no, sell_price, p.prod_name, r.rls_qnt FROM sell s, rls r, prod p " +
+				"where r.store_no = ? and s.rls_no = r.rls_no and r.prod_no = p.prod_no ";
+		List<Sell> sellList = getJdbcTemplate().query(sql,new Object[] {store_no},new SellMapper());
 		
 		return sellList;
 	}

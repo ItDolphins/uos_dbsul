@@ -36,6 +36,7 @@ public class  WrhsInfoDao extends JdbcDaoSupport {
 			wrhsInfo.setWrhs_date(rs.getDate("wrhs_date"));
 			wrhsInfo.setExpdate(rs.getDate("expdate"));
 			wrhsInfo.setProd_no(rs.getInt("prod_no"));
+			wrhsInfo.setProd_name(rs.getString("prod_name"));
 			wrhsInfo.setReq_qnt(rs.getInt("req_qnt"));
 			wrhsInfo.setStore_no(rs.getInt("store_no"));
 
@@ -45,8 +46,9 @@ public class  WrhsInfoDao extends JdbcDaoSupport {
 
 
 	public List<WrhsInfo> findByStore_no(int store_no){
-		String sql = "select *  from wrhs w, busireq b, torder o " +
-				"where w.req_no = b.req_no and b.order_no = o.order_no  and o.store_no = ?";
+		String sql = "select wrhs_no, b.req_no, o.order_no, wrhs_date, expdate, p.prod_no, p.prod_name, b.req_qnt, o.store_no   " +
+				"from wrhs w, busireq b, torder o, prod p  " +
+				"where o.store_no = ? and w.req_no = b.req_no and b.order_no = o.order_no  and b.prod_no = p.prod_no ";
 		List<WrhsInfo> wrhsInfoList = (List<WrhsInfo>) getJdbcTemplate().query(sql, new Object[]{store_no}, new WrhsInfoMapper());
 		return wrhsInfoList;
 	}

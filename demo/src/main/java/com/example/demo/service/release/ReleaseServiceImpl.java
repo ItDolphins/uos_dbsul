@@ -26,8 +26,8 @@ public class ReleaseServiceImpl implements ReleaseService{
 	}
 
 	@Override
-	public List<Release> getReleaseList() {
-		List<Release> rlsList = releaseDao.getReleaseList();
+	public List<Release> getReleaseList(int store_no) {
+		List<Release> rlsList = releaseDao.getReleaseList(store_no);
 		return rlsList;
 	}
 

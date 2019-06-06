@@ -71,25 +71,31 @@
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
-						<table id="datatable-column-filter4" style="border-right: #ccc 1px solid"
+						<table id="datatable-column-filter7" style="border-right: #ccc 1px solid"
 						       class="table table-sorting table-striped table-hover datatable dataTable no-footer">
 							<thead>
 							<tr>
 								<th>출고번호</th>
 								<th>판매번호</th>
+								<th>지점번호</th>
 								<th>회원번호</th>
+								<th>물품이름</th>
+								<th>수량</th>
 								<th>판매가격</th>
 							</tr>
 							</thead>
 							<c:choose>
 								<c:when test="${fn:length(sellList) > 0}">
 									<c:forEach items="${sellList}" var="row">
-											<tr>
-												<td>${row.rls_no}</td>
-												<td>${row.sell_no}</td>
-												<td>${row.member_no}</td>
-												<td>${row.sell_price}</td>
-											</tr>
+										<tr>
+											<td>${row.rls_no}</td>
+											<td>${row.sell_no}</td>
+											<td>${row.store_no}</td>
+											<td>${row.member_no}</td>
+											<td>${row.prod_name}</td>
+											<td>${row.rls_qnt}</td>
+											<td>${row.sell_price}</td>
+										</tr>
 									</c:forEach>
 								</c:when>
 							</c:choose>
@@ -98,6 +104,7 @@
 				</div>
 			</h3>
 		</div>
+	</div>
 </div>
 
 <!-- END SHOW HIDE COLUMNS -->

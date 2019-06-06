@@ -81,7 +81,7 @@
 			</h3>
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table id="datatable-column-interactive2" style="border-right: #ccc 1px solid"
+					<table id="datatable-column-filter9" style="border-right: #ccc 1px solid"
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 						<tr>
@@ -92,6 +92,7 @@
 							<th>입고일자</th>
 							<th>유통기한</th>
 							<th>상품번호</th>
+							<th>상품이름</th>
 							<th>요청수량</th>
 						</tr>
 						</thead>
@@ -110,6 +111,7 @@
 											<td>${wrhs_date}</td>
 											<td>${row.expdate}</td>
 											<td>${row.prod_no}</td>
+											<td>${row.prod_name}</td>
 											<td>${row.req_qnt}</td>
 										</tr>
 									</c:if>
@@ -139,7 +141,7 @@
 				</h3>
 				<div class="widget-content">
 					<div class="table-responsive">
-						<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
+						<table id="datatable-column-filter8" style="border-right: #ccc 1px solid"
 						       class="table table-sorting table-hover table-bordered colored-header datatable">
 							<thead>
 							<tr>
@@ -150,6 +152,7 @@
 								<th>입고일자</th>
 								<th>유통기한</th>
 								<th>상품번호</th>
+								<th>상품이름</th>
 								<th>요청수량</th>
 							</tr>
 							</thead>
@@ -168,6 +171,7 @@
 												<td>${wrhs_date}</td>
 												<td>${row.expdate}</td>
 												<td>${row.prod_no}</td>
+												<td>${row.prod_name}</td>
 												<td>${row.req_qnt}</td>
 											</tr>
 										</c:if>
