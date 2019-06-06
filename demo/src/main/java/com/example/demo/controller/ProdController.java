@@ -26,7 +26,7 @@ public class ProdController {
 	
 	@GetMapping("/prod_Info")
 	public ModelAndView prod_Info(ModelAndView mav) {
-		List<Prod> prodList = prodService.getProdList();
+		List<Prod> prodList = prodService.getProdListNow();
 		
 		mav.addObject("prodList",prodList);
 		

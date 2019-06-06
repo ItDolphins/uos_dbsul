@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +12,9 @@ public class Event {
 	
 	private int dc_no;
 	
-	private int event_prod;
+	private String event_prod;
+	
+	private int event_prod_no;
 	
 	private String event_name;
 	
@@ -20,7 +22,9 @@ public class Event {
 	
 	private Date event_end_day;
 	
-	private int present_prod;
+	private String present_prod;
+	
+	private int present_prod_no;
 	
 	private int dc_rate;
 	

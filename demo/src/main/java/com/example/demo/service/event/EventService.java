@@ -5,5 +5,8 @@ import java.util.ArrayList;
 import com.example.demo.model.Event;
 
 public interface EventService {
-	ArrayList<Event> getEventList();
+	ArrayList<Event> getDcEventList();
+	ArrayList<Event> getPrEventList();
+	void insertPrEvent(Event event);
+	void insertDcEvent(Event event);
 }

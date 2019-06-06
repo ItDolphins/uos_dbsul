@@ -93,6 +93,15 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label for="" class="col-sm-3 control-label">판매여부</label>
+									<div class="col-sm-9">
+										<select id="prod_code" name="prod_code" class="select-ticket-priority">
+											<option value="Y">Y</option>
+											<option value="N" >N</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
 									<div class="col-sm-offset-3 col-sm-9">
 										<button type="submit" class="btn btn-primary">양식 제출</button>
 										<button type="button" class="btn btn-primary"  onclick="location.href = '/prod_manage'">취소</button>
@@ -106,19 +115,10 @@
         </div>
     </div>
 </div>
-<script src="/resources/js/jquery/jquery-2.1.0.min.js"></script>
-	<script src="/resources/js/bootstrap/bootstrap.js"></script>
-	<script src="/resources/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	<script src="/resources/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="/resources/js/queen-common.js"></script>
-	<script src="/resources/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	<script src="/resources/js/plugins/bootstrap-slider/bootstrap-slider.js"></script>
-	<script src="/resources//js/queen-form-layouts.js"></script>
+
 
 <jsp:include page="../footer.jsp"/>
 
 <script>
-	$(document).ready(function(){
-		$('#dmg_risk').val('${prod.dmg_risk}').prop("selected",true);
-	});
+
 </script>

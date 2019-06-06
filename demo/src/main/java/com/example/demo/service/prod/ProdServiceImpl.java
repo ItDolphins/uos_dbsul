@@ -21,6 +21,11 @@ public class ProdServiceImpl implements ProdService {
 		ArrayList<Prod> prod = prodDao.findAllProd();
 		return prod;
 	}
+	
+	public ArrayList<Prod> getProdListNow() {
+		ArrayList<Prod> prod = prodDao.findAllProdNow();
+		return prod;
+	}
 
 	@Override 
 	public void insertProd(Prod prod) {
@@ -64,6 +69,13 @@ public class ProdServiceImpl implements ProdService {
 	public int getPriceByProdNo(int prod_no) {
 		int price = prodDao.getPriceByProdNo(prod_no);
 		return price;
+	}
+
+	@Override
+	public int getNoByProdName(String prod_name) {
+		// TODO Auto-generated method stub
+		int prod_no=prodDao.findNoByProdName(prod_name);
+		return prod_no;
 	}
 
 	

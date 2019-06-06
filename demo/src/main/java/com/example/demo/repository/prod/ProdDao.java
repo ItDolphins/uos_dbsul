@@ -8,6 +8,7 @@ import com.example.demo.model.Prod;
 
 public interface ProdDao {
 	ArrayList<Prod> findAllProd();
+	ArrayList<Prod> findAllProdNow();
 	void insertProdToDB(Prod prod);
 	void alterProdToDB(Prod prod);
 	Busi matchBusiName(String busi_name);
@@ -15,4 +16,5 @@ public interface ProdDao {
 	Optional<String> findByProdNo(int prod_no);
 	String getNameByProdNo(int prod_no);
 	int getPriceByProdNo(int prod_no);
+	int findNoByProdName(String prod_name );
 }

@@ -97,6 +97,7 @@
 									<th>가격</th>
 									<th>업체명</th>
 									<th>위험도</th>
+									<th>판매여부</th>
 								</tr>
 							</thead>
 							<c:choose>
@@ -111,6 +112,7 @@
 												<td>${row.prod_price}</td>
 												<td>${row.busi_name}</td>
 												<td>${row.dmg_risk}</td>
+												<td>${row.prod_code}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -37,7 +37,19 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 	
 	@Override
 	public ArrayList<Prod> findAllProd() {
-		String sql = "SELECT prod_no, prod_price, dmg_risk, prod_name, b.busi_name  FROM PROD  p, BUSI  b where p.busi_no=b.busi_no";
+		String sql = "SELECT prod_no, prod_price, dmg_risk, prod_name, b.busi_name, prod_code FROM PROD  p, BUSI  b where p.busi_no=b.busi_no";
+		try {
+			ArrayList<Prod> result = (ArrayList<Prod>)getJdbcTemplate().query(sql,new Object[] {},new ProdMapper());
+		return result;
+		}catch (EmptyResultDataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	public ArrayList<Prod> findAllProdNow() {
+		String sql = "SELECT prod_no, prod_price, dmg_risk, prod_name, b.busi_name,prod_code   FROM PROD  p, BUSI  b where p.busi_no=b.busi_no and p.prod_code='Y'";
 		try {
 			ArrayList<Prod> result = (ArrayList<Prod>)getJdbcTemplate().query(sql,new Object[] {},new ProdMapper());
 		return result;
@@ -57,8 +69,8 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 			prod.setDmg_risk(rs.getString("dmg_risk"));
 			prod.setProd_name(rs.getString("prod_name"));
 			prod.setBusi_name(rs.getString("busi_name"));
-			
-			
+			prod.setProd_code(rs.getString("prod_code"));
+			//prod.setEvent_code(rs.getString("event_code"));
 			return prod;
 		}
 	}
@@ -98,7 +110,7 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 	@Override
 	public Prod findProdByNo(String prod_no) {
 		// TODO Auto-generated method stub
-		String sql="SELECT prod_no, prod_price, dmg_risk, prod_name, b.busi_name  FROM PROD  p, BUSI  b where p.busi_no=b.busi_no and p.prod_no=?";
+		String sql="SELECT prod_no, prod_price, dmg_risk, prod_name, b.busi_name, prod_code  FROM PROD  p, BUSI  b where p.busi_no=b.busi_no and p.prod_no=?";
 		Prod prod = (Prod)getJdbcTemplate().queryForObject(sql,new Object[] {prod_no},new ProdMapper());
 		
 		return prod;
@@ -107,9 +119,9 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 	@Override
 	public void alterProdToDB(Prod prod) {
 		// TODO Auto-generated method stub
-		String sql = "update prod set prod_name=?,prod_price=?,dmg_risk=?,busi_no=? where prod_no=?";
+		String sql = "update prod set prod_name=?,prod_price=?,dmg_risk=?,busi_no=?, prod_code=? where prod_no=?";
 		getJdbcTemplate().update(sql,new Object[] {prod.getProd_name(),prod.getProd_price(),prod.getDmg_risk(),
-			prod.getBusi_no(), prod.getProd_no()});
+			prod.getBusi_no(),prod.getProd_code(), prod.getProd_no()});
 	}
 	
 	@Override
@@ -136,5 +148,14 @@ public class ProdDaoImpl extends JdbcDaoSupport implements ProdDao {
 		int price = getJdbcTemplate().queryForObject(sql,new Object[] {prod_no},int.class);
 		
 		return price;
+	}
+
+	@Override
+	public int findNoByProdName(String prod_name) {
+		// TODO Auto-generated method stub
+		String sql="select prod_no from prod where prod_name = ?";
+		int no = getJdbcTemplate().queryForObject(sql,new Object[] {prod_name},int.class);
+		
+		return no;
 	}
 }
