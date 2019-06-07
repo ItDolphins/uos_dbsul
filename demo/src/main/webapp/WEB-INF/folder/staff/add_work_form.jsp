@@ -86,7 +86,7 @@
 										<input type="submit" onclick="return submitting()"
 										       class="btn btn-primary btn-block" value="신규 등록">
 										<input type="button" class="btn btn-primary btn-block"
-										       onclick="location.href = '/manage_work?staff_no='+${work.staff_no}" value="취소">
+										       onclick="location.href = '/manage_work?staff_no='+;${work.staff_no}" value="취소">
 									</div>
 								</div>
 							</fieldset>
@@ -121,9 +121,9 @@
         document.getElementById("startTime").value = hh + ":00";
         document.getElementById("endTime").value = hh + ":00";
         today = "2018-12-31";
-        document.getElementById("StartDate").setAttribute("min", today);
+        document.getElementById("startDate").setAttribute("min", today);
 	    document.getElementById("endDate").setAttribute("min", today);
-    }
+    };
     function submitting() {
         var date = document.getElementById("startDate").value;
         var time = document.getElementById("startTime").value;

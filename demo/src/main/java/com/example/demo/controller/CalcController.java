@@ -3,8 +3,11 @@ package com.example.demo.controller;
 import com.example.demo.model.Account;
 import com.example.demo.model.Calc;
 import com.example.demo.model.Sales;
+import com.example.demo.model.Staff;
 import com.example.demo.service.calc.CalcService;
 import com.example.demo.service.calc.SalesService;
+import com.example.demo.service.staff.StaffService;
+import com.example.demo.service.staff.WorkService;
 import com.example.demo.service.store.StoreInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,13 +35,17 @@ public class CalcController {
 	@Autowired
 	CalcService calcService;
 
+	@Autowired
+	WorkService workService;
+
+	@Autowired
+	StaffService staffService;
 
 	@GetMapping("/manage_sales")
 	public ModelAndView manage_sales(ModelAndView mav) {
 		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		List<Sales> salesList = salesService.getSalesList(account.getStore_no());
-		mav.addObject("store_no", account.getStore_no());
 		mav.addObject("salesList", salesList);
 		mav.setViewName("calc/manage_sales");
 
@@ -46,8 +53,10 @@ public class CalcController {
 	}
 
 	@PostMapping("/calculate_sales")
-	public String calculate_sales(@RequestParam("sales_date") String salesdate, @RequestParam("store_no") int store_no) {
+	public String calculate_sales(@RequestParam("sales_date") String salesdate) {
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		int store_no = account.getStore_no();
 
 		Date sales_date ;
 		try{
@@ -78,6 +87,43 @@ public class CalcController {
 		mav.setViewName("calc/manage_calc");
 
 		return mav;
+	}
+
+	@PostMapping("/calculate_calc")
+	public String calculate_calc(@RequestParam("calc_yrmn") String yearMonth ,@RequestParam("maint_amt") int maint_amt) {
+		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int store_no = account.getStore_no();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+
+		Date calc_yrmn ;
+		try{
+			calc_yrmn = sdf.parse(yearMonth);
+		}
+		catch (ParseException e){
+			return "redirect:/manage_calc";
+
+		}
+
+
+		Calc calc = new Calc();
+		calc.setStore_no(store_no);
+		calc.setCalc_yrmn(calc_yrmn);
+		calc.setLabor_amt(0);
+		calc.setMaint_amt(maint_amt);
+		List<Staff> staffList = staffService.getStaffList(store_no);
+		for (Staff staff : staffList) {
+			calc.setLabor_amt(calc.getLabor_amt() + workService.getWorkSum(staff.getStaff_no(),yearMonth.replaceAll("-","")).getSalarySum());
+		}
+
+		calc = calcService.calculate_calc(calc);
+
+		if(calcService.isCalcExist(store_no, calc_yrmn)) {
+			calcService.updateCalc(calc);
+		}
+		else
+			calcService.insertCalc(calc);
+
+		return "redirect:/manage_calc";
 	}
 
 	@GetMapping("/lookup_sales")

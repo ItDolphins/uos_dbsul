@@ -92,7 +92,6 @@
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-9">
 								<button type="submit" class="btn btn-primary">매출 계산
-									<input type="hidden" class="form-control" id="store_no" name="store_no" value="${store_no}">
 								</button>
 							</div>
 						</div>
@@ -183,7 +182,6 @@
         document.getElementById("sales_date").setAttribute("min", today);
     }
 </script>
-<script src="/resources/js/queen-table2.js"></script>
 <jsp:include page="../footer.jsp"/>
 
 

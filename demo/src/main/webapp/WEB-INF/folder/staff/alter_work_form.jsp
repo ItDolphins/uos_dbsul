@@ -90,7 +90,7 @@
 										<input type="submit" onclick="return submitting()"
 										       class="btn btn-primary btn-block" value="정보 수정">
 										<input type="button" class="btn btn-primary btn-block"
-										       onclick="location.href = '/alter_work?staff_no='+${work.staff_no}" value="취소">
+										       onclick="location.href = '/alter_work?staff_no='+;${work.staff_no}" value="취소">
 									</div>
 								</div>
 							</fieldset>
@@ -117,9 +117,9 @@
         document.getElementById("endDate").setAttribute("max", today);
         document.getElementById("startDate").setAttribute("max", today);
         today = "2018-12-31";
-        document.getElementById("StartDate").setAttribute("min", today);
+        document.getElementById("startDate").setAttribute("min", today);
         document.getElementById("endDate").setAttribute("min", today);
-    }
+    };
 
     function submitting() {
         var date = document.getElementById("startDate").value;

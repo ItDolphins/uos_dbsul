@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="../header.jsp" />
 <!-- COLUMN RIGHT -->
@@ -77,7 +77,7 @@
 			</h3>
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table id="datatable-column-filter6"
+					<table id="datatable-column-filter7"
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 						<tr>
@@ -87,18 +87,21 @@
 							<th>인건비</th>
 							<th>월매출액</th>
 							<th>본사 수수료</th>
+							<th>순이익</th>
 						</tr>
 						</thead>
 						<c:choose>
 							<c:when test="${fn:length(calcList) > 0}">
 								<c:forEach items="${calcList}" var="row">
-									<tr id="${row.store_no}">
+									<fmt:formatDate value="${row.calc_yrmn}" pattern="yyyy-MM" var="calc_yrmn"/>
+									<tr id="${calc_yrmn}">
 										<td>${row.store_no}</td>
-										<td>${row.calc_yrmn}</td>
+										<td>${calc_yrmn}</td>
 										<td>${row.maint_amt}</td>
 										<td>${row.labor_amt}</td>
 										<td>${row.mon_sales_amt}</td>
 										<td>${row.head_charge}</td>
+										<td>${row.net_profit}</td>
 									</tr>
 								</c:forEach>
 							</c:when>

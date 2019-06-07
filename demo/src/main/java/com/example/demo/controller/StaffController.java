@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import java.sql.Timestamp;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -106,15 +107,32 @@ public class StaffController {
 
 		Staff staff = staffService.getStaff(staff_no);
 		List<Work> workList = workService.getWorkList(staff_no);
-
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		WorkSum workSum;
+		workSum = workService.getWorkSum(staff_no, sdf.format(new Date()));
 
-		WorkSum workSum = workService.getWorkSum(staff_no, sdf.format(new Date()));
 
 		mav.addObject("workSum", workSum);
 		mav.addObject("staff", staff);
 		mav.addObject("workList", workList);
 		mav.setViewName("staff/manage_work");
+		return mav;
+	}
+
+	@RequestMapping("/lookup_workSum")
+	public ModelAndView lookup_workSum(ModelAndView mav, HttpServletRequest request) {
+
+		int staff_no = Integer.parseInt(request.getParameter("staff_no"));
+		String yrmn  = request.getParameter("yrmn");
+
+		Staff staff = staffService.getStaff(staff_no);
+
+		WorkSum workSum;
+		workSum = workService.getWorkSum(staff_no, yrmn.replaceAll("-",""));
+
+		mav.addObject("workSum", workSum);
+		mav.addObject("staff", staff);
+		mav.setViewName("staff/lookup_workSum");
 		return mav;
 	}
 
@@ -143,16 +161,16 @@ public class StaffController {
 	@RequestMapping("/process_alter_work")
 	public String process_alter_work(@ModelAttribute("work") Work work, @RequestParam("ex_work_start_time") Timestamp ex_work_start_time) {
 		System.out.println(ex_work_start_time);
-		workService.updateWork(work,ex_work_start_time);
+		workService.updateWork(work, ex_work_start_time);
 		int staff_no = work.getStaff_no();
 
-		return "redirect:/alter_work?staff_no="+staff_no;
+		return "redirect:/alter_work?staff_no=" + staff_no;
 	}
 
 	@GetMapping("/add_work_form")
 	public ModelAndView add_work_form(ModelAndView mav, HttpServletRequest request) {
 		int staff_no = Integer.parseInt(request.getParameter("staff_no"));
-		Work work= new Work();
+		Work work = new Work();
 		work.setStaff_no(staff_no);
 		mav.addObject("work", work);
 		mav.setViewName("staff/add_work_form");
@@ -164,6 +182,6 @@ public class StaffController {
 		int staff_no = work.getStaff_no();
 		workService.insertWork(work);
 
-		return "redirect:/manage_work?staff_no="+staff_no;
+		return "redirect:/manage_work?staff_no=" + staff_no;
 	}
 }

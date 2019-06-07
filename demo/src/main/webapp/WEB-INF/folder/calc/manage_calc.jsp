@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="../header.jsp" />
 <!-- COLUMN RIGHT -->
@@ -76,8 +76,33 @@
 				   style="padding: 0px 0px 0px 10px;"></i> <span>정산 내역</span>
 			</h3>
 			<div class="widget-content">
+				<form class="form-horizontal form-ticket" role="form", action="/calculate_calc" method="post" >
+					<fieldset>
+						<legend>등록 양식</legend>
+						<div class="form-group">
+							<label for="calc_yrmn" class="col-sm-3 control-label">정산연월</label>
+							<div class="col-sm-9">
+								<input type="month" class="form-control" id="calc_yrmn" name="calc_yrmn" placeholder="정산연월" required="required">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="maint_amt" class="col-sm-3 control-label">유지비</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="maint_amt" name="maint_amt" placeholder="유지비"  value="1000000"  required="required">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button type="submit" class="btn btn-primary">정산
+								</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="widget-content">
 				<div class="table-responsive">
-					<table id="datatable-column-filter5"
+					<table id="datatable-column-filter6"
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
 						<thead>
 						<tr>
@@ -86,17 +111,20 @@
 							<th>인건비</th>
 							<th>월매출액</th>
 							<th>본사 수수료</th>
+							<th>순이익</th>
 						</tr>
 						</thead>
 						<c:choose>
 							<c:when test="${fn:length(calcList) > 0}">
 								<c:forEach items="${calcList}" var="row">
-									<tr id="${row.calc_yrmn}">
-										<td>${row.calc_yrmn}</td>
+									<fmt:formatDate value="${row.calc_yrmn}" pattern="yyyy-MM" var="calc_yrmn"/>
+									<tr id="${calc_yrmn}">
+										<td>${calc_yrmn}</td>
 										<td>${row.maint_amt}</td>
 										<td>${row.labor_amt}</td>
 										<td>${row.mon_sales_amt}</td>
 										<td>${row.head_charge}</td>
+										<td>${row.net_profit}</td>
 									</tr>
 								</c:forEach>
 							</c:when>
@@ -107,6 +135,21 @@
 		</div>
 	</div>
 </div>
+<script>
+    window.onload = function () {
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = today.getMonth() + 1;
+        if (mm < 10) {
+            mm = "0" + mm;
+        }
+        today = yyyy + "-" + mm ;
+        document.getElementById("calc_yrmn").value = today;
+        document.getElementById("calc_yrmn").setAttribute("max", today);
+        today = "2018-12";
+        document.getElementById("calc_yrmn").setAttribute("min", today);
+    }
+</script>
 <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="../footer.jsp" />
 

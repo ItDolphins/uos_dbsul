@@ -148,7 +148,6 @@
 	</div>
 </div>
 <!-- END SHOW HIDE COLUMNS -->
-<script src="/resources/js/queen-table2.js"></script>
 <jsp:include page="../footer.jsp"/>
 
 

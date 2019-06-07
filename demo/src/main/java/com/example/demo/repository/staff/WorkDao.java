@@ -16,6 +16,8 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Transactional
@@ -50,7 +52,15 @@ public class WorkDao extends JdbcDaoSupport {
 		public WorkSum mapRow(ResultSet rs, int rowNum) throws SQLException {
 			WorkSum workSum = new WorkSum();
 			workSum.setWorktimeSum(rs.getInt("worktime_sum"));
-			workSum.setSalarySum(rs.getInt("salary_sum"));
+			return workSum;
+		}
+
+	}
+
+	public class WorkSumMapper2 implements RowMapper<WorkSum> {
+		public WorkSum mapRow(ResultSet rs, int rowNum) throws SQLException {
+			WorkSum workSum = new WorkSum();
+			workSum.setDayWorktimeSum(rs.getInt("day_worktime_sum"));
 			return workSum;
 		}
 
@@ -87,20 +97,79 @@ public class WorkDao extends JdbcDaoSupport {
 	}
 
 	public WorkSum getTotalWorkSumByStaff_noAndYrmn(int staff_no, String yrmn) {
-		String sql = "SELECT SUM(ROUND((WORK_END_TIME-WORK_START_TIME)*24,1)) WORKTIME_SUM, " +
-				"SUM(ROUND((WORK_END_TIME-WORK_START_TIME)*24,1))*8350 SALARY_SUM FROM TWORK " +
-				"WHERE STAFF_NO = ? AND TO_CHAR(WORK_START_TIME, 'YYYYMM') = ? ";
+		String sql2 =
+				"(SELECT SUM(ROUND((LEAST(WORK_END_TIME , TRUNC(WORK_START_TIME)+22/24) -WORK_START_TIME)*24,1)) DAY_WORKTIME_SUM\n" +
+				"                FROM\n" +
+				"                 TWORK  \n" +
+				"                WHERE STAFF_NO = ? AND  TO_CHAR(WORK_START_TIME, 'YYYYMM') = ? \n" +
+				"              AND  (TO_CHAR(WORK_START_TIME, 'HH24MI') >= '0600' AND TO_CHAR(WORK_START_TIME, 'HH24MI') < '2200') \n" +
+				"            GROUP BY TO_CHAR(WORK_START_TIME, 'YYYYMM'))\n";
+		String sql3	=
+				"            (SELECT SUM(ROUND((WORK_END_TIME  -GREATEST(WORK_START_TIME, TRUNC(WORK_END_TIME)+6/24 ))*24,1)) DAY_WORKTIME_SUM \n" +
+				"                FROM\n" +
+				"                 TWORK  \n" +
+				"                WHERE STAFF_NO = ? AND  TO_CHAR(WORK_START_TIME, 'YYYYMM') = ? \n" +
+				"             AND   (TO_CHAR(WORK_END_TIME, 'HH24MI') <= '2200'  AND TO_CHAR(WORK_END_TIME, 'HH24MM') > '0600' ) \n" +
+				"            GROUP BY TO_CHAR(WORK_START_TIME, 'YYYYMM'))\n" +
+				"            \n";
+
+		String sql4 = "             SELECT SUM(ROUND((WORK_END_TIME  -WORK_START_TIME)*24,1)) DAY_WORKTIME_SUM \n" +
+				"              FROM\n" +
+				"               TWORK  \n" +
+				"              WHERE STAFF_NO = ?  AND  TO_CHAR(WORK_START_TIME, 'YYYYMM') = ? \n" +
+				"              AND  (TO_CHAR(WORK_START_TIME, 'HH24MI') >= '0600' AND TO_CHAR(WORK_START_TIME, 'HH24MI') < '2200') \n" +
+				"             AND   (TO_CHAR(WORK_END_TIME, 'HH24MI') <= '2200'  AND TO_CHAR(WORK_END_TIME, 'HH24MM') > '0600' ) \n" +
+				"            GROUP BY TO_CHAR(WORK_START_TIME, 'YYYYMM') ";
+
+		String sql1 = "SELECT SUM(ROUND((WORK_END_TIME  -WORK_START_TIME)*24,1)) WORKTIME_SUM\n" +
+				"\t\t\t\t                FROM\n" +
+				"\t\t\t\t                 TWORK  \n" +
+				"\t\t\t\t                WHERE STAFF_NO = ? AND  TO_CHAR(WORK_START_TIME, 'YYYYMM') = ? \n" +
+				"\t\t\t\t            GROUP BY TO_CHAR(WORK_START_TIME, 'YYYYMM')";
 
 		WorkSum workSum = new WorkSum();
+		WorkSum workSum2 = new WorkSum();
+
 		workSum.setStaff_no(staff_no);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
 		try {
-			workSum = getJdbcTemplate().queryForObject(sql, new Object[]{staff_no, yrmn}, new WorkSumMapper());
+			workSum = getJdbcTemplate().queryForObject(sql1, new Object[]{staff_no, yrmn}, new WorkSumMapper());
+
 		} catch (EmptyResultDataAccessException e) {
-			workSum = null;
+			workSum.setWorktimeSum(0);
 		}
+		try {
+			workSum2 = getJdbcTemplate().queryForObject(sql2, new Object[]{staff_no, yrmn}, new WorkSumMapper2());
+			workSum.setDayWorktimeSum(workSum2.getDayWorktimeSum());
+		} catch (EmptyResultDataAccessException e) {
+			workSum.setDayWorktimeSum(0);
+		}
+		try {
+			workSum2 = getJdbcTemplate().queryForObject(sql3, new Object[]{staff_no, yrmn}, new WorkSumMapper2());
+			workSum.setDayWorktimeSum(workSum.getDayWorktimeSum()+workSum2.getDayWorktimeSum());
+
+		} catch (EmptyResultDataAccessException e) {
+		}
+		try {
+			workSum2 = getJdbcTemplate().queryForObject(sql4, new Object[]{staff_no, yrmn}, new WorkSumMapper2());
+			workSum.setDayWorktimeSum(workSum.getDayWorktimeSum()-workSum2.getDayWorktimeSum());
+
+		} catch (EmptyResultDataAccessException e) {
+		}
+
+		try{			workSum.setYearMonth(sdf.parse(yrmn));
+		}
+		catch (ParseException e2) {
+			return null;
+		}
+
+		workSum.setNightWorktimeSum(workSum.getWorktimeSum() - workSum.getDayWorktimeSum());
+		workSum.setDaySalarySum(workSum.getDayWorktimeSum() * 8350);
+		workSum.setNightSalarySum(workSum.getNightWorktimeSum() * 12525);
+		workSum.setSalarySum(workSum.getDaySalarySum() + workSum.getNightSalarySum());
 		return workSum;
 	}
-
 
 
 }

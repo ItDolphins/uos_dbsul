@@ -68,19 +68,14 @@
 			<h3 class="widget-header clearfix">
 				<h3>
 					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>이번 달 근무</span>
+					<fmt:formatDate value="${workSum.yearMonth}" pattern="yyyy" var="year"/>
+					<fmt:formatDate value="${workSum.yearMonth}" pattern="MM" var="month"/>
+					<span>${year}년 ${month}월 근무 통계</span>
 					<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
 						<form action="/alter_work" accept-charset="utf-8" name='work_form' method="get">
-							<button type="button" onclick="location.href= '/manage_employee'"
+							<button type="button" onclick="location.href= '/manage_work?staff_no='+;${staff.staff_no}"
 							        class="btn btn-default btn-lg"
 							        id="selectBtn3">뒤로
-							</button>
-							<button type="submit" onclick="location.href= '/alter_work'" class="btn btn-default btn-lg"
-							        id="selectBtn">근무 수정<input type="hidden" name="staff_no" value="${staff.staff_no}">
-							</button>
-							<button type="button" onclick="location.href= '/add_work_form?staff_no='+;${staff.staff_no}"
-							        class="btn btn-default btn-lg"
-							        id="selectBtn2">새 근무 등록
 							</button>
 						</form>
 					</div>
@@ -136,124 +131,9 @@
 					</div>
 				</div>
 			</h3>
-			<div class="widget-content">
-				<div class="table-responsive">
-					<table id="datatable-column-interactive2" style="border-right: #ccc 1px solid"
-					       class="table table-sorting table-hover table-bordered colored-header datatable">
-						<thead>
-						<tr>
-							<th>출근시간</th>
-							<th>퇴근시간</th>
-						</tr>
-						</thead>
-						<tbody>
-						<c:choose>
-							<c:when test="${fn:length(workList) > 0}">
-								<c:forEach items="${workList}" var="row">
-									<fmt:formatDate value="${row.work_start_time}" pattern="yyyyMM" var="mon"/>
-									<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd HH:mm"
-									                var="start"/>
-									<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd HH:mm" var="end"/>
-									<c:if test="${mon - thisMon eq 0 }">
-										<tr>
-											<td>${start}</td>
-											<td>${end}</td>
-										</tr>
-									</c:if>
-								</c:forEach>
-							</c:when>
-						</c:choose>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="widget">
-			<h3 class="widget-header clearfix" style="background-color: white">
-				<div class="btn-group widget-header-toolbar visible-lg">
-					<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand">
-						<i class="icon ion-ios-arrow-up"></i>
-					</a>
-					<a href="#" title="Remove" class="btn btn-link btn-remove">
-						<i class="icon ion-ios-close-empty"></i>
-					</a>
-				</div>
-				<h3>
-					<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
-					<span>이전 근무</span>
-					<div class="widget-content"></div>
-				</h3>
-				<div class="widget-content">
-					<form class="form-horizontal form-ticket" role="form", action="/lookup_workSum" method="post" >
-						<fieldset>
-							<legend></legend>
-							<div class="form-group">
-								<label for="yrmn" class="col-sm-3 control-label">근무 통계</label>
-								<div class="col-sm-9">
-									<input type="month" class="form-control" id="yrmn" name="yrmn" placeholder="연월" required="required">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-9">
-									<button type="submit" class="btn btn-primary">통계 확인
-										<input type="hidden" name="staff_no" id="staff_no" value="${staff.staff_no}";
-									</button>
-								</div>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-				<div class="widget-content">
-					<div class="table-responsive">
-						<table id="datatable-column-interactive" style="border-right: #ccc 1px solid"
-						       class="table table-sorting table-hover table-bordered colored-header datatable">
-							<thead>
-							<tr>
-								<th>출근시간</th>
-								<th>퇴근시간</th>
-							</tr>
-							</thead>
-							<tbody>
-							<c:choose>
-								<c:when test="${fn:length(workList) > 0}">
-									<c:forEach items="${workList}" var="row">
-										<fmt:formatDate value="${row.work_start_time}" pattern="yyyMM" var="mon"/>
-										<fmt:formatDate value="${row.work_start_time}" pattern="yyyy-MM-dd HH:mm"
-										                var="start"/>
-										<fmt:formatDate value="${row.work_end_time}" pattern="yyyy-MM-dd HH:mm"
-										                var="end"/>
-										<c:if test="${mon-thisMon ne 0}">
-											<tr>
-												<td>${start}</td>
-												<td>${end}</td>
-											</tr>
-										</c:if>
-									</c:forEach>
-								</c:when>
-							</c:choose>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</h3>
 		</div>
 	</div>
 </div>
-<script>
-    window.onload = function () {
-        var today = new Date();
-        var yyyy = today.getFullYear();
-        var mm = today.getMonth() ;
-        if (mm < 10) {
-            mm = "0" + mm;
-        }
 
-        today = yyyy + "-" + mm;
-        document.getElementById("yrmn").value = today;
-        document.getElementById("yrmn").setAttribute("max", today);
-        today = "2018-12";
-        document.getElementById("yrmn").setAttribute("min", today);
-    }
-</script>
 <!-- END SHOW HIDE COLUMNS -->
 <jsp:include page="../footer.jsp"/>

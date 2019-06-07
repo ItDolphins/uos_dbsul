@@ -14,4 +14,5 @@ public class Calc {
 	private int labor_amt;
 	private int mon_sales_amt;
 	private int head_charge;
+	private int net_profit;
 }

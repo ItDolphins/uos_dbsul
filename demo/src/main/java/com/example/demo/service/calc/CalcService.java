@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -20,5 +21,21 @@ public class CalcService {
 		return  calcList;
 	}
 
+	public boolean isCalcExist(int store_no , Date calc_yrmn){
+		List<Calc> calcList = calcDao.findByStore_noAndCalc_yrmn(store_no , calc_yrmn);
+		return calcList.size() != 0;
+	}
 
+	public Calc calculate_calc(Calc calc){
+		calc = calcDao.getMon_sales_amtAndHead_charge(calc);
+		return  calc;
+	}
+
+	public void insertCalc(Calc calc){
+		calcDao.insertCalc(calc);
+	}
+
+	public  void updateCalc(Calc calc){
+		calcDao.updateCalc(calc);
+	}
 }
