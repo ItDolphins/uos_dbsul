@@ -80,6 +80,26 @@
 				   style="padding: 0px 0px 0px 10px;"></i> <span>매출 내역</span>
 			</h3>
 			<div class="widget-content">
+				<form class="form-horizontal form-ticket" role="form", action="/calculate_sales" method="post" >
+					<fieldset>
+						<legend>등록 양식</legend>
+						<div class="form-group">
+							<label for="sales_date" class="col-sm-3 control-label">매출 일자</label>
+							<div class="col-sm-9">
+								<input type="date" class="form-control" id="sales_date" name="sales_date" placeholder="매출 일자" required="required">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button type="submit" class="btn btn-primary">매출 계산
+									<input type="hidden" class="form-control" id="store_no" name="store_no" value="${store_no}">
+								</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="widget-content">
 				<div class="table-responsive">
 					<table id="datatable-column-interactive"
 					       class="table table-sorting table-hover table-bordered colored-header datatable">
@@ -144,6 +164,25 @@
 	</div>
 </div>
 <!-- END SHOW HIDE COLUMNS -->
+<script>
+    window.onload = function () {
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var date = today.getDate();
+        var mm = today.getMonth() + 1;
+        if (mm < 10) {
+            mm = "0" + mm;
+        }
+        if (date < 10) {
+            date = "0" + date;
+        }
+        today = yyyy + "-" + mm + "-" + date;
+        document.getElementById("sales_date").value = today;
+        document.getElementById("sales_date").setAttribute("max", today);
+        today = "2018-12-31";
+        document.getElementById("sales_date").setAttribute("min", today);
+    }
+</script>
 <script src="/resources/js/queen-table2.js"></script>
 <jsp:include page="../footer.jsp"/>
 

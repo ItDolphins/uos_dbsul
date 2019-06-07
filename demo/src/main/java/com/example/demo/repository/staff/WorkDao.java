@@ -60,7 +60,7 @@ public class WorkDao extends JdbcDaoSupport {
 
 		String sql = "select staff_no,  work_start_time," +
 				" work_end_time from twork where staff_no = ? order by work_start_time desc";
-		List<Work> workList = (List<Work>) getJdbcTemplate().query(sql, new Object[]{staff_no}, new WorkMapper());
+		List<Work> workList = getJdbcTemplate().query(sql, new Object[]{staff_no}, new WorkMapper());
 		return workList;
 
 	}
@@ -68,22 +68,22 @@ public class WorkDao extends JdbcDaoSupport {
 	public Work getWorkByStaff_noAndWork_start_time(int staff_no, Timestamp work_start_time) {
 		String sql = "select staff_no,work_start_time, " +
 				" work_end_time  from twork where staff_no = ? and  work_start_time= ?";
-		Work work = (Work) getJdbcTemplate().queryForObject(sql, new Object[]{staff_no, work_start_time}, new WorkMapper());
+		Work work = getJdbcTemplate().queryForObject(sql, new Object[]{staff_no, work_start_time}, new WorkMapper());
 		return work;
 	}
 
 	public void updateWork(Work work, Timestamp ex_work_start_time) {
 		String sql = "update twork set   work_start_time =? , work_end_time = ? " +
 				" where staff_no = ? and work_start_time= ? ";
-		getJdbcTemplate().update(sql, new Object[]{work.getWork_start_time(),
-				work.getWork_end_time(), work.getStaff_no(), ex_work_start_time});
+		getJdbcTemplate().update(sql, work.getWork_start_time(),
+				work.getWork_end_time(), work.getStaff_no(), ex_work_start_time);
 	}
 
 	public void insertWork(Work work) {
 		String sql = "insert into twork(staff_no ,work_start_time,work_end_time)" +
 				" values(?,?,?)";
-		getJdbcTemplate().update(sql, new Object[]{work.getStaff_no(),
-				work.getWork_start_time(), work.getWork_end_time()});
+		getJdbcTemplate().update(sql, work.getStaff_no(),
+				work.getWork_start_time(), work.getWork_end_time());
 	}
 
 	public WorkSum getTotalWorkSumByStaff_noAndYrmn(int staff_no, String yrmn) {
@@ -94,10 +94,13 @@ public class WorkDao extends JdbcDaoSupport {
 		WorkSum workSum = new WorkSum();
 		workSum.setStaff_no(staff_no);
 		try {
-			workSum = (WorkSum) getJdbcTemplate().queryForObject(sql, new Object[]{staff_no, yrmn}, new WorkSumMapper());
+			workSum = getJdbcTemplate().queryForObject(sql, new Object[]{staff_no, yrmn}, new WorkSumMapper());
 		} catch (EmptyResultDataAccessException e) {
 			workSum = null;
 		}
 		return workSum;
 	}
+
+
+
 }

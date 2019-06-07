@@ -49,7 +49,7 @@ public class SellDaoImpl extends JdbcDaoSupport implements SellDao{
 	@Override
 	public void insertSell(Sell sell) {
 		String sql = "INSERT INTO sell (rls_no,member_no,sell_price) values(?,?,?)";
-		getJdbcTemplate().update(sql,new Object[] {sell.getRls_no(),sell.getMember_no(),sell.getSell_price()});
+		getJdbcTemplate().update(sql, sell.getRls_no(),sell.getMember_no(),sell.getSell_price());
 	}
 
 	@Override
@@ -60,5 +60,7 @@ public class SellDaoImpl extends JdbcDaoSupport implements SellDao{
 		
 		return sellList;
 	}
+
+
 
 }
