@@ -119,7 +119,7 @@
 	</div>
 </div>
 <script>
-    $("#datatable-column-interactive tr").click(function () {
+    $("#datatable-column-interactive tbody tr").click(function () {
         var str = "";
 
         var tr = $(this);
@@ -165,7 +165,15 @@
             str += '<td name="stock_qnt">' + stock_qnt + '</td>';
             str += '</tr>';
 
-            $("#sell-table").append(str);
+            $("#sellList").append(str);
+        }
+    });
+    $("#sellList ").on("click", "tr" , function () {
+        var sell_qnt = parseInt($(this).closest('tr').find('td').eq(3).html()) -1;
+        var stock_qnt = parseInt($(this).closest('tr').find('td').eq(4).html())+1;
+        if(sell_qnt >-1) {
+            $(this).find('td:eq(3)').html(sell_qnt);
+            $(this).find('td:eq(4)').html(stock_qnt);
         }
     });
 
@@ -184,7 +192,9 @@
         for (var i = 1; i < table.rows.length; i++) {
             var tableRow = table.rows[i];
             var rowData = {};
-
+            
+            if(tableRow.cells[3].innerHTML == 0)
+                continue;
             rowData[headers[0]] = tableRow.cells[0].innerHTML;
             rowData[headers[1]] = tableRow.cells[2].innerHTML;
             rowData[headers[2]] = tableRow.cells[3].innerHTML;

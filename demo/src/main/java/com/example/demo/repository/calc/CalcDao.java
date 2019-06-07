@@ -42,11 +42,12 @@ public class CalcDao extends JdbcDaoSupport {
 			calc.setMon_sales_amt(rs.getInt("mon_sales_amt"));
 			calc.setHead_charge(rs.getInt("head_charge"));
 			return calc;
+
 		}
 	}
 
 	public List<Calc> findByStore_no(int store_no){
-		String sql = "select * from sales where store_no = ?";
+		String sql = "select * from calc where store_no = ?";
 		List<Calc> calcList = (List<Calc>) getJdbcTemplate().query(sql, new Object[]{store_no}, new CalcMapper());
 		return calcList;
 	}

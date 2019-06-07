@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date"/>
+<fmt:formatDate value="${now}" pattern="yyyyMM" var="thisMon"/>
 
-
-<jsp:include page="../header.jsp" />
+<jsp:include page="../header.jsp"/>
 <!-- COLUMN RIGHT -->
 <div id="col-right" class="col-right ">
 	<div class="container-fluid primary-content">
@@ -38,7 +40,8 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
-							        aria-hidden="true">&times;</button>
+							        aria-hidden="true">&times;
+							</button>
 							<h4 class="modal-title" id="myModalLabel">Quick Task</h4>
 						</div>
 						<div class="modal-body">
@@ -58,7 +61,8 @@
 									</div>
 								</div>
 								<button type="button" class="btn btn-default"
-								        data-dismiss="modal">Close</button>
+								        data-dismiss="modal">Close
+								</button>
 								<button type="button" class="btn btn-primary">Save Task</button>
 							</form>
 						</div>
@@ -88,10 +92,48 @@
 						<c:choose>
 							<c:when test="${fn:length(salesList) > 0}">
 								<c:forEach items="${salesList}" var="row">
-									<tr >
-										<td>${row.prod_no}</td>
-										<td>${row.expdate}</td>
-									</tr>
+									<fmt:formatDate value="${row.sales_date}" pattern="yyyMM" var="mon"/>
+									<fmt:formatDate value="${row.sales_date}" pattern="yyyy-MM-dd" var="sales_date"/>
+									<c:if test="${mon - thisMon eq 0 }">
+										<tr>
+											<td>${sales_date}</td>
+											<td>${row.sales_amt}</td>
+										</tr>
+									</c:if>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="widget">
+			<h3 class="widget-header clearfix"></h3>
+			<h3>
+				<i class="icon ion-ios-grid-view-outline"
+				   style="padding: 0px 0px 0px 10px;"></i> <span>매출 내역</span>
+			</h3>
+			<div class="widget-content">
+				<div class="table-responsive">
+					<table id="datatable-column-interactive2"
+					       class="table table-sorting table-hover table-bordered colored-header datatable">
+						<thead>
+						<tr>
+							<th>매출일자</th>
+							<th>매출액</th>
+						</tr>
+						</thead>
+						<c:choose>
+							<c:when test="${fn:length(salesList) > 0}">
+								<c:forEach items="${salesList}" var="row">
+									<fmt:formatDate value="${row.sales_date}" pattern="yyyMM" var="mon"/>
+									<fmt:formatDate value="${row.sales_date}" pattern="yyyy-MM-dd" var="sales_date"/>
+									<c:if test="${mon - thisMon ne 0 }">
+										<tr>
+											<td>${sales_date}</td>
+											<td>${row.sales_amt}</td>
+										</tr>
+									</c:if>
 								</c:forEach>
 							</c:when>
 						</c:choose>
@@ -103,6 +145,6 @@
 </div>
 <!-- END SHOW HIDE COLUMNS -->
 <script src="/resources/js/queen-table2.js"></script>
-<jsp:include page="../footer.jsp" />
+<jsp:include page="../footer.jsp"/>
 
 

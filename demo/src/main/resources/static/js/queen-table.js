@@ -36,6 +36,23 @@ $(document).ready(function(){
 				.search(this.value)
 				.draw();
 		});
+		var dtTable3 = $('#datatable-column-filter3').DataTable({ // use DataTable, not dataTable
+			sDom: // redefine sDom without lengthChange and default search box
+				"t"+
+				"<'row'<'col-sm-6'i><'col-sm-6'p>>"
+		});
+
+		$('#datatable-column-filter3 thead').append('<tr class="row-filter"><th></th><th></th><th></th></tr>');
+		$('#datatable-column-filter3 thead .row-filter th').each( function() {
+			$(this).html('<input type="text" class="form-control input-sm" placeholder="Search...">');
+		});
+
+		$('#datatable-column-filter3 .row-filter input').on('keyup change', function() {
+			dtTable3
+				.column($(this).parent().index()+':visible')
+				.search(this.value)
+				.draw();
+		});
 
 		/* column filters */
 		var dtTable4 = $('#datatable-column-filter4').DataTable({ // use DataTable, not dataTable
