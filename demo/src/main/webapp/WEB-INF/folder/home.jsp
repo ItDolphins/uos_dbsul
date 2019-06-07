@@ -1,5 +1,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="header.jsp"/>
 <!-- COLUMN RIGHT -->
 <div id="col-right" class="col-right ">
@@ -222,7 +225,7 @@
 				<!-- COMPLETENESS METER -->
 				<div class="widget">
 					<div class="widget-header clearfix">
-						<h3><i class="icon ion-bag"></i> <span>ORDER STATUS</span></h3>
+						<h3><i class="icon ion-bag"></i> <span>진행중인 이벤트</span></h3>
 						<div class="btn-group widget-header-toolbar">
 							<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i
 									class="icon ion-ios-arrow-up"></i></a>
@@ -234,48 +237,24 @@
 						<table class="table table-condensed">
 							<thead>
 							<tr>
-								<th>Status</th>
-								<th>Order Number</th>
-								<th>Amount</th>
+								<th>이벤트명</th>
+								<th>이벤트 상품</th>
+								<th>종료기간</th>
 							</tr>
 							</thead>
-							<tbody>
-							<tr>
-								<td><span class="label label-warning">Pending</span></td>
-								<td><a href="#">ORD834580</a></td>
-								<td>$320</td>
-							</tr>
-							<tr>
-								<td><span class="label label-success">Completed</span></td>
-								<td><a href="#">ORD834565</a></td>
-								<td>$400</td>
-							</tr>
-							<tr>
-								<td><span class="label label-warning">Pending</span></td>
-								<td><a href="#">ORD834577</a></td>
-								<td>$80</td>
-							</tr>
-							<tr>
-								<td><span class="label label-danger">Error</span></td>
-								<td><a href="#">ORD834543</a></td>
-								<td>$307</td>
-							</tr>
-							<tr>
-								<td><span class="label label-info">On-Process</span></td>
-								<td><a href="#">ORD834528</a></td>
-								<td>$160</td>
-							</tr>
-							<tr>
-								<td><span class="label label-success">Completed</span></td>
-								<td><a href="#">ORD834565</a></td>
-								<td>$122</td>
-							</tr>
-							<tr>
-								<td><span class="label label-success">Completed</span></td>
-								<td><a href="#">ORD834512</a></td>
-								<td>$760</td>
-							</tr>
-							</tbody>
+							<c:choose>
+							<c:when test="${fn:length(eventList) > 0}">
+								<tbody>
+									<c:forEach items="${eventList}" var="row">
+										<tr>
+											<td>${row.event_name}</td>
+											<td>${row.event_prod}</td>
+											<td>${row.event_end_day}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</c:when>
+						</c:choose>
 						</table>
 					</div>
 				</div>

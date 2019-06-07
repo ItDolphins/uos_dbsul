@@ -47,12 +47,12 @@ public class ProdController {
 	}
 	
 	@GetMapping("/add_prod_form")
-	public ModelAndView add_employee_form(ModelAndView mav) {
+	public ModelAndView add_prod_form(ModelAndView mav) {
 		mav.setViewName("prod/add_prod_form");
 		return mav;
 	}
 	@GetMapping("/alter_prod_form")
-	public ModelAndView alter_employee_form(ModelAndView mav, HttpServletRequest request) {
+	public ModelAndView alter_prod_form(ModelAndView mav, HttpServletRequest request) {
 		String prod_no=request.getParameter("prod_no");
 		Prod prod= prodService.getProdbyNo(prod_no);
 		mav.addObject("prod",prod);

@@ -12,4 +12,8 @@ public interface EventDao {
 	ArrayList<Event> findNowDcEvent();
 	void insertPrEvent(Event event);
 	void insertDcEvent(Event event);
+	Event getEventByPresentNo(String present_no);
+	Event getEventByDcNo(String dc_no);
+	void updatePrEvent(Event event);
+	void updateDcEvent(Event event);
 }

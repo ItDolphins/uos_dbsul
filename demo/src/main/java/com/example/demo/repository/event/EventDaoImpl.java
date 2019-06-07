@@ -138,6 +138,37 @@ public class EventDaoImpl  extends JdbcDaoSupport implements EventDao {
 		String sql = "insert into dc ( dc_no, event_prod, event_name, event_start_day, event_end_day, dc_rate) values(SEQ_DC.NEXTVAL,?,?, ?,?, ?)";
 		getJdbcTemplate().update(sql,new Object[] {event.getEvent_prod_no(),event.getEvent_name(),event.getEvent_start_day(),event.getEvent_end_day(),event.getDc_rate()});
 	}
+
+	@Override
+	public Event getEventByPresentNo(String present_no) {
+		// TODO Auto-generated method stub
+		String sql="select present_no, p.prod_name as event_prod, event_name, event_start_day, event_end_day, p2.prod_name as present_prod  from tpresent tp, prod p, prod p2 where tp.event_prod=p.prod_no and tp.present_prod=p2.prod_no and present_no=?";
+		Event result = (Event)getJdbcTemplate().queryForObject(sql,new Object[] {present_no},new PrEventMapper());
+		
+		return result;
+	}
+
+	@Override
+	public Event getEventByDcNo(String dc_no) {
+		// TODO Auto-generated method stub
+		String sql="select dc_no, p.prod_name as event_prod , event_name, event_start_day, event_end_day, dc_rate  from dc dc, prod p where dc.event_prod=p.prod_no and dc_no=?";
+		Event result = (Event)getJdbcTemplate().queryForObject(sql,new Object[] {dc_no},new DcEventMapper());
+		return result;
+	}
+
+	@Override
+	public void updatePrEvent(Event event) {
+		// TODO Auto-generated method stub
+		String sql="update tpresent set event_prod=?, event_name=?, event_start_day=?, event_end_day=?,present_prod=? where present_no=?";
+		getJdbcTemplate().update(sql,new Object[] {event.getEvent_prod_no(),event.getEvent_name(), event.getEvent_start_day(), event.getEvent_end_day(),event.getPresent_prod_no() , event.getPresent_no()});
+	}
+
+	@Override
+	public void updateDcEvent(Event event) {
+		// TODO Auto-generated method stub
+		String sql="update dc set event_prod=?, event_name=?, event_start_day=?, event_end_day=?,dc_rate=? where dc_no=?";
+		getJdbcTemplate().update(sql,new Object[] {event.getEvent_prod_no(),event.getEvent_name(), event.getEvent_start_day(), event.getEvent_end_day(), event.getDc_rate() ,  event.getDc_no()});
+	}
 	
 
 }

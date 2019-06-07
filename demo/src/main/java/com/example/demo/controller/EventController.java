@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,6 +82,44 @@ public class EventController {
 		
 		return "redirect:/event_manage";
 	}
+	
+	
+	@GetMapping("/alter_pr_event_form")
+	public ModelAndView alter_pr_event_form(ModelAndView mav, HttpServletRequest request) {
+		String present_no=request.getParameter("present_no");
+		Event event= eventService.getEventByPresentNo(present_no);
+		mav.addObject("event",event);
+		mav.setViewName("event/alter_pr_event_form");
+		return mav;
+	}
+	
+	@GetMapping("/alter_dc_event_form")
+	public ModelAndView alter_dc_event_form(ModelAndView mav, HttpServletRequest request) {
+		String dc_no=request.getParameter("dc_no");
+		Event event= eventService.getEventByDcNo(dc_no);
+		mav.addObject("event",event);
+		mav.setViewName("event/alter_dc_event_form");
+		return mav;
+	}
+	
+	@PostMapping("/alter_pr_event")
+	public String alter_pr_event(@ModelAttribute("event") Event event) {
+		eventService.updatePrEvent(event);
+		
+		
+		return "redirect:/event_manage";
+	}
+	
+	@PostMapping("/alter_dc_event")
+	public String alter_dc_event(@ModelAttribute("event") Event event) {
+		eventService.updateDcEvent(event);
+		
+		
+		return "redirect:/event_manage";
+	}
+	
+	
+	
 	
 	
 }

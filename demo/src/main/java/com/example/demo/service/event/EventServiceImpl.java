@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Event;
 import com.example.demo.repository.event.EventDao;
+import com.example.demo.repository.prod.ProdDao;
 import com.example.demo.service.prod.ProdService;
 
 @Service @Transactional
@@ -17,6 +18,8 @@ public class EventServiceImpl implements EventService {
 	EventDao eventDao;
 	@Autowired
 	ProdService prodService;
+	@Autowired
+	ProdDao prodDao;
 	
 	@Override
 	public ArrayList<Event> getDcEventList() {
@@ -56,6 +59,8 @@ public class EventServiceImpl implements EventService {
 		event.setEvent_prod_no(prodService.getNoByProdName(event.getEvent_prod()));
 		event.setPresent_prod_no(prodService.getNoByProdName(event.getPresent_prod()));
 		eventDao.insertPrEvent(event);
+		
+		
 	}
 
 	@Override
@@ -64,5 +69,34 @@ public class EventServiceImpl implements EventService {
 		event.setEvent_prod_no(prodService.getNoByProdName(event.getEvent_prod()));
 		eventDao.insertDcEvent(event);
 		
+	}
+
+	@Override
+	public Event getEventByPresentNo(String present_no) {
+		// TODO Auto-generated method stub
+		Event event=eventDao.getEventByPresentNo(present_no);
+		return event;
+	}
+
+	@Override
+	public Event getEventByDcNo(String dc_no) {
+		// TODO Auto-generated method stub
+		Event event=eventDao.getEventByDcNo(dc_no);
+		return event;
+	}
+
+	@Override
+	public void updatePrEvent(Event event) {
+		// TODO Auto-generated method stub
+		event.setEvent_prod_no(prodService.getNoByProdName(event.getEvent_prod()));  
+		event.setPresent_prod_no(prodService.getNoByProdName(event.getPresent_prod()));  
+		eventDao.updatePrEvent(event);
+	}
+
+	@Override
+	public void updateDcEvent(Event event) {
+		// TODO Auto-generated method stub
+		event.setEvent_prod_no(prodService.getNoByProdName(event.getEvent_prod()));  
+		eventDao.updateDcEvent(event);
 	}
 }
