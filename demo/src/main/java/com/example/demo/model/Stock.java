@@ -13,6 +13,7 @@ public class Stock {
 	private int store_no;
 	private int stock_qnt;
 	private String prod_name;
+	private int prod_price;
 
 	public Stock(int prod_no, Date expdate, int store_no, int stock_qnt){
 		this.setProd_no(prod_no);

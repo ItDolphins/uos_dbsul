@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.dto.DiscountStock;
 import com.example.demo.dto.SellInfo;
 import com.example.demo.model.Account;
 import com.example.demo.model.Sell;
@@ -101,8 +102,13 @@ public class StockController {
 		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		int acnt_store_no = account.getStore_no();
 		List<Stock> stockList = stockService.getStockList(acnt_store_no);
-		
+		List<DiscountStock> discountStockList = stockService.getDiscountStockList(acnt_store_no);
+		for(int i=0; i<discountStockList.size(); i++) {
+			discountStockList.get(i).setProd_price(discountStockList.get(i).getProd_price() * (100 - discountStockList.get(i).getDc_rate()) / 100);
+		}
+
 		mav.addObject("stockList",stockList);
+		mav.addObject("discountStockList",discountStockList);
 		mav.setViewName("release/sell_product");
 
 		return mav;
@@ -115,6 +121,7 @@ public class StockController {
 		@DateTimeFormat(iso = ISO.DATE)
 		private Date expdate;
 		private int amount;
+		private int price;
 		
 		public SellInfo toSellInfo() {
 			return new SellInfo();
@@ -140,7 +147,10 @@ public class StockController {
 			//판매 테이블에 insert하기 위한 작업
 			sell.setRls_no(releaseService.getMaxRlsno());
 			sell.setMember_no(3); //임의로 3번회원이라고 가정
-			sell.setSell_price(prodService.getPriceByProdNo(sellItem.getProd_no())* sellItem.getAmount());
+			//sell.setSell_price(prodService.getPriceByProdNo(sellItem.getProd_no())* sellItem.getAmount());
+			sell.setSell_price(sellItem.getPrice()* sellItem.getAmount());
+			System.out.println(sellItem.getPrice());
+			System.out.println(sellItem.getAmount());
 			sellSerivce.insertSell(sell);
 			
 			//여기부터 마일리지 처리부분

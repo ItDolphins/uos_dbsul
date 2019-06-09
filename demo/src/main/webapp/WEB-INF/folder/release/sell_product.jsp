@@ -62,6 +62,7 @@
 									<th>이름</th>
 									<th>유통기한</th>
 									<th>재고</th>
+									<th>가격</th>
 								</tr>
 								</thead>
 								<c:choose>
@@ -72,6 +73,44 @@
 												<td>${row.prod_name}</td>
 												<td>${row.expdate}</td>
 												<td>${row.stock_qnt}</td>
+												<td>${row.prod_price}</td>
+											</tr>
+										</c:forEach>
+									</c:when>
+								</c:choose>
+							</table>
+						</div>
+					</div>
+				</h3>
+			</div>
+			<div class="widget">
+				<h3 class="widget-header clearfix">
+					<h3>
+						<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
+						<span>할인 재고목록</span>
+					</h3>
+					<div class="widget-content">
+						<div class="table-responsive">
+							<table id="datatable-column-interactive2" style="border-right: #ccc 1px solid"
+							       class="table table-sorting table-hover table-bordered colored-header datatable">
+								<thead>
+								<tr>
+									<th>물품번호</th>
+									<th>이름</th>
+									<th>유통기한</th>
+									<th>재고</th>
+									<th>가격</th>
+								</tr>
+								</thead>
+								<c:choose>
+									<c:when test="${fn:length(discountStockList) > 0}">
+										<c:forEach items="${discountStockList}" var="row">
+											<tr id="${row.prod_no}">
+												<td>${row.prod_no}</td>
+												<td>${row.prod_name}</td>
+												<td>${row.expdate}</td>
+												<td>${row.stock_qnt}</td>
+												<td>${row.prod_price}</td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -100,6 +139,7 @@
 									<th>유통기한</th>
 									<th>수량</th>
 									<th>남은재고</th>
+									<th>가격</th>
 								</tr>
 								</thead>
 								<tbody id="sellList">
@@ -134,6 +174,7 @@
         var prod_name = td.eq(1).text();
         var expdate = td.eq(2).text();
         var stock_qnt = td.eq(3).text();
+        var price = td.eq(4).text();
 
         if (stock_qnt != 0) {
             stock_qnt = parseInt(stock_qnt) - 1;
@@ -147,7 +188,9 @@
         var flag = true;
         $("#sellList tr").each(function () {
             var x = $(this).find('td').eq(0).html();
-            if (x == prod_no) {
+            var y = $(this).find('td').eq(1).html();
+            var z = $(this).find('td').eq(2).html();
+            if (x == prod_no && y == prod_name && z == expdate) {
                 sell_qnt = parseInt($(this).find('td').eq(3).html()) + 1;
                 $(this).find('td:eq(3)').html(sell_qnt);
                 $(this).find('td:eq(4)').html(stock_qnt);
@@ -163,11 +206,67 @@
             str += '<td name="expdate">' + expdate + '</td>';
             str += '<td>' + sell_qnt + '</td>';
             str += '<td name="stock_qnt">' + stock_qnt + '</td>';
+            str += '<td name="price">' + price +'</td>';
             str += '</tr>';
 
             $("#sellList").append(str);
         }
     });
+    
+    $("#datatable-column-interactive2 tbody tr").click(function () {
+        var str = "";
+
+        var tr = $(this);
+        var tdArr = new Array();
+        var td = tr.children();
+
+        td.each(function (i) {
+            tdArr.push(td.eq(i).text());
+        });
+
+        var prod_no = td.eq(0).text();
+        var prod_name = td.eq(1).text();
+        var expdate = td.eq(2).text();
+        var stock_qnt = td.eq(3).text();
+        var price = td.eq(4).text();
+
+        if (stock_qnt != 0) {
+            stock_qnt = parseInt(stock_qnt) - 1;
+            $(this).find('td:eq(3)').html(stock_qnt);
+        } else {
+            alert("재고가 없습니다.");
+            return false;
+        }
+
+        var sell_qnt = 1;
+        var flag = true;
+        $("#sellList tr").each(function () {
+            var x = $(this).find('td').eq(0).html();
+            var y = $(this).find('td').eq(1).html();
+            var z = $(this).find('td').eq(2).html();
+            if (x == prod_no && y == prod_name && z == expdate) {
+                sell_qnt = parseInt($(this).find('td').eq(3).html()) + 1;
+                $(this).find('td:eq(3)').html(sell_qnt);
+                $(this).find('td:eq(4)').html(stock_qnt);
+                flag = false;
+                return true;
+            }
+        })
+
+        if (flag) {
+            str += '<tr>';
+            str += '<td name="prod_no">' + prod_no + '</td>';
+            str += '<td name="prod_name">' + prod_name + '</td>';
+            str += '<td name="expdate">' + expdate + '</td>';
+            str += '<td>' + sell_qnt + '</td>';
+            str += '<td name="stock_qnt">' + stock_qnt + '</td>';
+            str += '<td name="price">' + price + '</td>';
+            str += '</tr>';
+
+            $("#sellList").append(str);
+        }
+    });
+    
     $("#sellList ").on("click", "tr" , function () {
         var sell_qnt = parseInt($(this).closest('tr').find('td').eq(3).html()) -1;
         var stock_qnt = parseInt($(this).closest('tr').find('td').eq(4).html())+1;
@@ -188,6 +287,7 @@
         headers[0] = "prod_no";
         headers[1] = "expdate"
         headers[2] = "amount";
+        headers[3] = "price";
 
         for (var i = 1; i < table.rows.length; i++) {
             var tableRow = table.rows[i];
@@ -198,6 +298,7 @@
             rowData[headers[0]] = tableRow.cells[0].innerHTML;
             rowData[headers[1]] = tableRow.cells[2].innerHTML;
             rowData[headers[2]] = tableRow.cells[3].innerHTML;
+            rowData[headers[3]] = tableRow.cells[5].innerHTML;
 
             data.push(rowData);
         }
