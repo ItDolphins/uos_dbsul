@@ -16,4 +16,8 @@ public interface EventDao {
 	Event getEventByDcNo(String dc_no);
 	void updatePrEvent(Event event);
 	void updateDcEvent(Event event);
+	void eventUpdate();
+	void eventUpdate2();
+	void eventUpdate3();
+	void eventUpdate4();
 }

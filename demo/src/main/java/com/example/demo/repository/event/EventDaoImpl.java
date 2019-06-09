@@ -169,6 +169,37 @@ public class EventDaoImpl  extends JdbcDaoSupport implements EventDao {
 		String sql="update dc set event_prod=?, event_name=?, event_start_day=?, event_end_day=?,dc_rate=? where dc_no=?";
 		getJdbcTemplate().update(sql,new Object[] {event.getEvent_prod_no(),event.getEvent_name(), event.getEvent_start_day(), event.getEvent_end_day(), event.getDc_rate() ,  event.getDc_no()});
 	}
+
+	@Transactional()
+	@Override
+	public void eventUpdate() {
+		// TODO Auto-generated method stub
+		String sql="update prod set  event_code='증정' where prod_no= (select event_prod from prod p, tpresent tp where to_char( tp.event_start_day, 'yyyymmdd' ) = to_char( sysdate, 'yyyymmdd') and tp.event_prod=p.prod_no)";
+		getJdbcTemplate().update(sql);
+		
+	}
+	@Override
+	public void eventUpdate2() {
+		// TODO Auto-generated method stub
+		
+		String sql="update prod set  event_code='없음' where prod_no= (select event_prod from prod p, tpresent tp where to_char( tp.event_end_day, 'yyyymmdd' ) = to_char( sysdate, 'yyyymmdd') and tp.event_prod=p.prod_no)";
+		getJdbcTemplate().update(sql,new Object[] {});
+		
+	}
+	@Override
+	public void eventUpdate3() {
+		// TODO Auto-generated method stub
+		
+		String sql="update prod set  event_code='할인' where prod_no= (select event_prod from prod p, dc dc where to_char( dc.event_start_day, 'yyyymmdd' ) = to_char( sysdate, 'yyyymmdd') and dc.event_prod=p.prod_no)";
+		getJdbcTemplate().update(sql,new Object[] {});
+	}
+	@Override
+	public void eventUpdate4() {
+		// TODO Auto-generated method stub
+		
+		String sql="update prod set  event_code='없음' where prod_no= (select event_prod from prod p, tpresent tp where to_char( tp.event_end_day, 'yyyymmdd' ) = to_char( sysdate, 'yyyymmdd') and tp.event_prod=p.prod_no)";
+		getJdbcTemplate().update(sql,new Object[] {});
+	}
 	
 
 }

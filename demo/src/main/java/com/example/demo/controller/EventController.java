@@ -118,7 +118,12 @@ public class EventController {
 		return "redirect:/event_manage";
 	}
 	
-	
+	@GetMapping("/event_update")
+	public String event_update() {
+		eventService.eventUpdate();
+		
+		return "redirect:/event_manage";
+	}
 	
 	
 	

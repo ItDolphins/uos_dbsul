@@ -99,4 +99,13 @@ public class EventServiceImpl implements EventService {
 		event.setEvent_prod_no(prodService.getNoByProdName(event.getEvent_prod()));  
 		eventDao.updateDcEvent(event);
 	}
+
+	@Override
+	public void eventUpdate() {
+		// TODO Auto-generated method stub
+		eventDao.eventUpdate();
+		eventDao.eventUpdate2();
+		eventDao.eventUpdate3();
+		eventDao.eventUpdate4();
+	}
 }

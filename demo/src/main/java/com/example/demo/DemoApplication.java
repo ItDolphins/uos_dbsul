@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.example.demo.model.Release;
 import com.example.demo.model.Stock;
@@ -21,6 +22,7 @@ import com.example.demo.service.staff.StaffService;
 import com.example.demo.service.stock.StockService;
 import com.example.demo.service.store.StoreInfoService;
 
+@EnableTransactionManagement
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner{
 

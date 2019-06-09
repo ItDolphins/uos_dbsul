@@ -13,7 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.stereotype.Controller;
-
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +22,7 @@ import com.example.demo.dto.StoreInfo;
 import com.example.demo.service.event.EventService;
 import com.example.demo.service.store.StoreInfoService;
 
-@Controller
+@Controller @Transactional
 public class MainController {
 
 

@@ -15,4 +15,5 @@ public interface EventService {
 	Event getEventByDcNo(String dc_no);
 	void updatePrEvent(Event event);
 	void updateDcEvent(Event event);
+	void eventUpdate();
 }

@@ -13,6 +13,10 @@
 			<h2>이벤트 관리</h2>
 			
 		</div>
+		<button type="button" onclick="location.href= '/event_update'"  
+							        class="btn btn-default btn-lg"
+							        id="selectBtn2">이벤트 갱신
+					</button>
 		<!-- SHOW HIDE COLUMNS -->
 		<form action="/alter_pr_event_form" accept-charset="utf-8" name='pr_event_form' method="get" >
 		<div class="widget">
@@ -87,6 +91,7 @@
 							        class="btn btn-default btn-lg"
 							        id="selectBtn2">새 할인 이벤트 등록
 					</button>
+					
 				</div>
 			</h3>
 			
