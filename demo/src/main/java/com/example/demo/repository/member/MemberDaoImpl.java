@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.dto.MemberMileage;
 import com.example.demo.model.Member;
 
 @Transactional
@@ -45,6 +46,18 @@ public class MemberDaoImpl extends JdbcDaoSupport implements MemberDao{
 			member.setMember_reg_day(rs.getDate("member_reg_day"));
 			
 			return member;
+		}
+	}
+	
+	public class MemberMileageMapper implements RowMapper<MemberMileage>{
+		public MemberMileage mapRow(ResultSet rs, int rowNum) throws SQLException{
+			MemberMileage memberMileage = new MemberMileage();
+			
+			memberMileage.setClass_mileage(rs.getInt("class_mileage"));
+			memberMileage.setMember_mileage(rs.getInt("member_mileage"));
+			memberMileage.setMember_no(rs.getInt("member_no"));
+			
+			return memberMileage;
 		}
 	}
 	
@@ -79,6 +92,20 @@ public class MemberDaoImpl extends JdbcDaoSupport implements MemberDao{
 		getJdbcTemplate().update(sql,new Object[] {member.getMember_gend(),member.getMember_birth(),member.getMember_name(),
 				member.getMember_mileage(),member.getMember_class(),member.getMember_no()});
 		
+	}
+
+	@Override
+	public MemberMileage getMileageInfo(int member_no) {
+		String sql = "select t.member_no, t.member_mileage, m.class_mileage from memberclassmileage m, tmember t where t.member_no = ? and t.member_class = m.member_class";
+		MemberMileage m = getJdbcTemplate().queryForObject(sql, new Object[] {member_no},new MemberMileageMapper() );
+		
+		return m;
+	}
+
+	@Override
+	public void alterMileageInfo(int member_no,int mileage) {
+		String sql = "update tmember set member_mileage = ? where member_no = ?";
+		getJdbcTemplate().update(sql,new Object[] {mileage,member_no});
 	}
 
 }

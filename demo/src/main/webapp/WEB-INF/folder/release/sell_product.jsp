@@ -123,6 +123,9 @@
 		</div>
 		<div class="col-md-6">
 			<div class="widget">
+			<label>
+							Member_no<input type="text" class="form-control input-sm" id="member_no">
+				</label>
 				<h3 class="widget-header clearfix">
 					<h3>
 						<i class="icon ion-ios-grid-view-outline" style="padding:0px 0px 0px 10px;"></i>
@@ -278,16 +281,16 @@
 
     function tableToJson(table) { // 변환 함수
         var data = [];
-
+    	var x = document.getElementById("member_no").value;
         var headers = [];
         //for(var i=0; i<table.rows[0].cells.length; i++) {
         //    headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
         //}
-
         headers[0] = "prod_no";
         headers[1] = "expdate"
         headers[2] = "amount";
         headers[3] = "price";
+        headers[4] = "member_no";
 
         for (var i = 1; i < table.rows.length; i++) {
             var tableRow = table.rows[i];
@@ -299,6 +302,7 @@
             rowData[headers[1]] = tableRow.cells[2].innerHTML;
             rowData[headers[2]] = tableRow.cells[3].innerHTML;
             rowData[headers[3]] = tableRow.cells[5].innerHTML;
+            rowData[headers[4]] = x;
 
             data.push(rowData);
         }
@@ -313,7 +317,8 @@
             url: "/product_sell_process",
             contentType: 'application/json; charset=UTF-8',
             data: JSON.stringify(jsonObj),
-            success: function () {
+            success: function (data) {
+            	if(data != "") alert('마일리지가 '+data+' 적립되었습니다.' );
                 alert('판매에 성공했습니다.');
                 window.location.href = "/home";
             },
