@@ -81,11 +81,11 @@
 					style="padding: 0px 0px 0px 10px;"></i> <span>할인 이벤트 정보</span>
 				<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
 					<button type="submit"  class="btn btn-default btn-lg"
-							        id="selectBtn">정보수정
+							        id="selectBtn3">정보수정
 					</button>
 					<button type="button" onclick="location.href= '/dc_event_add_form'"  
 							        class="btn btn-default btn-lg"
-							        id="selectBtn2">새 할인 이벤트 등록
+							        id="selectBtn4">새 할인 이벤트 등록
 					</button>
 				</div>
 			</h3>
