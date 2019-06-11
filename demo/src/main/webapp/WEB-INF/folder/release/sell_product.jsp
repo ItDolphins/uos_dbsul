@@ -339,11 +339,11 @@
             success: function (data) {
             	if(data != "") alert('마일리지가 '+data+' 적립되었습니다.' );
                 alert('판매에 성공했습니다.');
-                window.location.href = "/home";
+                window.location.href = "/sell_product";
             },
-            error: function (e) {
-                console.log(e);
-                alert("error : " + e);
+            error:function(request,status,error){
+
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
 

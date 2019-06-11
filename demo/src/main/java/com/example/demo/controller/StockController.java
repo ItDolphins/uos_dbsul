@@ -150,7 +150,10 @@ public class StockController {
 			Stock stock = stockService.getStock(sellItem.getProd_no(), sellItem.getExpdate(),acnt_store_no);
 			int changed_amount = stock.getStock_qnt() - sellItem.getAmount();
 			//재고 엔티티에 변한 수량을 반영
-			stockService.updateStock(stock, changed_amount);
+			if(changed_amount == 0)
+				stockService.deleteStock(stock);
+			else
+				stockService.updateStock(stock, changed_amount);
 			//release 엔티티에 insert
 			releaseService.insertRelease(stock, rls_code, rls_date,sellItem.getAmount());
 			//판매 테이블에 insert하기 위한 작업

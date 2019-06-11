@@ -1,6 +1,5 @@
 package com.example.demo.repository.release;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -54,7 +53,7 @@ public class ReleaseDaoImpl extends JdbcDaoSupport implements ReleaseDao{
 	@Override
 	public List<Release> getReleaseList(int store_no) {
 		String sql = "select rls_no, store_no, rls_code, rls_date, expdate, p.prod_no, rls_qnt, p.prod_name from rls r, prod p where store_no = ? and r.prod_no = p.prod_no";
-		List<Release> releaseList = (List<Release>)getJdbcTemplate().query(sql, new Object[] {store_no},new ReleaseListMapper());
+		List<Release> releaseList = getJdbcTemplate().query(sql, new Object[] {store_no},new ReleaseListMapper());
 		
 		return releaseList;
 	}
@@ -63,7 +62,7 @@ public class ReleaseDaoImpl extends JdbcDaoSupport implements ReleaseDao{
 	public void insertRelease(Stock stock, String rls_code, Timestamp rls_date,int rls_qnt) {
 		String sql = "INSERT INTO rls (store_no,rls_code,rls_date,prod_no,expdate,rls_qnt)"
 				+ " values(?,?,?,?,?,?)";
-		getJdbcTemplate().update(sql,new Object[] {stock.getStore_no(),rls_code,rls_date,stock.getProd_no(),stock.getExpdate(),rls_qnt});
+		getJdbcTemplate().update(sql, stock.getStore_no(),rls_code,rls_date,stock.getProd_no(),stock.getExpdate(),rls_qnt);
 		
 		
 	}
