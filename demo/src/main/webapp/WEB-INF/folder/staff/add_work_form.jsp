@@ -85,8 +85,9 @@
 									<div class="col-sm-offset-3 col-sm-9">
 										<input type="submit" onclick="return submitting()"
 										       class="btn btn-primary btn-block" value="신규 등록">
-										<input type="button" class="btn btn-primary btn-block"
-										       onclick="location.href = '/manage_work?staff_no='+;${work.staff_no}" value="취소">
+										<input type="button" onclick="location.href = '/manage_work?staff_no='+;${work.staff_no}"
+										       class="btn btn-primary btn-block"
+										       value="취소">
 									</div>
 								</div>
 							</fieldset>
