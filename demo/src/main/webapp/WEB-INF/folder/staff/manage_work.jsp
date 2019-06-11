@@ -78,7 +78,7 @@
 							<button type="submit" onclick="location.href= '/alter_work'" class="btn btn-default btn-lg"
 							        id="selectBtn">근무 수정<input type="hidden" name="staff_no" value="${staff.staff_no}">
 							</button>
-							<button type="button" onclick="location.href= '/add_work_form?staff_no='+;${staff.staff_no}"
+							<button type="button" onclick="location.href= '/add_work_form?staff_no='+${staff.staff_no}"
 							        class="btn btn-default btn-lg"
 							        id="selectBtn2">새 근무 등록
 							</button>

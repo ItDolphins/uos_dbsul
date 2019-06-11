@@ -72,7 +72,7 @@
 					<fmt:formatDate value="${workSum.yearMonth}" pattern="MM" var="month"/>
 					<span>${year}년 ${month}월 근무 통계</span>
 					<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-							<button type="button" onclick="location.href= '/manage_work?staff_no='+;${staff.staff_no}"
+							<button type="button" onclick="location.href= '/manage_work?staff_no='+${staff.staff_no}"
 							        class="btn btn-default btn-lg"
 							        id="selectBtn3">뒤로
 							</button>
