@@ -78,7 +78,7 @@
 							<button type="submit" onclick="location.href= '/alter_work'" class="btn btn-default btn-lg"
 							        id="selectBtn">근무 수정<input type="hidden" name="staff_no" value="${staff.staff_no}">
 							</button>
-							<button type="button" onclick="location.href= '/add_work_form?staff_no='+;${staff.staff_no}"
+							<button type="button" onclick="location.href= '/add_work_form?staff_no='+${staff.staff_no}"
 							        class="btn btn-default btn-lg"
 							        id="selectBtn2">새 근무 등록
 							</button>
@@ -184,20 +184,24 @@
 					<div class="widget-content"></div>
 				</h3>
 				<div class="widget-content">
-					<form class="form-horizontal form-ticket" role="form", action="/lookup_workSum" method="post" >
+					<form class="form-horizontal form-ticket" role="form" , action="/lookup_workSum" method="post">
 						<fieldset>
 							<legend></legend>
 							<div class="form-group">
 								<label for="yrmn" class="col-sm-3 control-label">근무 통계</label>
 								<div class="col-sm-9">
-									<input type="month" class="form-control" id="yrmn" name="yrmn" placeholder="연월" required="required">
+									<input type="month" class="form-control" id="yrmn" name="yrmn" placeholder="연월"
+									       required="required">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-9">
-									<button type="submit" class="btn btn-primary">통계 확인
-										<input type="hidden" name="staff_no" id="staff_no" value="${staff.staff_no}";
-									</button>
+									<form action="/lookup_workSum" accept-charset="utf-8" name='work_form' method="get">
+										<button type="submit" class="btn btn-primary">통계 확인
+											<input type="hidden" name="staff_no" id="staff_no"
+											       value="${staff.staff_no}">
+										</button>
+									</form>
 								</div>
 							</div>
 						</fieldset>
@@ -243,7 +247,7 @@
     window.onload = function () {
         var today = new Date();
         var yyyy = today.getFullYear();
-        var mm = today.getMonth() ;
+        var mm = today.getMonth();
         if (mm < 10) {
             mm = "0" + mm;
         }

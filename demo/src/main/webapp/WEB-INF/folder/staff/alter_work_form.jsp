@@ -90,7 +90,7 @@
 										<input type="submit" onclick="return submitting()"
 										       class="btn btn-primary btn-block" value="정보 수정">
 										<input type="button" class="btn btn-primary btn-block"
-										       onclick="location.href = '/alter_work?staff_no='+;${work.staff_no}" value="취소">
+										       onclick="location.href = '/alter_work?staff_no='+${work.staff_no}" value="취소">
 									</div>
 								</div>
 							</fieldset>
