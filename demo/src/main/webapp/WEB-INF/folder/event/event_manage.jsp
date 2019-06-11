@@ -83,7 +83,7 @@
 					<button type="submit"  class="btn btn-default btn-lg"
 							        id="selectBtn">정보수정
 					</button>
-					<button type="button" onclick="location.href= '/pr_event_add_form'"  
+					<button type="button" onclick="location.href= '/dc_event_add_form'"  
 							        class="btn btn-default btn-lg"
 							        id="selectBtn2">새 할인 이벤트 등록
 					</button>
