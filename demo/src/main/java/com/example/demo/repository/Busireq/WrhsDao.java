@@ -42,7 +42,7 @@ public class WrhsDao extends JdbcDaoSupport {
 
 	public void insertWrhs(Wrhs wrhs){
 		String sql = "insert into wrhs (req_no, wrhs_date, expdate)" +
-				" values(?,?,?)";
-		getJdbcTemplate().update(sql, new Object[]{wrhs.getReq_no(), wrhs.getWrhs_date(), wrhs.getExpdate()});
+				" values(?,trunc(?),trunc(?))";
+		getJdbcTemplate().update(sql, wrhs.getReq_no(), wrhs.getWrhs_date(), wrhs.getExpdate());
 	}
 }
