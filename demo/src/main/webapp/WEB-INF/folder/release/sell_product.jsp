@@ -154,7 +154,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-3 col-sm-9">
-					<input type="button" class="btn btn-primary btn-block" value="판매" onclick="javascript:transfer()"/>
+					<input type="button" class="btn btn-primary btn-block" value="판매" onclick="transfer()"/>
 					<input type="button" class="btn btn-primary btn-block" onclick="location.href = '/home'" value="취소">
 				</div>
 			</div>
@@ -166,7 +166,7 @@
         var str = "";
 
         var tr = $(this);
-        var tdArr = new Array();
+        var tdArr = [];
         var td = tr.children();
 
         td.each(function (i) {
@@ -200,7 +200,7 @@
                 flag = false;
                 return true;
             }
-        })
+        });
 
         if (flag) {
             str += '<tr>';
@@ -220,7 +220,7 @@
         var str = "";
 
         var tr = $(this);
-        var tdArr = new Array();
+        var tdArr = [];
         var td = tr.children();
 
         td.each(function (i) {
@@ -254,7 +254,7 @@
                 flag = false;
                 return true;
             }
-        })
+        });
 
         if (flag) {
             str += '<tr>';
@@ -271,11 +271,30 @@
     });
     
     $("#sellList ").on("click", "tr" , function () {
+        var prod_no = parseInt($(this).closest('tr').find('td').eq(0).html());
+        var prod_name = ($(this).closest('tr').find('td').eq(1).html());
+        var expdate = ($(this).closest('tr').find('td').eq(2).html());
         var sell_qnt = parseInt($(this).closest('tr').find('td').eq(3).html()) -1;
         var stock_qnt = parseInt($(this).closest('tr').find('td').eq(4).html())+1;
         if(sell_qnt >-1) {
             $(this).find('td:eq(3)').html(sell_qnt);
             $(this).find('td:eq(4)').html(stock_qnt);
+            $("#datatable-column-interactive tbody tr").each(function () {
+                var x = $(this).find('td').eq(0).html();
+                var y = $(this).find('td').eq(1).html();
+                var z = $(this).find('td').eq(2).html();
+                if (x == prod_no && y == prod_name && z == expdate) {
+                    $(this).find('td:eq(3)').html(stock_qnt);
+                }
+            });
+            $("#datatable-column-interactive2 tbody tr").each(function () {
+                var x = $(this).find('td').eq(0).html();
+                var y = $(this).find('td').eq(1).html();
+                var z = $(this).find('td').eq(2).html();
+                if (x == prod_no && y == prod_name && z == expdate) {
+                    $(this).find('td:eq(3)').html(stock_qnt);
+                }
+            })
         }
     });
 
@@ -287,7 +306,7 @@
         //    headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
         //}
         headers[0] = "prod_no";
-        headers[1] = "expdate"
+        headers[1] = "expdate";
         headers[2] = "amount";
         headers[3] = "price";
         headers[4] = "member_no";
