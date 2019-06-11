@@ -10,7 +10,7 @@
 	<div class="container-fluid primary-content">
 		<!-- PRIMARY CONTENT HEADING -->
 		<div class="primary-content-heading clearfix">
-			<h2>Manage Admin</h2>
+			<h2>Release Info</h2>
 			<div class="sticky-content pull-right">
 				<div class="btn-group btn-dropdown">
 					<button type="button" class="btn btn-default btn-sm btn-favorites" data-toggle="dropdown"><i
@@ -103,16 +103,6 @@
 					</div>
 				</div>
 			</h3>
-		</div>
-		
-		<div class="sticky-content pull-right" style="margin-top:10px; margin-right:30px">
-			<button type="button" onclick="location.href= '/alter_admin'" class="btn btn-default btn-lg"
-			        id="selectBtn">정보수정
-			</button>
-			<button type="button" onclick="location.href= '/add_admin_form'"
-			        class="btn btn-default btn-lg"
-			        id="selectBtn2">새 관리자 등록
-			</button>
 		</div>
 	</div>
 </div>
